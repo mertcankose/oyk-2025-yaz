@@ -1,0 +1,25 @@
+
+{
+  "name": "Mertcan NFT",
+  "description": "This is my first NFT created on Ethereum blockchain",
+  "image": "ipfs://bafkreigbqynytkjsgdoluamuzebvnwnenukmuzwvxxkodk2fau6ld2v5pm",
+  "external_url": "https://mertcankose.com",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "Genesis"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Year",
+      "value": "2025"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "Mertcan"
+    }
+  ]
+}

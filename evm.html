@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVM Görsel Açıklama</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .evm-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .component-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .description {
+            color: #666;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .interactive-hint {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔷 Ethereum Virtual Machine (EVM) Görsel Rehber</h1>
+        
+        <div class="section">
+            <h2>1. EVM'in İç Yapısı</h2>
+            
+            <div class="evm-container">
+                <svg width="800" height="500" viewBox="0 0 800 500">
+                    <!-- Ana EVM Kutusu -->
+                    <rect x="50" y="30" width="700" height="440" fill="#f0f4ff" stroke="#667eea" stroke-width="3" rx="10"/>
+                    <text x="400" y="60" text-anchor="middle" font-size="24" font-weight="bold" fill="#667eea">
+                        ETHEREUM VIRTUAL MACHINE (EVM)
+                    </text>
+                    
+                    <!-- Stack -->
+                    <g id="stack">
+                        <rect x="80" y="100" width="150" height="200" fill="#ffe6e6" stroke="#ff4444" stroke-width="2" rx="5"/>
+                        <text x="155" y="130" text-anchor="middle" font-weight="bold" fill="#ff4444">STACK</text>
+                        
+                        <!-- Stack elemanları -->
+                        <rect x="90" y="250" width="130" height="30" fill="#ffcccc" stroke="#ff4444"/>
+                        <text x="155" y="270" text-anchor="middle" font-size="12">0x1234...</text>
+                        
+                        <rect x="90" y="215" width="130" height="30" fill="#ffcccc" stroke="#ff4444"/>
+                        <text x="155" y="235" text-anchor="middle" font-size="12">0x5678...</text>
+                        
+                        <rect x="90" y="180" width="130" height="30" fill="#ffcccc" stroke="#ff4444"/>
+                        <text x="155" y="200" text-anchor="middle" font-size="12">0xABCD...</text>
+                        
+                        <rect x="90" y="145" width="130" height="30" fill="#ffcccc" stroke="#ff4444"/>
+                        <text x="155" y="165" text-anchor="middle" font-size="12">0xEF01...</text>
+                    </g>
+                    
+                    <!-- Memory -->
+                    <g id="memory">
+                        <rect x="270" y="100" width="200" height="200" fill="#e6f3ff" stroke="#4444ff" stroke-width="2" rx="5"/>
+                        <text x="370" y="130" text-anchor="middle" font-weight="bold" fill="#4444ff">MEMORY</text>
+                        
+                        <!-- Memory slots -->
+                        <rect x="280" y="150" width="180" height="25" fill="#cce6ff" stroke="#4444ff"/>
+                        <text x="290" y="167" font-size="11">0x00: geçici veri</text>
+                        
+                        <rect x="280" y="180" width="180" height="25" fill="#cce6ff" stroke="#4444ff"/>
+                        <text x="290" y="197" font-size="11">0x20: function args</text>
+                        
+                        <rect x="280" y="210" width="180" height="25" fill="#cce6ff" stroke="#4444ff"/>
+                        <text x="290" y="227" font-size="11">0x40: free memory ptr</text>
+                        
+                        <rect x="280" y="240" width="180" height="25" fill="#cce6ff" stroke="#4444ff"/>
+                        <text x="290" y="257" font-size="11">0x60: return data</text>
+                    </g>
+                    
+                    <!-- Storage -->
+                    <g id="storage">
+                        <rect x="510" y="100" width="220" height="200" fill="#e6ffe6" stroke="#44ff44" stroke-width="2" rx="5"/>
+                        <text x="620" y="130" text-anchor="middle" font-weight="bold" fill="#44ff44">STORAGE</text>
+                        <text x="620" y="150" text-anchor="middle" font-size="11" fill="#666">(Kalıcı Depolama)</text>
+                        
+                        <!-- Storage slots -->
+                        <rect x="520" y="170" width="200" height="25" fill="#ccffcc" stroke="#44ff44"/>
+                        <text x="530" y="187" font-size="11">Slot 0: balances mapping</text>
+                        
+                        <rect x="520" y="200" width="200" height="25" fill="#ccffcc" stroke="#44ff44"/>
+                        <text x="530" y="217" font-size="11">Slot 1: owner address</text>
+                        
+                        <rect x="520" y="230" width="200" height="25" fill="#ccffcc" stroke="#44ff44"/>
+                        <text x="530" y="247" font-size="11">Slot 2: totalSupply</text>
+                        
+                        <rect x="520" y="260" width="200" height="25" fill="#ccffcc" stroke="#44ff44"/>
+                        <text x="530" y="277" font-size="11">Slot 3: contract state</text>
+                    </g>
+                    
+                    <!-- Program Counter -->
+                    <g id="pc">
+                        <rect x="80" y="330" width="150" height="60" fill="#fff0e6" stroke="#ff8844" stroke-width="2" rx="5"/>
+                        <text x="155" y="355" text-anchor="middle" font-weight="bold" fill="#ff8844">Program Counter</text>
+                        <text x="155" y="375" text-anchor="middle" font-size="14">PC: 0x123</text>
+                    </g>
+                    
+                    <!-- Gas Counter -->
+                    <g id="gas">
+                        <rect x="270" y="330" width="150" height="60" fill="#f0e6ff" stroke="#8844ff" stroke-width="2" rx="5"/>
+                        <text x="345" y="355" text-anchor="middle" font-weight="bold" fill="#8844ff">Gas Counter</text>
+                        <text x="345" y="375" text-anchor="middle" font-size="14">21000 gas</text>
+                    </g>
+                    
+                    <!-- Call Data -->
+                    <g id="calldata">
+                        <rect x="460" y="330" width="150" height="60" fill="#ffe6f0" stroke="#ff4488" stroke-width="2" rx="5"/>
+                        <text x="535" y="355" text-anchor="middle" font-weight="bold" fill="#ff4488">Call Data</text>
+                        <text x="535" y="375" text-anchor="middle" font-size="12">Input verileri</text>
+                    </g>
+                    
+                    <!-- Return Data -->
+                    <g id="returndata">
+                        <rect x="630" y="330" width="100" height="60" fill="#e6fff0" stroke="#44ff88" stroke-width="2" rx="5"/>
+                        <text x="680" y="355" text-anchor="middle" font-weight="bold" fill="#44ff88">Return</text>
+                        <text x="680" y="375" text-anchor="middle" font-size="12">Output</text>
+                    </g>
+                    
+                    <!-- Oklar -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#667eea"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Stack to Memory arrow -->
+                    <path d="M 230 200 L 270 200" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+                    
+                    <!-- Memory to Storage arrow -->
+                    <path d="M 470 200 L 510 200" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+                </svg>
+            </div>
+            
+            <div class="info-box">
+                <div class="component-label">📊 STACK (Yığın)</div>
+                <div class="description">
+                    • Max 1024 eleman, her biri 256 bit (32 byte)<br>
+                    • LIFO (Last In First Out) - Son giren ilk çıkar<br>
+                    • Hızlı erişim, geçici hesaplamalar için kullanılır
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <div class="component-label">💾 MEMORY (Bellek)</div>
+                <div class="description">
+                    • Geçici veri depolama alanı<br>
+                    • İşlem süresince yaşar, sonra silinir<br>
+                    • Byte-adreslenebilir, dinamik boyut
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <div class="component-label">🗄️ STORAGE (Kalıcı Depo)</div>
+                <div class="description">
+                    • Blockchain'de kalıcı olarak saklanır<br>
+                    • En pahalı işlem (gas açısından)<br>
+                    • State variables burada tutulur
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Solidity'den Deploy Süreci</h2>
+            
+            <div class="evm-container">
+                <svg width="800" height="600" viewBox="0 0 800 600">
+                    <!-- Başlık -->
+                    <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#667eea">
+                        Smart Contract Deploy Süreci
+                    </text>
+                    
+                    <!-- 1. Solidity Kodu -->
+                    <g id="solidity-code">
+                        <rect x="50" y="60" width="200" height="100" fill="#e6f3ff" stroke="#4444ff" stroke-width="2" rx="5"/>
+                        <text x="150" y="90" text-anchor="middle" font-weight="bold" fill="#4444ff">1. Solidity Kodu</text>
+                        <text x="150" y="115" text-anchor="middle" font-size="12">contract MyToken {</text>
+                        <text x="150" y="135" text-anchor="middle" font-size="12">  uint balance;</text>
+                        <text x="150" y="150" text-anchor="middle" font-size="12">}</text>
+                    </g>
+                    
+                    <!-- Ok 1 -->
+                    <path d="M 250 110 L 320 110" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="285" y="100" text-anchor="middle" font-size="11" fill="#666">compile</text>
+                    
+                    <!-- 2. Bytecode -->
+                    <g id="bytecode">
+                        <rect x="320" y="60" width="200" height="100" fill="#ffe6e6" stroke="#ff4444" stroke-width="2" rx="5"/>
+                        <text x="420" y="90" text-anchor="middle" font-weight="bold" fill="#ff4444">2. Bytecode + ABI</text>
+                        <text x="420" y="115" text-anchor="middle" font-size="10" font-family="monospace">0x608060405234801561</text>
+                        <text x="420" y="130" text-anchor="middle" font-size="10" font-family="monospace">001057600080fd6000</text>
+                        <text x="420" y="145" text-anchor="middle" font-size="10" font-family="monospace">35c08063a9059...</text>
+                    </g>
+                    
+                    <!-- Ok 2 -->
+                    <path d="M 520 110 L 590 110" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="555" y="100" text-anchor="middle" font-size="11" fill="#666">deploy tx</text>
+                    
+                    <!-- 3. Transaction -->
+                    <g id="transaction">
+                        <rect x="590" y="60" width="160" height="100" fill="#f0e6ff" stroke="#8844ff" stroke-width="2" rx="5"/>
+                        <text x="670" y="90" text-anchor="middle" font-weight="bold" fill="#8844ff">3. Transaction</text>
+                        <text x="670" y="110" text-anchor="middle" font-size="11">To: 0x0 (create)</text>
+                        <text x="670" y="125" text-anchor="middle" font-size="11">Data: bytecode</text>
+                        <text x="670" y="140" text-anchor="middle" font-size="11">Gas: 500000</text>
+                    </g>
+                    
+                    <!-- Ok 3 - aşağı -->
+                    <path d="M 670 160 L 670 210" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="690" y="185" font-size="11" fill="#666">send</text>
+                    
+                    <!-- 4. EVM İşlemi -->
+                    <g id="evm-process">
+                        <rect x="150" y="210" width="500" height="250" fill="#fff8e6" stroke="#ff8844" stroke-width="3" rx="10"/>
+                        <text x="400" y="240" text-anchor="middle" font-size="18" font-weight="bold" fill="#ff8844">4. EVM İşlem Süreci</text>
+                        
+                        <!-- EVM içi adımlar -->
+                        <rect x="170" y="260" width="140" height="60" fill="#ffe6f0" stroke="#ff4488" stroke-width="2" rx="5"/>
+                        <text x="240" y="285" text-anchor="middle" font-weight="bold" font-size="12">A. Validation</text>
+                        <text x="240" y="305" text-anchor="middle" font-size="10">Gas kontrolü</text>
+                        
+                        <path d="M 310 290 L 350 290" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="350" y="260" width="140" height="60" fill="#e6fff0" stroke="#44ff88" stroke-width="2" rx="5"/>
+                        <text x="420" y="285" text-anchor="middle" font-weight="bold" font-size="12">B. Execution</text>
+                        <text x="420" y="305" text-anchor="middle" font-size="10">Bytecode çalıştır</text>
+                        
+                        <path d="M 490 290 L 530 290" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="530" y="260" width="100" height="60" fill="#e6f3ff" stroke="#4444ff" stroke-width="2" rx="5"/>
+                        <text x="580" y="285" text-anchor="middle" font-weight="bold" font-size="12">C. Storage</text>
+                        <text x="580" y="305" text-anchor="middle" font-size="10">State kaydet</text>
+                        
+                        <!-- Constructor çalışması -->
+                        <rect x="250" y="350" width="300" height="80" fill="#f0f4ff" stroke="#667eea" stroke-width="2" rx="5"/>
+                        <text x="400" y="375" text-anchor="middle" font-weight="bold" fill="#667eea">Constructor Çalışır</text>
+                        <text x="400" y="395" text-anchor="middle" font-size="11">• Initial state ayarlanır</text>
+                        <text x="400" y="410" text-anchor="middle" font-size="11">• Contract adresi oluşturulur</text>
+                    </g>
+                    
+                    <!-- Ok 4 - aşağı -->
+                    <path d="M 400 460 L 400 510" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- 5. Deployed Contract -->
+                    <g id="deployed">
+                        <rect x="250" y="510" width="300" height="70" fill="#d4f8d4" stroke="#44aa44" stroke-width="3" rx="5"/>
+                        <text x="400" y="540" text-anchor="middle" font-size="16" font-weight="bold" fill="#44aa44">5. Contract Deployed! ✅</text>
+                        <text x="400" y="560" text-anchor="middle" font-size="12">Address: 0x742d35Cc6634C053...</text>
+                    </g>
+                </svg>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4444ff;"></div>
+                    <span>Kod/Derleme Aşaması</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff4444;"></div>
+                    <span>Bytecode Üretimi</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #8844ff;"></div>
+                    <span>Transaction Oluşturma</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff8844;"></div>
+                    <span>EVM İşlemi</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #44aa44;"></div>
+                    <span>Başarılı Deploy</span>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <div class="component-label">🔄 Deploy Sürecinin Özeti:</div>
+                <div class="description">
+                    1. <strong>Solidity Kodu:</strong> Akıllı kontrat yüksek seviyeli Solidity dilinde yazılır<br><br>
+                    2. <strong>Compile (Derleme):</strong> Solidity compiler (solc) kodu bytecode'a çevirir + ABI oluşturur<br><br>
+                    3. <strong>Transaction Oluşturma:</strong> Bytecode bir transaction'ın data alanına konur, "to" adresi 0x0 olur<br><br>
+                    4. <strong>EVM İşlemi:</strong> 
+                       • Gas kontrolü yapılır
+                       • Bytecode çalıştırılır
+                       • Constructor kodu execute edilir
+                       • Contract state'i storage'a yazılır<br><br>
+                    5. <strong>Contract Adresi:</strong> Deploy eden adres + nonce'dan hesaplanır ve contract bu adrese yerleştirilir
+                </div>
+            </div>
+        </div>
+        
+        <div class="interactive-hint">
+            💡 EVM, tüm Ethereum node'larında aynı şekilde çalışan deterministik bir sanal makinedir.
+        </div>
+    </div>
+</body>
+</html>

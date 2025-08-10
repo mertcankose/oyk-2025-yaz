@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merkez Bankası Para Basma Süreci</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .step-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step-number {
+            font-size: 60px;
+            font-weight: bold;
+            opacity: 0.2;
+            position: absolute;
+            right: 20px;
+            top: -10px;
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 30px;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .bank-visual {
+            width: 100%;
+            height: 200px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .money-flow {
+            width: 100px;
+            height: 100px;
+            background: #4caf50;
+            border-radius: 50%;
+            position: absolute;
+            animation: flow 3s infinite;
+        }
+        
+        @keyframes flow {
+            0% { transform: translateX(-200px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(200px); opacity: 0; }
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 5px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .example-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #4caf50;
+        }
+        
+        .multiplier-visual {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .money-block {
+            width: 80px;
+            height: 40px;
+            background: #4caf50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .rate-display {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .fed-rate { color: #1976d2; }
+        .tcmb-rate { color: #d32f2f; }
+        
+        .warning-box {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .success-box {
+            background: #e8f5e9;
+            border: 2px solid #66bb6a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏦 Merkez Bankası Nasıl Para Basıyor?</h1>
+    
+    <div class="section">
+        <h2>🤔 "Para Basmak" Ne Demek?</h2>
+        <div class="highlight">
+            <strong>ÖNEMLİ:</strong> Merkez bankaları artık matbaada kağıt para basmıyor! 
+            Paranın %95'i dijital olarak, bilgisayarda yaratılıyor.
+        </div>
+        
+        <div class="example-box">
+            <h3>🎮 Oyun Örneği:</h3>
+            <p>Bir bilgisayar oyununda yönetici (admin) olduğunuzu düşünün. 
+            Oyuncuların hesabına istediğiniz kadar oyun parası ekleyebilirsiniz. 
+            Merkez bankası da ekonomide böyle çalışır - ama kuralları var!</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📊 Para Basmanın 4 Basit Adımı</h2>
+        
+        <div class="step-box">
+            <span class="step-number">1</span>
+            <h3>Karar Aşaması</h3>
+            <p>Merkez bankası "Ekonomi yavaş, para basalım" der. 
+            Fed'de 12 kişi, TCMB'de 7 kişi oy kullanır.</p>
+        </div>
+        
+        <div class="arrow">⬇️</div>
+        
+        <div class="step-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <span class="step-number">2</span>
+            <h3>Bilgisayarda Para Yaratma</h3>
+            <p>Merkez bankası bilgisayarda tuşlara basar ve bankaların hesabına para yazar. 
+            Gerçekten bu kadar basit!</p>
+        </div>
+        
+        <div class="arrow">⬇️</div>
+        
+        <div class="step-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <span class="step-number">3</span>
+            <h3>Bankalar Kredi Verir</h3>
+            <p>Bankalar bu yeni parayı alır ve size kredi olarak verir. 
+            Ev kredisi, araba kredisi, işletme kredisi...</p>
+        </div>
+        
+        <div class="arrow">⬇️</div>
+        
+        <div class="step-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <span class="step-number">4</span>
+            <h3>Para Ekonomiye Yayılır</h3>
+            <p>Siz krediyle ev alırsınız, ev sahibi o parayla araba alır, 
+            araba satıcısı maaş öder... Para dolaşır!</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔄 Para Çarpanı - Sihirli Çoğalma!</h2>
+        
+        <div class="example-box">
+            <h3>Basit Örnek:</h3>
+            <p>Merkez bankası 100 TL yaratır. Bu nasıl 1000 TL olur?</p>
+            
+            <div class="multiplier-visual">
+                <div class="money-block">100 TL</div>
+                <span style="font-size: 24px;">→</span>
+                <div>
+                    <div class="money-block">90 TL</div>
+                    <small>Banka A kredisi</small>
+                </div>
+                <span style="font-size: 24px;">→</span>
+                <div>
+                    <div class="money-block">81 TL</div>
+                    <small>Banka B kredisi</small>
+                </div>
+                <span style="font-size: 24px;">→</span>
+                <div>
+                    <div class="money-block">73 TL</div>
+                    <small>Banka C kredisi</small>
+                </div>
+                <span style="font-size: 24px;">...</span>
+                <div>
+                    <div class="money-block" style="background: #ff9800; width: 120px;">1000 TL</div>
+                    <small>Toplam</small>
+                </div>
+            </div>
+            
+            <p><strong>Neden 10 kat?</strong> Çünkü bankalar her 100 TL'nin 10 TL'sini kasada tutar (zorunlu karşılık), 
+            90 TL'sini kredi verir. Bu böyle devam eder.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🇺🇸 🇹🇷 Amerika vs Türkiye - Büyük Fark!</h2>
+        
+        <div class="comparison-grid">
+            <div class="card">
+                <h3>🇺🇸 Federal Reserve (Fed)</h3>
+                <div class="rate-display fed-rate">%4.5</div>
+                <p>Faiz oranı</p>
+                <div class="success-box">
+                    <strong>Durum:</strong> Ekonomi iyi, enflasyon düşük
+                    <br>Az para basıyor, yavaş yavaş azaltıyor
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🇹🇷 TCMB</h3>
+                <div class="rate-display tcmb-rate">%43</div>
+                <p>Faiz oranı</p>
+                <div class="warning-box">
+                    <strong>Durum:</strong> Yüksek enflasyon (%33)
+                    <br>Para basmayı durdurdu, tam tersine sıkılaştırıyor
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>❓ Neden Para Basılır?</h2>
+        
+        <div class="comparison-grid">
+            <div class="card" style="border-color: #4caf50;">
+                <h3>✅ İyi Sebepler</h3>
+                <ul>
+                    <li>Ekonomik kriz (COVID-19 gibi)</li>
+                    <li>İşsizlik çok yüksek</li>
+                    <li>Deflasyon tehlikesi</li>
+                    <li>Bankalar iflas riski altında</li>
+                </ul>
+            </div>
+            
+            <div class="card" style="border-color: #f44336;">
+                <h3>❌ Kötü Sebepler</h3>
+                <ul>
+                    <li>Devlet borcunu ödemek için</li>
+                    <li>Seçim öncesi ekonomiyi şişirmek</li>
+                    <li>Politik baskı</li>
+                    <li>Kolay yoldan büyüme</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚡ Çok Para Basmanın Tehlikesi</h2>
+        
+        <div class="warning-box">
+            <h3>🔥 Enflasyon Felaketi</h3>
+            <p>Çok para basarsanız → Herkesin cebinde çok para olur → 
+            Herkes alışveriş yapar → Fiyatlar fırlar → Paranız değersizleşir!</p>
+            
+            <div class="example-box" style="background: #ffebee; border-color: #ef5350;">
+                <strong>Türkiye Örneği (2021-2023):</strong>
+                <br>• Çok düşük faizle çok para basıldı
+                <br>• Dolar 7 TL'den 32 TL'ye çıktı
+                <br>• Enflasyon %85'e fırladı
+                <br>• 100 TL'lik alışveriş 185 TL oldu!
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 Özet: 5 Altın Kural</h2>
+        
+        <div class="highlight" style="background: #e3f2fd; border-color: #2196f3;">
+            <ol>
+                <li><strong>Para dijital yaratılır</strong> - Matbaa değil, bilgisayar!</li>
+                <li><strong>Bankalar çoğaltır</strong> - 1 TL merkez bankası parası = 10 TL ekonomide</li>
+                <li><strong>Sebep önemli</strong> - Kriz için iyi, borç için kötü</li>
+                <li><strong>Dozaj kritik</strong> - Az zararlı, çok felâket</li>
+                <li><strong>Güven her şey</strong> - İnsanlar güvenmezse para kağıt parçası</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h2>🚀 Gelecek: Dijital Para</h2>
+        <p>Yakında herkesin merkez bankasında dijital cüzdanı olabilir! 
+        Çin zaten test ediyor. Bu olursa bankalar olmadan da para transfer edebileceğiz.</p>
+    </div>
+</body>
+</html>
