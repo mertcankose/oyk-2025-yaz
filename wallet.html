@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cüzdan 🔑</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .slide {
+        min-height: 100vh;
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .slide:nth-child(odd) {
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      }
+
+      .slide:nth-child(even) {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.8s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin: 2rem 0 1rem;
+        color: #5a67d8;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+        color: #764ba2;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        white-space: pre-wrap;
+        line-height: 1.8;
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        color: #2d3436;
+      }
+
+      .formula-box {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        border-left: 5px solid #2196f3;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 10px;
+        font-size: 1.1rem;
+      }
+
+      .example-box {
+        background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        border-left: 5px solid #9c27b0;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 10px;
+      }
+
+      .wallet-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .wallet-table th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem;
+        text-align: left;
+      }
+
+      .wallet-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .wallet-table tr:hover {
+        background: #f5f5f5;
+      }
+
+      .emoji-box {
+        display: inline-block;
+        font-size: 2rem;
+        margin: 0 0.5rem;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .key-animation {
+        display: inline-block;
+        animation: rotate 3s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .seed-box {
+        background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border: 2px solid #4caf50;
+      }
+
+      .warning-box {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        border-left: 5px solid #ff9800;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 10px;
+      }
+
+      .security-box {
+        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        border-left: 5px solid #f44336;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 10px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .bitcoin-box {
+        background: linear-gradient(135deg, #f7931a 0%, #ffb74d 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        box-shadow: 0 10px 30px rgba(247, 147, 26, 0.3);
+      }
+
+      .ethereum-box {
+        background: linear-gradient(135deg, #627eea 0%, #9fa8da 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        box-shadow: 0 10px 30px rgba(98, 126, 234, 0.3);
+      }
+
+      .nav-dots {
+        position: fixed;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot:hover,
+      .dot.active {
+        background: white;
+        transform: scale(1.5);
+      }
+
+      .path-diagram {
+        background: #f5f5f5;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1.5rem 0;
+        font-family: monospace;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .tree-diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      .tree-node {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        margin: 0.5rem;
+        position: relative;
+      }
+
+      .tree-branches {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .address-type {
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      .address-type:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .step-box {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .step-item {
+        background: white;
+        border-left: 4px solid #667eea;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .step-number {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 1rem;
+      }
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+        .container {
+          padding: 1.5rem;
+        }
+        .nav-dots {
+          display: none;
+        }
+        .comparison-grid {
+          grid-template-columns: 1fr;
+        }
+        .comparison-flex {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+      <div class="dot active" onclick="scrollToSlide(0)"></div>
+      <div class="dot" onclick="scrollToSlide(1)"></div>
+      <div class="dot" onclick="scrollToSlide(2)"></div>
+      <div class="dot" onclick="scrollToSlide(3)"></div>
+      <div class="dot" onclick="scrollToSlide(4)"></div>
+      <div class="dot" onclick="scrollToSlide(5)"></div>
+      <div class="dot" onclick="scrollToSlide(6)"></div>
+      <div class="dot" onclick="scrollToSlide(7)"></div>
+      <div class="dot" onclick="scrollToSlide(8)"></div>
+      <div class="dot" onclick="scrollToSlide(9)"></div>
+      <div class="dot" onclick="scrollToSlide(10)"></div>
+    </div>
+
+    <!-- Slide 1: Giriş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🔑 Cüzdan</h1>
+        <div style="text-align: center; margin: 2rem 0">
+          <div class="emoji-box key-animation">🔑</div>
+          <div class="emoji-box">🔐</div>
+          <div class="emoji-box">💰</div>
+        </div>
+        <h3 style="text-align: center">Cüzdan Aslında Ne?</h3>
+        <div class="formula-box" style="text-align: center; font-size: 1.3rem">
+          <p><strong>Cüzdan ≠ Para Kasası</strong></p>
+          <p><strong>Cüzdan = Anahtar Yöneticisi</strong></p>
+        </div>
+        <div class="example-box">
+          <div class="code-block">
+            🏦 Blockchain = Herkesin görebildiği kasalar 🔑 Private Key = Kasanın anahtarı (sadece sizde) 📬 Public
+            Key/Address = Kasa numarası (paylaşılabilir) 💼 Cüzdan = Anahtarları yöneten yazılım
+          </div>
+        </div>
+        <div class="warning-box">
+          <h3>⚠️ Kritik Bilgi</h3>
+          <p>
+            Cüzdanınız para saklamaz! Paranız blockchain'de durur. Cüzdan sadece
+            <span class="highlight">private key</span> saklar. Private key'i kaybederseniz, paranız blockchain'de
+            sonsuza dek kilitli kalır!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Bitcoin Evrimi -->
+    <section class="slide">
+      <div class="container">
+        <h1>📜 Bitcoin Cüzdan Evrimi</h1>
+
+        <h2>1️⃣ Eski Sistem (2009-2011) - Kabus!</h2>
+        <div class="security-box">
+          <h3>Problem: Her adres için ayrı private key</h3>
+          <div class="code-block">
+            Adres 1: 1A1zP1eP... → Private Key: 5KJvsngHeM... Adres 2: 1BvBMSEY... → Private Key: 5HpHagT65T... Adres 3:
+            1CjPR7Z5... → Private Key: 5KYZdUEo39... ... Adres 100: 1XyZ9... → Private Key: 5LmNoPq... 100 adres = 100
+            farklı private key yedeklemeniz gerek! 😱 Birini kaybettiniz = O adresteki Bitcoin sonsuza dek kayıp!
+          </div>
+        </div>
+
+        <h2>2️⃣ HD Wallet Devrimi - BIP32 (2012)</h2>
+        <div class="seed-box">
+          <h3>HD = Hierarchical Deterministic</h3>
+          <p><strong>TEK TOHUM → SONSUZ ADRES! 🌱</strong></p>
+
+          <div class="tree-diagram">
+            <div class="tree-node">Master Seed</div>
+            <div>↓</div>
+            <div class="tree-node">Master Private Key</div>
+            <div>↓</div>
+            <div class="tree-branches">
+              <div>
+                <div class="tree-node">Account 0</div>
+                <div>↓</div>
+                <div>Adres 1,2,3...</div>
+              </div>
+              <div>
+                <div class="tree-node">Account 1</div>
+                <div>↓</div>
+                <div>Adres 1,2,3...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h3>Nasıl Çalışır?</h3>
+          <div class="code-block">
+            # 1. Master seed oluştur (128-256 bit entropi) master_seed = generate_entropy() # "8b2e5c4a3f1d9e7..." # 2.
+            Master key türet master_key = HMAC-SHA512(master_seed, "Bitcoin seed") # 3. Child key türet (matematiksel)
+            def derive_child(parent_key, index): data = parent_public_key + index child = HMAC-SHA512(parent_chain_code,
+            data) return child_private_key # Sonuç: Sonsuz adres, deterministik! address_0 = derive(master, 0) # Her
+            zaman aynı address_1 = derive(master, 1) # Tahmin edilemez address_2 = derive(master, 2) # Güvenli
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: BIP39 Mnemonic - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🗣️ BIP39 - İnsan Dostu Kelimeler</h1>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>❌ Problem</h3>
+            <div class="code-block" style="background: #2e2e2e">8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c</div>
+            <p>Kim hatırlar bunu?</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>✅ Çözüm</h3>
+            <div class="code-block" style="background: #2e2e2e">abandon amount liar cage candy</div>
+            <p>12-24 kelime!</p>
+          </div>
+        </div>
+
+        <h2>BIP39 Nasıl Çalışır?</h2>
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>RASTGELE SAYI (128 bit entropi)</strong>
+            <div class="code-block">10110111001010101111001010101111...</div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>CHECKSUM EKLE (güvenlik için)</strong>
+            <div class="code-block">10110111001010101111001010101111...0110</div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>11 BİTLİK GRUPLARA BÖL</strong>
+            <div class="code-block">|10110111001|01010101111|00101010111|... Her grup = 0-2047 arası sayı</div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">4</span>
+            <strong>KELİME LİSTESİNDEN BUL (2048 kelime)</strong>
+            <div class="code-block">1365 → abandon 87 → amount 1029 → liar ...</div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">5</span>
+            <strong>SEED OLUŞTUR</strong>
+            <div class="code-block">PBKDF2(kelimeler, "mnemonic" + passphrase, 2048 rounds) = Master Seed!</div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>📚 Kelime Listesi</h3>
+            <p><strong>2048 kelime</strong></p>
+            <p>2^11 = 2048</p>
+            <p>İlk 4 harf unique</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>🔐 Güvenlik</h3>
+            <p><strong>12 kelime</strong></p>
+            <p>128 bit entropi</p>
+            <p>2^128 kombinasyon</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>🌍 Dil Desteği</h3>
+            <p>İngilizce</p>
+            <p>Japonca, Fransızca</p>
+            <p>Çince, İtalyanca...</p>
+          </div>
+        </div>
+
+        <div class="seed-box">
+          <h3>🎲 Örnek Seed Phrase</h3>
+          <div class="code-block" style="background: #2e2e2e; color: #4caf50; font-size: 1.2rem">
+            abandon amount liar amount expire adjust cage candy arch gather drum buyer
+          </div>
+          <p style="text-align: center; margin-top: 1rem">
+            <strong>Bu 12 kelime = Tüm cüzdanınız!</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: BIP44 Path - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🗂️ BIP44 - Evrensel Adres Yolu</h1>
+
+        <h2>Standart Yol Haritası</h2>
+        <div class="path-diagram">
+          <div style="font-size: 2rem; color: #667eea">
+            m / purpose' / coin_type' / account' / change / address_index
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h3>Örnek: Bitcoin İlk Adres</h3>
+          <div class="code-block" style="font-size: 1.3rem">
+            m/44'/0'/0'/0/0 m → Master 44' → BIP44 standardı (sabit) 0' → Bitcoin (ETH=60, LTC=2) 0' → İlk hesap 0 →
+            External (1=change/internal) 0 → İlk adres ' = Hardened derivation (ekstra güvenlik)
+          </div>
+        </div>
+
+        <h2>🌈 Aynı Seed, Farklı Coinler</h2>
+        <div class="bitcoin-box">
+          <h3>Bitcoin</h3>
+          <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
+            Seed: "abandon amount liar..." m/44'/0'/0'/0/0 → 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa m/44'/0'/0'/0/1 →
+            1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2 m/44'/0'/0'/0/2 → 1CjPR7Z5ZSyWk6WtXvSFgkptmpoi4UM9BC
+          </div>
+        </div>
+
+        <div class="ethereum-box">
+          <h3>Ethereum</h3>
+          <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
+            Aynı Seed: "abandon amount liar..." m/44'/60'/0'/0/0 → 0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+            m/44'/60'/0'/0/1 → 0x92D7656EC7ab88b098defB751B7401B5f6d8976F
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <h3>💡 Coin Type Kodları</h3>
+          <div class="stats-grid">
+            <div>Bitcoin: 0</div>
+            <div>Ethereum: 60</div>
+            <div>Litecoin: 2</div>
+            <div>Dogecoin: 3</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Bitcoin Adres Tipleri - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🏷️ Bitcoin'in 4 Adres Tipi</h1>
+
+        <div class="warning-box">
+          <p><strong>Aynı Private Key → 4 Farklı Adres!</strong></p>
+          <div class="code-block">Private Key: L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1</div>
+        </div>
+
+        <div class="address-type">
+          <h3>1️⃣ Legacy (P2PKH)</h3>
+          <div class="code-block">
+            Path: m/44'/0'/0'/0/0 Adres: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa Özellik: "1" ile başlar Format: Base58
+            Ücret: En pahalı ❌ Boyut: En büyük
+          </div>
+        </div>
+
+        <div class="address-type">
+          <h3>2️⃣ SegWit Wrapped (P2SH-P2WPKH)</h3>
+          <div class="code-block">
+            Path: m/49'/0'/0'/0/0 Adres: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy Özellik: "3" ile başlar Ücret: %26 daha ucuz
+            ⚡ Uyumluluk: Eski cüzdanlarla ✅
+          </div>
+        </div>
+
+        <div class="address-type">
+          <h3>3️⃣ Native SegWit (Bech32)</h3>
+          <div class="code-block">
+            Path: m/84'/0'/0'/0/0 Adres: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4 Özellik: "bc1" ile başlar Ücret: En
+            ucuz (%42 tasarruf) ✅ Boyut: En küçük Önerilen: Modern standart 🎯
+          </div>
+        </div>
+
+        <div class="address-type">
+          <h3>4️⃣ Taproot (En Yeni)</h3>
+          <div class="code-block">
+            Path: m/86'/0'/0'/0/0 Adres: bc1p5d7rjq8g2c3j3wvxnq5jwz5nvxz7q8g2c3j3wv Özellik: "bc1p" ile başlar Avantaj:
+            Privacy + Smart contracts Gelecek: Bitcoin'in geleceği 🚀
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <h3>💡 Hangi Tip Kullanmalı?</h3>
+          <p><strong>Native SegWit (bc1)</strong>: En ucuz, modern, önerilen ✅</p>
+          <p><strong>Legacy (1)</strong>: Sadece eski servisler için ⚠️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Bitcoin vs Ethereum - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>⚔️ Bitcoin vs Ethereum Cüzdan Sistemi</h1>
+
+        <div class="comparison-grid">
+          <div class="bitcoin-box">
+            <h2 style="color: white">₿ Bitcoin</h2>
+            <p><strong>UTXO Model</strong></p>
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
+              // Birden fazla "para" [ {address: "1A1z...", amount: 0.5}, {address: "1BvB...", amount: 0.3}, {address:
+              "1CjP...", amount: 0.2} ] // Her işlem yeni adres // Change adresleri var
+            </div>
+            <p>✓ Privacy daha iyi</p>
+            <p>✓ Her işlem yeni adres</p>
+            <p>✗ Karmaşık yönetim</p>
+          </div>
+
+          <div class="ethereum-box">
+            <h2 style="color: white">Ξ Ethereum</h2>
+            <p><strong>Account Model</strong></p>
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
+              // Tek hesap { address: "0x71C765...", balance: 5.23 ETH, tokens: [USDT, USDC, UNI], nonce: 42 // İşlem
+              sayacı } // Tek adres yeterli // Tüm tokenlar burada
+            </div>
+            <p>✓ Basit yönetim</p>
+            <p>✓ Tüm tokenlar tek yerde</p>
+            <p>✗ Privacy düşük</p>
+          </div>
+        </div>
+
+        <h2>Path Karşılaştırması</h2>
+        <table class="wallet-table">
+          <thead>
+            <tr>
+              <th>Özellik</th>
+              <th>Bitcoin</th>
+              <th>Ethereum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Standart Path</td>
+              <td>m/44'/0'/account'/change/index</td>
+              <td>m/44'/60'/0'/0/0</td>
+            </tr>
+            <tr>
+              <td>Coin Type</td>
+              <td>0</td>
+              <td>60</td>
+            </tr>
+            <tr>
+              <td>Adres Sayısı</td>
+              <td>Sonsuz (her işlem yeni)</td>
+              <td>Genelde tek adres</td>
+            </tr>
+            <tr>
+              <td>Change Adresi</td>
+              <td>Var (m/.../1/x)</td>
+              <td>Yok</td>
+            </tr>
+            <tr>
+              <td>Token Desteği</td>
+              <td>Yok</td>
+              <td>ERC-20, ERC-721, ERC-1155</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Slide 7: Ethereum Detayları - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🔷 Ethereum Adres Oluşturma</h1>
+
+        <h2>Adım Adım Ethereum Adresi</h2>
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>Private Key (256 bit rastgele)</strong>
+            <div class="code-block">privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129..."</div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>Public Key (Elliptic Curve secp256k1)</strong>
+            <div class="code-block">
+              publicKey = secp256k1(privateKey) // "0x04bfcab8722991ae774db48f1ca3b2a4814..."
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>Keccak-256 Hash</strong>
+            <div class="code-block">
+              // "0x04" prefix'ini at (uncompressed marker) hash = keccak256(publicKey.slice(1))
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">4</span>
+            <strong>Son 20 byte = Adres</strong>
+            <div class="code-block">
+              address = "0x" + hash.slice(-40) // "0x71c7656ec7ab88b098defb751b7401b5f6d8976f"
+            </div>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">5</span>
+            <strong>Checksum (EIP-55) - Büyük/küçük harf</strong>
+            <div class="code-block">
+              checksumAddress = toChecksumAddress(address) // "0x71C7656EC7ab88b098defB751B7401B5f6d8976F" // ↑ ↑ ↑ //
+              Büyük harfler checksum için
+            </div>
+          </div>
+        </div>
+
+        <h2>Ethereum Path Varyasyonları</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>MetaMask</h3>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/0'/0/1 m/44'/60'/0'/0/2</div>
+            <p>Index artıyor</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Ledger</h3>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/1'/0/0 m/44'/60'/2'/0/0</div>
+            <p>Account artıyor</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Trezor</h3>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/0'/0/1</div>
+            <p>MetaMask uyumlu</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Teknik Detaylar - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🔧 Teknik Detaylar</h1>
+
+        <h2>Key Derivation Function</h2>
+        <div class="code-block">
+          def derive_key(parent_key, index): # Hardened derivation (') : index >= 2^31 if index >= 0x80000000: # Parent
+          private key kullan (güvenli) data = b'\x00' + parent_private_key + index.to_bytes(4, 'big') else: # Parent
+          public key kullan data = parent_public_key + index.to_bytes(4, 'big') # HMAC-SHA512 hmac_result =
+          hmac.new(parent_chain_code, data, sha512).digest() # İlk 32 byte = child key # Son 32 byte = child chain code
+          child_key = (int.from_bytes(hmac_result[:32]) + parent_key) % n child_chain = hmac_result[32:] return
+          child_key, child_chain
+        </div>
+
+        <h2>📐 Elliptic Curve (secp256k1)</h2>
+        <div class="formula-box">
+          <div class="code-block">
+            Bitcoin & Ethereum aynı eğriyi kullanır! Eğri denklemi: y² = x³ + 7 Private Key: k (256 bit rastgele sayı)
+            Public Key: P = k × G (G = generator point) İmza Algoritması: 1. Mesaj hash'i: h = hash(message) 2. Rastgele
+            nonce: r 3. İmza: (r, s) where s = (h + r×private_key) / k
+          </div>
+        </div>
+
+        <h2>Transaction İmzalama Farkı</h2>
+        <div class="comparison-grid">
+          <div class="stat-card">
+            <h3>Bitcoin</h3>
+            <div class="code-block" style="background: #2e2e2e">
+              function signBitcoin(tx, key) { hash = double_sha256(tx) return ecdsa_sign(hash, key) }
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3>Ethereum</h3>
+            <div class="code-block" style="background: #2e2e2e">
+              function signEthereum(tx, key) { hash = keccak256(RLP(tx)) {r,s,v} = ecdsa_sign(hash, key) // v = recovery
+              id (27/28) return {r, s, v} }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Güvenlik - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>🛡️ Güvenlik İpuçları</h1>
+
+        <div class="security-box">
+          <h2>🌱 Seed Phrase Güvenliği</h2>
+          <div class="comparison-grid">
+            <div class="stat-card" style="background: #c8e6c9">
+              <h3>✅ YAPIN</h3>
+              <ul style="text-align: left; list-style: none">
+                <li>✓ Metal plakaya kazıyın</li>
+                <li>✓ 2-3 kopya, farklı yerler</li>
+                <li>✓ Passphrase ekleyin (25. kelime)</li>
+                <li>✓ Shamir Secret Sharing</li>
+                <li>✓ Güvenli kasada saklayın</li>
+              </ul>
+            </div>
+
+            <div class="stat-card" style="background: #ffcdd2">
+              <h3>❌ YAPMAYIN</h3>
+              <ul style="text-align: left; list-style: none">
+                <li>✗ Screenshot/foto çekmeyin</li>
+                <li>✗ Cloud'a yüklemeyin</li>
+                <li>✗ Email/mesaj göndermeyin</li>
+                <li>✗ Bilgisayarda saklamayın</li>
+                <li>✗ Kimseyle paylaşmayın</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>🔑 Private Key Formatları</h2>
+        <div class="comparison-flex">
+          <div class="example-box">
+            <h3>Bitcoin</h3>
+            <div class="code-block">
+              // WIF (Wallet Import Format) L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1 // Hex
+              0xE9873D79C6D87DC0FB6A5778633389F4453213CA3EED83A2B2F08EE9873D79C6
+            </div>
+          </div>
+
+          <div class="example-box">
+            <h3>Ethereum</h3>
+            <div class="code-block">
+              // Hex 0x4c0883a69102937d6231471b5dbb6204fe5129618082792ae468d01a3f362318 // Keystore (Şifreli JSON) {
+              "crypto": { "cipher": "aes-128-ctr", "ciphertext": "şifreli_private_key", "kdf": "scrypt", "mac":
+              "doğrulama_kodu" } }
+            </div>
+          </div>
+        </div>
+
+        <h2>💼 Cüzdan Tipleri</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>🔥 Hot Wallet</h3>
+            <p>Online, kolay erişim</p>
+            <p>✅ Pratik</p>
+            <p>❌ Hack riski</p>
+            <p><em>MetaMask, Trust</em></p>
+          </div>
+
+          <div class="stat-card">
+            <h3>🧊 Cold Wallet</h3>
+            <p>Offline, güvenli</p>
+            <p>✅ Maksimum güvenlik</p>
+            <p>❌ Kullanım zorluğu</p>
+            <p><em>Ledger, Trezor</em></p>
+          </div>
+
+          <div class="stat-card">
+            <h3>📄 Paper Wallet</h3>
+            <p>Kağıt üzerinde</p>
+            <p>✅ Hack edilemez</p>
+            <p>❌ Fiziksel kayıp riski</p>
+            <p><em>QR kod + private key</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Özet - Düzeltilmiş -->
+    <section class="slide">
+      <div class="container">
+        <h1>📚 Özet ve Kritik Noktalar</h1>
+
+        <div class="formula-box" style="font-size: 1.3rem">
+          <h2 style="text-align: center">🎯 Master Formül</h2>
+          <div style="text-align: center; margin: 1rem 0">
+            <strong>Seed Phrase → Master Key → Sonsuz Adres</strong>
+          </div>
+        </div>
+
+        <h2>📋 Hızlı Referans</h2>
+        <table class="wallet-table">
+          <thead>
+            <tr>
+              <th>Standart</th>
+              <th>Ne Yapar?</th>
+              <th>Örnek</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BIP32</strong></td>
+              <td>HD Wallet temeli</td>
+              <td>Master seed → Child keys</td>
+            </tr>
+            <tr>
+              <td><strong>BIP39</strong></td>
+              <td>Mnemonic kelimeler</td>
+              <td>abandon amount liar...</td>
+            </tr>
+            <tr>
+              <td><strong>BIP44</strong></td>
+              <td>Adres yolu standardı</td>
+              <td>m/44'/0'/0'/0/0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="comparison-grid" style="margin-top: 2rem">
+          <div class="bitcoin-box">
+            <h3 style="color: white">Bitcoin</h3>
+            <ul style="list-style: none; color: white">
+              <li>✓ 4 adres tipi</li>
+              <li>✓ UTXO model</li>
+              <li>✓ m/44'/0'/account'/change/index</li>
+              <li>✓ Native SegWit kullanın</li>
+            </ul>
+          </div>
+
+          <div class="ethereum-box">
+            <h3 style="color: white">Ethereum</h3>
+            <ul style="list-style: none; color: white">
+              <li>✓ Tek adres tipi</li>
+              <li>✓ Account model</li>
+              <li>✓ m/44'/60'/0'/0/0</li>
+              <li>✓ Tüm tokenlar tek adreste</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box" style="margin-top: 2rem">
+          <h2 style="color: #ff6b6b">⚠️ Altın Kurallar</h2>
+          <ol style="font-size: 1.2rem; line-height: 2">
+            <li><strong>Not your keys, not your coins!</strong></li>
+            <li>Seed phrase = Tüm servetiniz</li>
+            <li>Private key kaybı = Para kaybı</li>
+            <li>Hardware wallet kullanın (büyük meblağlar)</li>
+            <li>Test ağında deneyin önce</li>
+          </ol>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem">
+          <p style="font-size: 1.3rem; margin: 1rem 0">
+            <em>Blockchain'de geri alma yok. Bir kez gitti mi, sonsuza dek gitti!</em>
+          </p>
+          <div class="emoji-box key-animation">🔐</div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Smooth scroll to slides
+      function scrollToSlide(index) {
+        const slides = document.querySelectorAll(".slide");
+        slides[index].scrollIntoView({ behavior: "smooth" });
+
+        // Update active dot
+        document.querySelectorAll(".dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+      }
+
+      // Update active dot on scroll
+      window.addEventListener("scroll", () => {
+        const slides = document.querySelectorAll(".slide");
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+        slides.forEach((slide, index) => {
+          const slideTop = slide.offsetTop;
+          const slideBottom = slideTop + slide.offsetHeight;
+
+          if (scrollPosition >= slideTop && scrollPosition < slideBottom) {
+            document.querySelectorAll(".dot").forEach((dot, i) => {
+              dot.classList.toggle("active", i === index);
+            });
+          }
+        });
+      });
+
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = "slideIn 0.8s ease-out";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".container").forEach((container) => {
+        observer.observe(container);
+      });
+
+      // Add hover effect to address types
+      document.querySelectorAll(".address-type").forEach((type) => {
+        type.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.02)";
+        });
+        type.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>
