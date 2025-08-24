@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Node'ları: Kapsamlı Rehber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 50px;
+        }
+        
+        h1 {
+            color: #1e3c72;
+            font-size: 2.8em;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #1e3c72;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #2a5298;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #f8f9fa 0%, transparent 100%);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        
+        h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        ul, ol {
+            margin-left: 35px;
+            margin-bottom: 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        strong {
+            color: #2a5298;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+            border: 1px solid #ddd;
+        }
+        
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 25px 0;
+            font-size: 0.95em;
+            line-height: 1.6;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        pre code {
+            background: none;
+            color: #abb2bf;
+            padding: 0;
+            border: none;
+        }
+        
+        .node-type {
+            background: linear-gradient(135deg, #3498db15 0%, #2980b915 100%);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.1);
+        }
+        
+        .node-type h3 {
+            color: #2980b9;
+            background: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table tr:hover {
+            background: #e8f4f8;
+        }
+        
+        .feature-box {
+            background: #f0f7ff;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .important-note {
+            background: linear-gradient(135deg, #e74c3c15 0%, #c0392b15 100%);
+            border: 2px solid #e74c3c;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #c0392b;
+            font-size: 1.1em;
+        }
+        
+        .tree-structure {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .spec-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .spec-card h4 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        
+        .bash-command {
+            background: #1e1e1e;
+            color: #4ec9b0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        
+        .comment {
+            color: #6a9955;
+        }
+        
+        .keyword {
+            color: #569cd6;
+        }
+        
+        .string {
+            color: #ce9178;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blockchain Node'ları: Kapsamlı Rehber</h1>
+        
+        <section>
+            <h2>Node (Düğüm) Nedir?</h2>
+            <p>Blockchain node'u, bir blockchain ağının parçası olan ve blockchain'in bir kopyasını saklayan bilgisayardır. Her node, ağdaki diğer node'larla iletişim kurarak işlemleri doğrular, yeni blokları yayar ve ağın güvenliğini sağlar.</p>
+            
+            <div class="feature-box">
+                <h3>Temel Özellikleri:</h3>
+                <ul>
+                    <li><strong>Dağıtık Yapı</strong>: Her node, blockchain'in tam veya kısmi kopyasını tutar</li>
+                    <li><strong>P2P İletişim</strong>: Node'lar birbirleriyle doğrudan iletişim kurar (merkezi sunucu yok)</li>
+                    <li><strong>Konsensüs Katılımı</strong>: Ağın kurallarını uygular ve doğrulama yapar</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Node Tipleri</h2>
+            
+            <div class="node-type">
+                <h3>1. Full Node (Tam Düğüm)</h3>
+                <h4>Özellikler:</h4>
+                <ul>
+                    <li>Blockchain'in tüm geçmişini saklar (genesis block'tan günümüze)</li>
+                    <li>Tüm işlemleri ve blokları bağımsız olarak doğrular</li>
+                    <li>Ağ kurallarını tam olarak uygular</li>
+                    <li>Diğer node'lara veri sağlayabilir</li>
+                </ul>
+                
+                <h4>Teknik Gereksinimler:</h4>
+                <ul>
+                    <li>Yüksek depolama alanı (Bitcoin: ~500GB, Ethereum: ~1TB+)</li>
+                    <li>Sürekli internet bağlantısı</li>
+                    <li>Yeterli RAM ve işlemci gücü</li>
+                </ul>
+            </div>
+            
+            <div class="node-type">
+                <h3>2. Light Node (Hafif Düğüm)</h3>
+                <h4>Özellikler:</h4>
+                <ul>
+                    <li>Sadece block header'ları saklar</li>
+                    <li>İşlem doğrulaması için full node'lara güvenir</li>
+                    <li>Simplified Payment Verification (SPV) kullanır</li>
+                    <li>Mobil cihazlar için idealdir</li>
+                </ul>
+                
+                <h4>Avantajları:</h4>
+                <ul>
+                    <li>Düşük depolama gereksinimi (&lt;1GB)</li>
+                    <li>Hızlı senkronizasyon</li>
+                    <li>Minimal kaynak kullanımı</li>
+                </ul>
+            </div>
+            
+            <div class="node-type">
+                <h3>3. Archive Node (Arşiv Düğümü)</h3>
+                <h4>Özellikler:</h4>
+                <ul>
+                    <li>Full node'un tüm özelliklerine sahiptir</li>
+                    <li>Ek olarak tüm tarihi state'leri saklar</li>
+                    <li>Geçmiş herhangi bir bloktaki durumu sorgulayabilir</li>
+                </ul>
+                
+                <h4>Kullanım Alanları:</h4>
+                <ul>
+                    <li>Blockchain analitiği</li>
+                    <li>DApp geliştirme</li>
+                    <li>Geçmiş veri sorgulamaları</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Full Node vs Archive Node: Detaylı Karşılaştırma</h2>
+            
+            <h3>Full Node Ne Tutar?</h3>
+            <p>Full node'lar şunları saklar:</p>
+            <ul>
+                <li><strong>Tüm bloklar</strong>: Genesis'ten günümüze tüm blok verileri (header + transaction)</li>
+                <li><strong>Güncel state</strong>: Sadece SON durum (current state)</li>
+                <li><strong>Son ~128 bloğun state'i</strong>: Yakın geçmiş için state verileri (reorg durumları için)</li>
+            </ul>
+            
+            <h3>Archive Node Ne Tutar?</h3>
+            <p>Archive node'lar şunları saklar:</p>
+            <ul>
+                <li><strong>Tüm bloklar</strong>: Full node gibi</li>
+                <li><strong>TÜM tarihi state'ler</strong>: Her blok yüksekliğindeki state snapshot'ları</li>
+                <li><strong>Ara state'ler</strong>: İşlemler arası state değişimleri</li>
+            </ul>
+            
+            <h3>Pratik Örnek - Ethereum'da Fark:</h3>
+            <p><strong>Senaryo</strong>: 1 Ocak 2020'de bir adresin bakiyesini sorgulamak istiyorsunuz.</p>
+            
+            <h4>Full Node:</h4>
+            <pre><code class="javascript"><span class="comment">// Full Node - ÇALIŞMAZ</span>
+web3.eth.getBalance(<span class="string">"0xABC..."</span>, blockNumber_2020) 
+<span class="comment">// Hata: State not available</span>
+<span class="comment">// Full node sadece güncel bakiyeyi verebilir</span>
+web3.eth.getBalance(<span class="string">"0xABC..."</span>) <span class="comment">// ✓ Çalışır (güncel)</span></code></pre>
+            
+            <h4>Archive Node:</h4>
+            <pre><code class="javascript"><span class="comment">// Archive Node - ÇALIŞIR</span>
+web3.eth.getBalance(<span class="string">"0xABC..."</span>, blockNumber_2020) <span class="comment">// ✓ Çalışır</span>
+<span class="comment">// 2020'deki bakiyeyi döndürür</span></code></pre>
+            
+            <div class="feature-box">
+                <h3>State Pruning (Budama) Nedir?</h3>
+                <p>Full node'lar disk alanı tasarrufu için <strong>state pruning</strong> yapar:</p>
+                <ul>
+                    <li>Eski state'leri siler (sadece blok verisi kalır)</li>
+                    <li>Son 128-1024 blok state'ini tutar (ayarlanabilir)</li>
+                    <li>Güncel state'i her zaman tutar</li>
+                </ul>
+                
+                <h4>Pruning Örneği:</h4>
+                <pre><code>Blok 1000: State A → Full node bunu SİLER
+Blok 2000: State B → Full node bunu SİLER  
+Blok 9000: State C → Full node bunu SİLER
+Blok 9900: State D → Son 128 blok içinde, TUTAR
+Blok 10000: State E → Güncel state, TUTAR</code></pre>
+            </div>
+            
+            <h3>Depolama Gereksinimleri:</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Blockchain</th>
+                    <th>Full Node</th>
+                    <th>Archive Node</th>
+                </tr>
+                <tr>
+                    <td><strong>Bitcoin</strong></td>
+                    <td>~500 GB (sadece bloklar + UTXO set)</td>
+                    <td>Bitcoin'de state kavramı farklı, UTXO bazlı</td>
+                </tr>
+                <tr>
+                    <td><strong>Ethereum</strong></td>
+                    <td>~1 TB (bloklar + güncel state)</td>
+                    <td>~15+ TB (bloklar + TÜM state'ler)</td>
+                </tr>
+            </table>
+            
+            <h3>Ne Zaman Hangisine İhtiyaç Var?</h3>
+            
+            <div class="tech-specs">
+                <div class="spec-card">
+                    <h4>Full Node Yeterli:</h4>
+                    <ul>
+                        <li>Güncel bakiye sorgulamaları</li>
+                        <li>Yeni işlem gönderme</li>
+                        <li>Güncel smart contract çağrıları</li>
+                        <li>Blok doğrulama</li>
+                        <li>Ağ güvenliğine katkı</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h4>Archive Node Gerekli:</h4>
+                    <ul>
+                        <li>Geçmiş bakiye sorgulamaları</li>
+                        <li>Tarihi smart contract state'leri</li>
+                        <li>Blockchain analitiği/explorer servisleri</li>
+                        <li>Tarihi event log sorgulamaları</li>
+                        <li>Vergi raporlaması</li>
+                        <li>Forensik analiz</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="node-type">
+                <h3>4. Mining/Validator Node (Madenci/Doğrulayıcı Düğüm)</h3>
+                <h4>Özellikler:</h4>
+                <ul>
+                    <li>Yeni bloklar üretir</li>
+                    <li>İşlemleri bloklara dahil eder</li>
+                    <li>Konsensüs mekanizmasına aktif katılım sağlar</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Bitcoin Ekosistemindeki Roller</h2>
+            
+            <h3>Bitcoin Core Node</h3>
+            <div class="tree-structure">
+                <pre>Temel Görevler:
+├── İşlem Doğrulama
+│   ├── UTXO kontrolü
+│   ├── İmza doğrulama
+│   └── Double-spending kontrolü
+├── Blok Doğrulama
+│   ├── Proof-of-Work kontrolü
+│   ├── Merkle tree doğrulama
+│   └── Blok boyutu/format kontrolü
+└── Ağ Güvenliği
+    ├── Konsensüs kuralları uygulama
+    └── Fork durumunda karar verme</pre>
+            </div>
+            
+            <h3>Bitcoin'de Node Çalıştırma</h3>
+            <pre><code class="bash"><span class="comment"># Bitcoin Core kurulumu</span>
+<span class="bash-command">bitcoind</span> -daemon  <span class="comment"># Node'u başlat</span>
+<span class="bash-command">bitcoin-cli</span> getblockcount  <span class="comment"># Blok yüksekliğini kontrol et</span>
+<span class="bash-command">bitcoin-cli</span> getpeerinfo  <span class="comment"># Bağlı peer'ları görüntüle</span></code></pre>
+            
+            <div class="feature-box">
+                <h4>Önemli Parametreler:</h4>
+                <ul>
+                    <li><strong>Mempool</strong>: Onaylanmamış işlemlerin geçici havuzu</li>
+                    <li><strong>UTXO Set</strong>: Harcanmamış işlem çıktıları veritabanı</li>
+                    <li><strong>Chainstate</strong>: Mevcut blockchain durumu</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Ethereum Ekosistemindeki Roller</h2>
+            
+            <h3>Ethereum Node Yapısı</h3>
+            <p>Ethereum'da node'lar iki katmandan oluşur:</p>
+            
+            <div class="tech-specs">
+                <div class="spec-card">
+                    <h4>1. Execution Layer (Çalıştırma Katmanı)</h4>
+                    <p><strong>Görevler:</strong></p>
+                    <ul>
+                        <li>Smart contract'ları çalıştırma</li>
+                        <li>EVM (Ethereum Virtual Machine) işlemleri</li>
+                        <li>State transition hesaplamaları</li>
+                    </ul>
+                    <p><strong>Popüler Client'lar:</strong></p>
+                    <ul>
+                        <li>Geth (Go Ethereum)</li>
+                        <li>Nethermind</li>
+                        <li>Besu</li>
+                        <li>Erigon</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h4>2. Consensus Layer (Konsensüs Katmanı)</h4>
+                    <p><strong>Görevler:</strong></p>
+                    <ul>
+                        <li>Proof-of-Stake konsensüsü</li>
+                        <li>Validator koordinasyonu</li>
+                        <li>Finality sağlama</li>
+                    </ul>
+                    <p><strong>Popüler Client'lar:</strong></p>
+                    <ul>
+                        <li>Prysm</li>
+                        <li>Lighthouse</li>
+                        <li>Teku</li>
+                        <li>Nimbus</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Ethereum Node Kurulumu Örneği</h3>
+            <pre><code class="bash"><span class="comment"># Geth execution client</span>
+<span class="bash-command">geth</span> --syncmode <span class="string">"snap"</span> --http --http.api eth,net,web3
+
+<span class="comment"># Lighthouse consensus client</span>
+<span class="bash-command">lighthouse</span> beacon_node \
+  --network mainnet \
+  --execution-endpoint http://localhost:8551 \
+  --execution-jwt /path/to/jwt.hex</code></pre>
+            
+            <h3>Ethereum'da Node Tipleri ve Sync Modları</h3>
+            
+            <div class="feature-box">
+                <h4>1. Full Sync</h4>
+                <ul>
+                    <li>Tüm blokları genesis'ten itibaren işler</li>
+                    <li>Her işlemi yeniden çalıştırır</li>
+                    <li>En güvenli ama en yavaş</li>
+                </ul>
+            </div>
+            
+            <div class="feature-box">
+                <h4>2. Fast Sync (Snap Sync)</h4>
+                <ul>
+                    <li>State'i peer'lardan indirir</li>
+                    <li>Son binlerce bloğu doğrular</li>
+                    <li>Daha hızlı senkronizasyon</li>
+                </ul>
+            </div>
+            
+            <div class="feature-box">
+                <h4>3. Light Sync</h4>
+                <ul>
+                    <li>Sadece block header'ları indirir</li>
+                    <li>State için diğer node'lara güvenir</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Teknik Detaylar</h2>
+            
+            <h3>Node İletişim Protokolleri</h3>
+            
+            <h4>Bitcoin: P2P Protokolü</h4>
+            <div class="tree-structure">
+                <pre>Mesaj Tipleri:
+├── version: Node versiyonu ve yetenekleri
+├── verack: Version onayı
+├── inv: Envanter bildirimi (tx, block)
+├── getdata: Veri talebi
+├── block: Blok verisi
+├── tx: İşlem verisi
+└── ping/pong: Bağlantı kontrolü</pre>
+            </div>
+            
+            <h4>Ethereum: DevP2P ve ETH Protokolü</h4>
+            <div class="tree-structure">
+                <pre>Katmanlar:
+├── RLPx: Şifreli transport
+├── DevP2P: Node keşfi ve bağlantı yönetimi
+└── ETH Wire Protocol: Blockchain verisi değişimi
+    ├── Status: Chain durumu paylaşımı
+    ├── NewBlockHashes: Yeni blok bildirimi
+    ├── Transactions: İşlem yayını
+    └── GetBlockHeaders: Header talebi</pre>
+            </div>
+            
+            <h3>Node Güvenlik Önlemleri</h3>
+            
+            <div class="warning-box">
+                <h4>1. DDoS Koruması</h4>
+                <ul>
+                    <li>Rate limiting</li>
+                    <li>Peer reputation sistemi</li>
+                    <li>Ban listesi yönetimi</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4>2. Eclipse Attack Koruması</h4>
+                <ul>
+                    <li>Çeşitli peer bağlantıları</li>
+                    <li>Outbound bağlantı tercihi</li>
+                    <li>IP çeşitliliği</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4>3. Sybil Attack Koruması</h4>
+                <ul>
+                    <li>Peer ID doğrulama</li>
+                    <li>Proof-of-Work handshake (bazı ağlarda)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Node Çalıştırmanın Önemi</h2>
+            
+            <div class="tech-specs">
+                <div class="spec-card">
+                    <h4>Ağ İçin Faydaları</h4>
+                    <ul>
+                        <li><strong>Merkeziyetsizlik</strong>: Daha fazla node = daha güçlü ağ</li>
+                        <li><strong>Güvenlik</strong>: Saldırılara karşı direnç</li>
+                        <li><strong>Erişilebilirlik</strong>: Veri dağıtımı ve redundancy</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h4>Kullanıcı İçin Faydaları</h4>
+                    <ul>
+                        <li><strong>Gizlilik</strong>: Kendi işlemlerinizi doğrulama</li>
+                        <li><strong>Güven</strong>: Üçüncü taraflara bağımlı olmama</li>
+                        <li><strong>Katılım</strong>: Ağ yönetiminde söz sahibi olma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Performans Metrikleri</h2>
+            
+            <h3>İzlenmesi Gereken Parametreler</h3>
+            <div class="tree-structure">
+                <pre>Node Sağlığı:
+├── Block Height: Senkronizasyon durumu
+├── Peer Count: Bağlı node sayısı
+├── Mempool Size: Bekleyen işlem sayısı
+├── CPU/RAM Kullanımı: Sistem kaynakları
+├── Disk I/O: Okuma/yazma hızları
+└── Network Bandwidth: Veri trafiği</pre>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Sonuç</h2>
+            <p>Blockchain node'ları, merkeziyetsiz ağların temel yapı taşlarıdır. Her node tipi farklı kaynak gereksinimleri ve sorumluluklar taşır. Full node'lar ağın güvenliğini sağlarken, light node'lar kullanıcı erişimini kolaylaştırır. Bitcoin ve Ethereum ekosistemlerinde node'lar benzer prensiplerle çalışsa da, her ağın kendine özgü protokolleri ve gereksinimleri vardır.</p>
+            
+            <p>Node çalıştırmak, blockchain ağlarına aktif katılımın en temel yoludur ve ağın merkeziyetsizliğini korumak için kritik öneme sahiptir.</p>
+            
+            <div class="important-note">
+                BİR BLOKZİNCİRDE NODE KURMAK NE KADAR ZAHMETLİ İSE O BLOKZİNCİR O KADAR MERKEZİDİR.
+            </div>
+        </section>
+    </div>
+</body>
+</html>

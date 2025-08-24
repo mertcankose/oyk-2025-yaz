@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPFS (InterPlanetary File System) Nedir?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: none;
+            color: #f8f8f2;
+            padding: 0;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .advantage {
+            background: #e8f5e9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .disadvantage {
+            background: #ffebee;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 3px solid #f44336;
+        }
+        
+        .protocol-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .protocol-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            transition: transform 0.3s ease;
+        }
+        
+        .protocol-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IPFS (InterPlanetary File System) Nedir?</h1>
+        
+        <div class="section">
+            <h2>Protokol Nedir?</h2>
+            <p>Protokol, iki veya daha fazla cihazın birbiriyle nasıl iletişim kuracağını belirleyen kurallar bütünüdür. Tıpkı insanların anlaşabilmesi için ortak bir dil kullanması gibi, bilgisayarlar da veri alışverişi için protokollere ihtiyaç duyar.</p>
+            
+            <h3>İnternet Protokolleri</h3>
+            <ul>
+                <li><strong>HTTP/HTTPS</strong>: Web sayfalarının görüntülenmesi için kullanılır (merkezi)</li>
+                <li><strong>FTP</strong>: Dosya transferi protokolü (merkezi)</li>
+                <li><strong>SMTP/POP3/IMAP</strong>: E-posta protokolleri (merkezi)</li>
+                <li><strong>TCP/IP</strong>: İnternetin temel iletişim protokolü</li>
+                <li><strong>DNS</strong>: Alan adlarını IP adreslerine çeviren sistem (hiyerarşik)</li>
+            </ul>
+            
+            <h3>P2P (Peer-to-Peer) Protokoller</h3>
+            <ul>
+                <li><strong>BitTorrent</strong>: Dosya paylaşımı için kullanılır</li>
+                <li><strong>Bitcoin Protokolü</strong>: Kripto para transferi için blockchain tabanlı</li>
+                <li><strong>IPFS</strong>: Dağıtık dosya depolama ve paylaşım protokolü</li>
+                <li><strong>Ethereum</strong>: Smart contract'lar için blockchain protokolü</li>
+            </ul>
+            
+            <h3>Protokoller Nasıl Çalışır?</h3>
+            <ol>
+                <li><strong>Handshake (El Sıkışma)</strong>: İki cihaz iletişime başlamadan önce birbirini tanır</li>
+                <li><strong>Veri Formatı</strong>: Gönderilecek verinin nasıl paketleneceği belirlenir</li>
+                <li><strong>İletim Kuralları</strong>: Verinin nasıl gönderileceği, hata kontrolü yapılacağı tanımlanır</li>
+                <li><strong>Sonlandırma</strong>: İletişimin nasıl sonlandırılacağı belirlenir</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>Giriş</h2>
+            <p>IPFS, internet üzerinde veri depolama ve paylaşma için geliştirilmiş dağıtık (decentralized) bir protokoldür. Geleneksel merkezi sunucu sistemlerinin aksine, IPFS verileri dünya çapında binlerce bilgisayar arasında dağıtarak saklar.</p>
+        </div>
+        
+        <div class="section">
+            <h2>IPFS ve Blockchain İlişkisi</h2>
+            
+            <div class="highlight-box">
+                <h3>Benzerlikler</h3>
+                <ul>
+                    <li><strong>Dağıtık Yapı</strong>: Her ikisi de merkezi bir otoriteye ihtiyaç duymaz</li>
+                    <li><strong>P2P (Peer-to-Peer) Ağ</strong>: Kullanıcılar doğrudan birbirleriyle iletişim kurar</li>
+                    <li><strong>Kriptografik Hash</strong>: Veriler benzersiz hash değerleriyle tanımlanır</li>
+                    <li><strong>Değiştirilemezlik</strong>: Bir kere eklenen içerik hash değeri sayesinde değiştirilemez</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Temel Farklar</h3>
+                <ul>
+                    <li><strong>Blockchain</strong>: İşlem geçmişini saklar, her blok öncekine bağlıdır</li>
+                    <li><strong>IPFS</strong>: Dosya ve veri depolama odaklıdır, blok zinciri yapısı yoktur</li>
+                    <li><strong>Blockchain</strong>: Konsensüs mekanizması gerektirir (PoW, PoS vb.)</li>
+                    <li><strong>IPFS</strong>: Konsensüs gerektirmez, sadece içerik dağıtımı yapar</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>IPFS Nasıl Çalışır?</h2>
+            
+            <h3>1. İçerik Adresleme</h3>
+            <p>Geleneksel web'de dosyalar sunucu konumuna göre bulunur (örn: www.site.com/dosya.pdf). IPFS'te ise dosyalar içeriğinin hash değeriyle bulunur:</p>
+            <ul>
+                <li>Her dosya benzersiz bir hash alır (örn: <code>QmXgZAUWd8yo4tvjBETqzUy3wLx5YRzuDwUQnBwRGrAmAo</code>)</li>
+                <li>Aynı içeriğe sahip dosyalar aynı hash'i alır</li>
+                <li>İçerik değişirse hash de değişir</li>
+            </ul>
+            
+            <h3>2. Dağıtık Depolama</h3>
+            <ul>
+                <li>Dosyalar parçalara bölünür</li>
+                <li>Her parça farklı node'larda (düğümlerde) saklanabilir</li>
+                <li>Popüler içerikler daha fazla node'da bulunur (cache mekanizması)</li>
+            </ul>
+            
+            <h3>3. Veri Alışverişi</h3>
+            <ol>
+                <li>Kullanıcı bir dosya hash'i ile arama yapar</li>
+                <li>IPFS ağı bu hash'e sahip node'ları bulur</li>
+                <li>En yakın veya en hızlı node'dan dosya indirilir</li>
+                <li>İndirilen dosya otomatik olarak sizin node'unuzda da saklanır</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>Avantajları</h2>
+            
+            <div class="advantage">
+                <h3>1. Sansüre Dayanıklılık</h3>
+                <ul>
+                    <li>Merkezi sunucu olmadığı için tek noktadan kapatılamaz</li>
+                    <li>Birden fazla kopyası olan içerik her zaman erişilebilir</li>
+                </ul>
+            </div>
+            
+            <div class="advantage">
+                <h3>2. Hız ve Verimlilik</h3>
+                <ul>
+                    <li>En yakın node'dan indirme yapılır</li>
+                    <li>Popüler içerikler daha hızlı erişilir (CDN benzeri)</li>
+                    <li>Bant genişliği tasarrufu sağlar</li>
+                </ul>
+            </div>
+            
+            <div class="advantage">
+                <h3>3. Kalıcılık</h3>
+                <ul>
+                    <li>Dosyalar hash ile tanımlandığı için değiştirilemez</li>
+                    <li>Versiyon kontrolü doğal olarak sağlanır</li>
+                </ul>
+            </div>
+            
+            <div class="advantage">
+                <h3>4. Maliyet</h3>
+                <ul>
+                    <li>Merkezi sunucu maliyeti yoktur</li>
+                    <li>Kullanıcılar kendi depolama alanlarını paylaşır</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Dezavantajları</h2>
+            
+            <div class="disadvantage">
+                <h3>1. Kalıcılık Garantisi Yok</h3>
+                <ul>
+                    <li>Eğer kimse bir dosyayı saklamazsa kaybolabilir</li>
+                    <li>"Pinning" servisleri bu sorunu çözmeye çalışır</li>
+                </ul>
+            </div>
+            
+            <div class="disadvantage">
+                <h3>2. İlk Erişim Yavaş Olabilir</h3>
+                <ul>
+                    <li>Nadir bulunan içeriklere erişim zaman alabilir</li>
+                    <li>Az popüler içerikler için performans düşük</li>
+                </ul>
+            </div>
+            
+            <div class="disadvantage">
+                <h3>3. Depolama Maliyeti</h3>
+                <ul>
+                    <li>Her kullanıcı başkalarının verilerini de saklar</li>
+                    <li>Disk alanı gereksinimi artabilir</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Kullanım Alanları</h2>
+            
+            <h3>1. Web3 ve DApp'ler</h3>
+            <ul>
+                <li>Blockchain uygulamalarının frontend'i IPFS'te barındırılır</li>
+                <li>NFT metadata ve görselleri IPFS'te saklanır</li>
+            </ul>
+            
+            <h3>2. Veri Arşivleme</h3>
+            <ul>
+                <li>Wikipedia, bilimsel makaleler gibi önemli verilerin yedeklenmesi</li>
+                <li>Sansüre karşı dirençli içerik paylaşımı</li>
+            </ul>
+            
+            <h3>3. Dağıtık Web Hosting</h3>
+            <ul>
+                <li>Statik websiteleri IPFS üzerinde barındırma</li>
+                <li>Merkezi olmayan sosyal medya platformları</li>
+            </ul>
+            
+            <h3>4. Büyük Dosya Paylaşımı</h3>
+            <ul>
+                <li>Video, yazılım dağıtımı</li>
+                <li>P2P dosya paylaşımının modern versiyonu</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>IPFS ve Blockchain Entegrasyonu</h2>
+            
+            <h3>Filecoin</h3>
+            <ul>
+                <li>IPFS üzerine inşa edilmiş blockchain projesi</li>
+                <li>Depolama sağlayıcılara kripto para ile ödeme yapılır</li>
+                <li>Kalıcılık problemini ekonomik teşviklerle çözer</li>
+            </ul>
+            
+            <h3>Smart Contract Entegrasyonu</h3>
+            <ul>
+                <li>Ethereum smart contract'ları IPFS hash'lerini saklayabilir</li>
+                <li>Büyük veriler blockchain yerine IPFS'te, referansları blockchain'de tutulur</li>
+                <li>Gas fee tasarrufu sağlar</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>IPFS Node'u Kimler Kurabilir?</h2>
+            
+            <h3>Kimler Kurabilir?</h3>
+            <ul>
+                <li><strong>Bireysel Kullanıcılar</strong>: Herhangi bir bilgisayar kullanıcısı</li>
+                <li><strong>Geliştiriciler</strong>: DApp ve Web3 projeleri için</li>
+                <li><strong>Kurumlar</strong>: Veri yedekleme ve dağıtım için</li>
+                <li><strong>Üniversiteler</strong>: Araştırma ve arşivleme için</li>
+                <li><strong>İçerik Üreticileri</strong>: Sansürsüz içerik paylaşımı için</li>
+                <li><strong>Aktivistler</strong>: Sansüre karşı dirençli yayıncılık için</li>
+            </ul>
+            
+            <div class="advantage">
+                <h3>Node Kurmanın Avantajları</h3>
+                <ol>
+                    <li><strong>Veri Kontrolü</strong>: Kendi verilerinizin tam kontrolü</li>
+                    <li><strong>Hızlı Erişim</strong>: Lokal node'dan anında erişim</li>
+                    <li><strong>Katkıda Bulunma</strong>: IPFS ağını güçlendirme</li>
+                    <li><strong>Özel Gateway</strong>: Kendi gateway'inizi kullanabilme</li>
+                    <li><strong>Gizlilik</strong>: Üçüncü parti gateway'lere bağımlı olmama</li>
+                    <li><strong>Öğrenme</strong>: Dağıtık sistemleri deneyimleme</li>
+                </ol>
+            </div>
+            
+            <div class="disadvantage">
+                <h3>Node Kurmanın Dezavantajları</h3>
+                <ol>
+                    <li><strong>Depolama Kullanımı</strong>: Disk alanı gereksinimi (varsayılan 10GB cache)</li>
+                    <li><strong>Bant Genişliği</strong>: Sürekli veri alışverişi</li>
+                    <li><strong>Güvenlik Riskleri</strong>: Açık portlar ve firewall ayarları</li>
+                    <li><strong>Teknik Bilgi</strong>: Kurulum ve yönetim bilgisi gerekir</li>
+                    <li><strong>Elektrik Tüketimi</strong>: 7/24 çalışan bilgisayar</li>
+                    <li><strong>IP Görünürlüğü</strong>: IP adresiniz ağda görünür</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>En Popüler IPFS Node'ları ve Servisler</h2>
+            
+            <h3>Public Gateway'ler</h3>
+            <ol>
+                <li><strong>ipfs.io</strong>: Protocol Labs'ın resmi gateway'i</li>
+                <li><strong>cloudflare-ipfs.com</strong>: Cloudflare'in hızlı gateway'i</li>
+                <li><strong>gateway.pinata.cloud</strong>: Pinata'nın gateway'i</li>
+                <li><strong>dweb.link</strong>: Protocol Labs alternatif gateway</li>
+                <li><strong>infura.io</strong>: Ethereum ve IPFS altyapısı</li>
+                <li><strong>fleek.co</strong>: Web3 hosting platformu</li>
+            </ol>
+            
+            <h3>Pinning Servisleri (Kalıcı Depolama)</h3>
+            
+            <div class="highlight-box">
+                <h4>Pinning Nedir?</h4>
+                <p>IPFS'te dosyalar varsayılan olarak geçici önbellekte (cache) tutulur ve alan gerektiğinde silinebilir. <strong>Pinning</strong>, bir dosyanın kalıcı olarak saklanmasını sağlayan işlemdir. "Pin" edilmiş dosyalar garbage collection (çöp toplama) işleminde silinmez ve her zaman node'da kalır. Pinning servisleri, sizin için dosyalarınızı 7/24 çalışan sunucularda "pinleyerek" kalıcı olarak saklar ve erişilebilir tutar.</p>
+                
+                <h4>Neden Pinning Gerekli?</h4>
+                <ul>
+                    <li><strong>Kalıcılık</strong>: Dosyalarınız sürekli erişilebilir kalır</li>
+                    <li><strong>Güvenilirlik</strong>: Profesyonel altyapıda yedekleme</li>
+                    <li><strong>Erişilebilirlik</strong>: Kendi bilgisayarınız kapalıyken bile dosyalar aktif</li>
+                    <li><strong>Performans</strong>: Hızlı sunuculardan global erişim</li>
+                </ul>
+            </div>
+            
+            <div class="protocol-list">
+                <div class="protocol-item">
+                    <h4>Pinata</h4>
+                    <p>En popüler pinning servisi</p>
+                    <ul>
+                        <li>Ücretsiz: 1GB depolama</li>
+                        <li>Ücretli: Sınırsız depolama</li>
+                    </ul>
+                </div>
+                
+                <div class="protocol-item">
+                    <h4>Infura IPFS</h4>
+                    <p>ConsenSys tarafından işletilir</p>
+                    <ul>
+                        <li>Ethereum ile entegre</li>
+                        <li>Kurumsal çözümler</li>
+                    </ul>
+                </div>
+                
+                <div class="protocol-item">
+                    <h4>Web3.Storage</h4>
+                    <p>Protocol Labs & Filecoin</p>
+                    <ul>
+                        <li>Ücretsiz depolama (Filecoin destekli)</li>
+                        <li>Otomatik Filecoin yedekleme</li>
+                    </ul>
+                </div>
+                
+                <div class="protocol-item">
+                    <h4>NFT.Storage</h4>
+                    <p>NFT'ler için özel</p>
+                    <ul>
+                        <li>Tamamen ücretsiz</li>
+                        <li>NFT metadata için optimize</li>
+                    </ul>
+                </div>
+                
+                <div class="protocol-item">
+                    <h4>Fleek</h4>
+                    <p>DApp hosting</p>
+                    <ul>
+                        <li>IPFS + CDN kombinasyonu</li>
+                        <li>Otomatik SSL sertifikaları</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Kurumsal Node'lar</h3>
+            <ul>
+                <li><strong>Netflix</strong>: Video içerik dağıtımı denemeleri</li>
+                <li><strong>Cloudflare</strong>: Dağıtık web altyapısı</li>
+                <li><strong>Opera Browser</strong>: Dahili IPFS desteği</li>
+                <li><strong>Brave Browser</strong>: Native IPFS entegrasyonu</li>
+                <li><strong>Microsoft ION</strong>: DID (Kimlik) sistemi için</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Teknik Detaylar</h2>
+            
+            <h3>IPFS Node Kurulumu</h3>
+            <pre><code># IPFS indirme (MacOS/Linux)
+wget https://dist.ipfs.io/go-ipfs/v0.18.0/go-ipfs_v0.18.0_linux-amd64.tar.gz
+tar -xvzf go-ipfs_v0.18.0_linux-amd64.tar.gz
+cd go-ipfs
+sudo bash install.sh
+
+# IPFS başlatma
+ipfs init
+
+# Depolama limitini ayarlama
+ipfs config Datastore.StorageMax 20GB
+
+# IPFS daemon başlatma
+ipfs daemon
+
+# Dosya ekleme
+ipfs add dosya.txt
+
+# Dosya alma
+ipfs get QmHash...
+
+# Web UI erişimi
+http://localhost:5001/webui
+
+# Peer listesi görme
+ipfs swarm peers
+
+# Node bilgileri
+ipfs id</code></pre>
+            
+            <h3>Node Türleri</h3>
+            <ol>
+                <li><strong>Full Node</strong>: Tüm IPFS özelliklerini çalıştırır</li>
+                <li><strong>Light Node</strong>: Sınırlı depolama ve bant genişliği</li>
+                <li><strong>Gateway Node</strong>: Sadece HTTP gateway hizmeti</li>
+                <li><strong>Pinning Node</strong>: Belirli içerikleri kalıcı saklar</li>
+                <li><strong>Cluster Node</strong>: Birden fazla node'u koordine eder</li>
+            </ol>
+            
+            <h3>Minimum Sistem Gereksinimleri</h3>
+            <ul>
+                <li><strong>İşlemci</strong>: 2 GHz dual-core</li>
+                <li><strong>RAM</strong>: 2 GB (önerilen 4 GB)</li>
+                <li><strong>Depolama</strong>: 10 GB boş alan (önerilen 50+ GB)</li>
+                <li><strong>Bant Genişliği</strong>: 10 Mbps (önerilen 100 Mbps)</li>
+                <li><strong>İşletim Sistemi</strong>: Linux, macOS, Windows</li>
+                <li><strong>Açık Portlar</strong>: 4001 (Swarm), 5001 (API), 8080 (Gateway)</li>
+            </ul>
+            
+            <h3>IPFS Gateway'ler</h3>
+            <ul>
+                <li>IPFS içeriğine normal tarayıcıdan erişim sağlar</li>
+                <li>Örnek: <code>https://ipfs.io/ipfs/QmHash...</code></li>
+                <li>Merkezi gateway'ler geçici çözümdür</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Gelecek ve Potansiyel</h2>
+            
+            <h3>Web 3.0'ın Temeli</h3>
+            <ul>
+                <li>Merkezi olmayan internet altyapısının önemli parçası</li>
+                <li>Kullanıcı verilerinin kontrolü kullanıcıda</li>
+            </ul>
+            
+            <h3>Veri Egemenliği</h3>
+            <ul>
+                <li>Şirketlerin veri tekelini kırar</li>
+                <li>Açık ve şeffaf veri paylaşımı</li>
+            </ul>
+            
+            <h3>Gelişen Ekosistem</h3>
+            <ul>
+                <li>Brave, Opera gibi tarayıcılar native IPFS desteği sunuyor</li>
+                <li>Artan geliştirici ve kullanıcı topluluğu</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Özet</h2>
+            <p>IPFS, blockchain'in dağıtık felsefesini veri depolama alanına taşıyan devrim niteliğinde bir teknolojidir. Blockchain işlem kayıtlarını saklarken, IPFS dosya ve verileri dağıtık olarak depolar. İkisi birlikte kullanıldığında tam anlamıyla merkezi olmayan uygulamalar (DApp) geliştirmek mümkün hale gelir. IPFS henüz gelişme aşamasında olsa da, merkezi internet yapısına güçlü bir alternatif sunmaktadır.</p>
+        </div>
+    </div>
+</body>
+</html>
