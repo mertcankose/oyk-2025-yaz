@@ -406,8 +406,10 @@
         </div>
         <div class="example-box">
           <div class="code-block">
-            🏦 Blockchain = Herkesin görebildiği kasalar 🔑 Private Key = Kasanın anahtarı (sadece sizde) 📬 Public
-            Key/Address = Kasa numarası (paylaşılabilir) 💼 Cüzdan = Anahtarları yöneten yazılım
+            🏦 Blockchain = Herkesin görebildiği kasalar<br>
+            🔑 Private Key = Kasanın anahtarı (sadece sizde)<br>
+            📬 Public Key/Address = Kasa numarası (paylaşılabilir)<br>
+            💼 Cüzdan = Anahtarları yöneten yazılım
           </div>
         </div>
         <div class="warning-box">
@@ -430,9 +432,14 @@
         <div class="security-box">
           <h3>Problem: Her adres için ayrı private key</h3>
           <div class="code-block">
-            Adres 1: 1A1zP1eP... → Private Key: 5KJvsngHeM... Adres 2: 1BvBMSEY... → Private Key: 5HpHagT65T... Adres 3:
-            1CjPR7Z5... → Private Key: 5KYZdUEo39... ... Adres 100: 1XyZ9... → Private Key: 5LmNoPq... 100 adres = 100
-            farklı private key yedeklemeniz gerek! 😱 Birini kaybettiniz = O adresteki Bitcoin sonsuza dek kayıp!
+            Adres 1: 1A1zP1eP... → Private Key: 5KJvsngHeM...<br>
+            Adres 2: 1BvBMSEY... → Private Key: 5HpHagT65T...<br>
+            Adres 3: 1CjPR7Z5... → Private Key: 5KYZdUEo39...<br>
+            ...<br>
+            Adres 100: 1XyZ9... → Private Key: 5LmNoPq...<br><br>
+            
+            100 adres = 100 farklı private key yedeklemeniz gerek! 😱<br>
+            Birini kaybettiniz = O adresteki Bitcoin sonsuza dek kayıp!
           </div>
         </div>
 
@@ -464,11 +471,22 @@
         <div class="example-box">
           <h3>Nasıl Çalışır?</h3>
           <div class="code-block">
-            # 1. Master seed oluştur (128-256 bit entropi) master_seed = generate_entropy() # "8b2e5c4a3f1d9e7..." # 2.
-            Master key türet master_key = HMAC-SHA512(master_seed, "Bitcoin seed") # 3. Child key türet (matematiksel)
-            def derive_child(parent_key, index): data = parent_public_key + index child = HMAC-SHA512(parent_chain_code,
-            data) return child_private_key # Sonuç: Sonsuz adres, deterministik! address_0 = derive(master, 0) # Her
-            zaman aynı address_1 = derive(master, 1) # Tahmin edilemez address_2 = derive(master, 2) # Güvenli
+            # 1. Master seed oluştur (128-256 bit entropi)<br>
+            master_seed = generate_entropy()  # "8b2e5c4a3f1d9e7..."<br><br>
+            
+            # 2. Master key türet<br>
+            master_key = HMAC-SHA512(master_seed, "Bitcoin seed")<br><br>
+            
+            # 3. Child key türet (matematiksel)<br>
+            def derive_child(parent_key, index):<br>
+                data = parent_public_key + index<br>
+                child = HMAC-SHA512(parent_chain_code, data)<br>
+                return child_private_key<br><br>
+            
+            # Sonuç: Sonsuz adres, deterministik!<br>
+            address_0 = derive(master, 0)  # Her zaman aynı<br>
+            address_1 = derive(master, 1)  # Tahmin edilemez<br>
+            address_2 = derive(master, 2)  # Güvenli
           </div>
         </div>
       </div>
@@ -576,8 +594,16 @@
         <div class="example-box">
           <h3>Örnek: Bitcoin İlk Adres</h3>
           <div class="code-block" style="font-size: 1.3rem">
-            m/44'/0'/0'/0/0 m → Master 44' → BIP44 standardı (sabit) 0' → Bitcoin (ETH=60, LTC=2) 0' → İlk hesap 0 →
-            External (1=change/internal) 0 → İlk adres ' = Hardened derivation (ekstra güvenlik)
+            m/44'/0'/0'/0/0<br><br>
+            
+            m → Master<br>
+            44' → BIP44 standardı (sabit)<br>
+            0' → Bitcoin (ETH=60, LTC=2)<br>
+            0' → İlk hesap<br>
+            0 → External (1=change/internal)<br>
+            0 → İlk adres<br><br>
+            
+            ' = Hardened derivation (ekstra güvenlik)
           </div>
         </div>
 
@@ -585,15 +611,20 @@
         <div class="bitcoin-box">
           <h3>Bitcoin</h3>
           <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-            Seed: "abandon amount liar..." m/44'/0'/0'/0/0 → 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa m/44'/0'/0'/0/1 →
-            1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2 m/44'/0'/0'/0/2 → 1CjPR7Z5ZSyWk6WtXvSFgkptmpoi4UM9BC
+            Seed: "abandon amount liar..."<br><br>
+            
+            m/44'/0'/0'/0/0 → 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa<br>
+            m/44'/0'/0'/0/1 → 1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2<br>
+            m/44'/0'/0'/0/2 → 1CjPR7Z5ZSyWk6WtXvSFgkptmpoi4UM9BC
           </div>
         </div>
 
         <div class="ethereum-box">
           <h3>Ethereum</h3>
           <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-            Aynı Seed: "abandon amount liar..." m/44'/60'/0'/0/0 → 0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+            Aynı Seed: "abandon amount liar..."<br><br>
+            
+            m/44'/60'/0'/0/0 → 0x71C7656EC7ab88b098defB751B7401B5f6d8976F<br>
             m/44'/60'/0'/0/1 → 0x92D7656EC7ab88b098defB751B7401B5f6d8976F
           </div>
         </div>
@@ -623,32 +654,46 @@
         <div class="address-type">
           <h3>1️⃣ Legacy (P2PKH)</h3>
           <div class="code-block">
-            Path: m/44'/0'/0'/0/0 Adres: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa Özellik: "1" ile başlar Format: Base58
-            Ücret: En pahalı ❌ Boyut: En büyük
+            Path: m/44'/0'/0'/0/0<br>
+            Adres: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa<br>
+            Özellik: "1" ile başlar<br>
+            Format: Base58<br>
+            Ücret: En pahalı ❌<br>
+            Boyut: En büyük
           </div>
         </div>
 
         <div class="address-type">
           <h3>2️⃣ SegWit Wrapped (P2SH-P2WPKH)</h3>
           <div class="code-block">
-            Path: m/49'/0'/0'/0/0 Adres: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy Özellik: "3" ile başlar Ücret: %26 daha ucuz
-            ⚡ Uyumluluk: Eski cüzdanlarla ✅
+            Path: m/49'/0'/0'/0/0<br>
+            Adres: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy<br>
+            Özellik: "3" ile başlar<br>
+            Ücret: %26 daha ucuz ⚡<br>
+            Uyumluluk: Eski cüzdanlarla ✅
           </div>
         </div>
 
         <div class="address-type">
           <h3>3️⃣ Native SegWit (Bech32)</h3>
           <div class="code-block">
-            Path: m/84'/0'/0'/0/0 Adres: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4 Özellik: "bc1" ile başlar Ücret: En
-            ucuz (%42 tasarruf) ✅ Boyut: En küçük Önerilen: Modern standart 🎯
+            Path: m/84'/0'/0'/0/0<br>
+            Adres: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4<br>
+            Özellik: "bc1" ile başlar<br>
+            Ücret: En ucuz (%42 tasarruf) ✅<br>
+            Boyut: En küçük<br>
+            Önerilen: Modern standart 🎯
           </div>
         </div>
 
         <div class="address-type">
           <h3>4️⃣ Taproot (En Yeni)</h3>
           <div class="code-block">
-            Path: m/86'/0'/0'/0/0 Adres: bc1p5d7rjq8g2c3j3wvxnq5jwz5nvxz7q8g2c3j3wv Özellik: "bc1p" ile başlar Avantaj:
-            Privacy + Smart contracts Gelecek: Bitcoin'in geleceği 🚀
+            Path: m/86'/0'/0'/0/0<br>
+            Adres: bc1p5d7rjq8g2c3j3wvxnq5jwz5nvxz7q8g2c3j3wv<br>
+            Özellik: "bc1p" ile başlar<br>
+            Avantaj: Privacy + Smart contracts<br>
+            Gelecek: Bitcoin'in geleceği 🚀
           </div>
         </div>
 
@@ -670,8 +715,14 @@
             <h2 style="color: white">₿ Bitcoin</h2>
             <p><strong>UTXO Model</strong></p>
             <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-              // Birden fazla "para" [ {address: "1A1z...", amount: 0.5}, {address: "1BvB...", amount: 0.3}, {address:
-              "1CjP...", amount: 0.2} ] // Her işlem yeni adres // Change adresleri var
+              // Birden fazla "para"<br>
+              [<br>
+                {address: "1A1z...", amount: 0.5},<br>
+                {address: "1BvB...", amount: 0.3},<br>
+                {address: "1CjP...", amount: 0.2}<br>
+              ]<br>
+              // Her işlem yeni adres<br>
+              // Change adresleri var
             </div>
             <p>✓ Privacy daha iyi</p>
             <p>✓ Her işlem yeni adres</p>
@@ -682,8 +733,15 @@
             <h2 style="color: white">Ξ Ethereum</h2>
             <p><strong>Account Model</strong></p>
             <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-              // Tek hesap { address: "0x71C765...", balance: 5.23 ETH, tokens: [USDT, USDC, UNI], nonce: 42 // İşlem
-              sayacı } // Tek adres yeterli // Tüm tokenlar burada
+              // Tek hesap<br>
+              {<br>
+                address: "0x71C765...",<br>
+                balance: 5.23 ETH,<br>
+                tokens: [USDT, USDC, UNI],<br>
+                nonce: 42  // İşlem sayacı<br>
+              }<br>
+              // Tek adres yeterli<br>
+              // Tüm tokenlar burada
             </div>
             <p>✓ Basit yönetim</p>
             <p>✓ Tüm tokenlar tek yerde</p>
@@ -748,7 +806,8 @@
             <span class="step-number">2</span>
             <strong>Public Key (Elliptic Curve secp256k1)</strong>
             <div class="code-block">
-              publicKey = secp256k1(privateKey) // "0x04bfcab8722991ae774db48f1ca3b2a4814..."
+              publicKey = secp256k1(privateKey)<br>
+              // "0x04bfcab8722991ae774db48f1ca3b2a4814..."
             </div>
           </div>
 
@@ -756,7 +815,8 @@
             <span class="step-number">3</span>
             <strong>Keccak-256 Hash</strong>
             <div class="code-block">
-              // "0x04" prefix'ini at (uncompressed marker) hash = keccak256(publicKey.slice(1))
+              // "0x04" prefix'ini at (uncompressed marker)<br>
+              hash = keccak256(publicKey.slice(1))
             </div>
           </div>
 
@@ -764,7 +824,8 @@
             <span class="step-number">4</span>
             <strong>Son 20 byte = Adres</strong>
             <div class="code-block">
-              address = "0x" + hash.slice(-40) // "0x71c7656ec7ab88b098defb751b7401b5f6d8976f"
+              address = "0x" + hash.slice(-40)<br>
+              // "0x71c7656ec7ab88b098defb751b7401b5f6d8976f"
             </div>
           </div>
 
@@ -772,8 +833,10 @@
             <span class="step-number">5</span>
             <strong>Checksum (EIP-55) - Büyük/küçük harf</strong>
             <div class="code-block">
-              checksumAddress = toChecksumAddress(address) // "0x71C7656EC7ab88b098defB751B7401B5f6d8976F" // ↑ ↑ ↑ //
-              Büyük harfler checksum için
+              checksumAddress = toChecksumAddress(address)<br>
+              // "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"<br>
+              //      ↑           ↑          ↑<br>
+              // Büyük harfler checksum için
             </div>
           </div>
         </div>
@@ -782,19 +845,19 @@
         <div class="stats-grid">
           <div class="stat-card">
             <h3>MetaMask</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/0'/0/1 m/44'/60'/0'/0/2</div>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/0'/0/1<br>m/44'/60'/0'/0/2</div>
             <p>Index artıyor</p>
           </div>
 
           <div class="stat-card">
             <h3>Ledger</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/1'/0/0 m/44'/60'/2'/0/0</div>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/1'/0/0<br>m/44'/60'/2'/0/0</div>
             <p>Account artıyor</p>
           </div>
 
           <div class="stat-card">
             <h3>Trezor</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0 m/44'/60'/0'/0/1</div>
+            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/0'/0/1</div>
             <p>MetaMask uyumlu</p>
           </div>
         </div>
@@ -808,20 +871,39 @@
 
         <h2>Key Derivation Function</h2>
         <div class="code-block">
-          def derive_key(parent_key, index): # Hardened derivation (') : index >= 2^31 if index >= 0x80000000: # Parent
-          private key kullan (güvenli) data = b'\x00' + parent_private_key + index.to_bytes(4, 'big') else: # Parent
-          public key kullan data = parent_public_key + index.to_bytes(4, 'big') # HMAC-SHA512 hmac_result =
-          hmac.new(parent_chain_code, data, sha512).digest() # İlk 32 byte = child key # Son 32 byte = child chain code
-          child_key = (int.from_bytes(hmac_result[:32]) + parent_key) % n child_chain = hmac_result[32:] return
-          child_key, child_chain
+          def derive_key(parent_key, index):<br>
+              # Hardened derivation (') : index >= 2^31<br>
+              if index >= 0x80000000:<br>
+                  # Parent private key kullan (güvenli)<br>
+                  data = b'\x00' + parent_private_key + index.to_bytes(4, 'big')<br>
+              else:<br>
+                  # Parent public key kullan<br>
+                  data = parent_public_key + index.to_bytes(4, 'big')<br><br>
+              
+              # HMAC-SHA512<br>
+              hmac_result = hmac.new(parent_chain_code, data, sha512).digest()<br><br>
+              
+              # İlk 32 byte = child key<br>
+              # Son 32 byte = child chain code<br>
+              child_key = (int.from_bytes(hmac_result[:32]) + parent_key) % n<br>
+              child_chain = hmac_result[32:]<br><br>
+              
+              return child_key, child_chain
         </div>
 
         <h2>📐 Elliptic Curve (secp256k1)</h2>
         <div class="formula-box">
           <div class="code-block">
-            Bitcoin & Ethereum aynı eğriyi kullanır! Eğri denklemi: y² = x³ + 7 Private Key: k (256 bit rastgele sayı)
-            Public Key: P = k × G (G = generator point) İmza Algoritması: 1. Mesaj hash'i: h = hash(message) 2. Rastgele
-            nonce: r 3. İmza: (r, s) where s = (h + r×private_key) / k
+            Bitcoin & Ethereum aynı eğriyi kullanır!<br><br>
+            
+            Eğri denklemi: y² = x³ + 7<br>
+            Private Key: k (256 bit rastgele sayı)<br>
+            Public Key: P = k × G (G = generator point)<br><br>
+            
+            İmza Algoritması:<br>
+            1. Mesaj hash'i: h = hash(message)<br>
+            2. Rastgele nonce: r<br>
+            3. İmza: (r, s) where s = (h + r×private_key) / k
           </div>
         </div>
 
@@ -830,15 +912,22 @@
           <div class="stat-card">
             <h3>Bitcoin</h3>
             <div class="code-block" style="background: #2e2e2e">
-              function signBitcoin(tx, key) { hash = double_sha256(tx) return ecdsa_sign(hash, key) }
+              function signBitcoin(tx, key) {<br>
+                hash = double_sha256(tx)<br>
+                return ecdsa_sign(hash, key)<br>
+              }
             </div>
           </div>
 
           <div class="stat-card">
             <h3>Ethereum</h3>
             <div class="code-block" style="background: #2e2e2e">
-              function signEthereum(tx, key) { hash = keccak256(RLP(tx)) {r,s,v} = ecdsa_sign(hash, key) // v = recovery
-              id (27/28) return {r, s, v} }
+              function signEthereum(tx, key) {<br>
+                hash = keccak256(RLP(tx))<br>
+                {r,s,v} = ecdsa_sign(hash, key)<br>
+                // v = recovery id (27/28)<br>
+                return {r, s, v}<br>
+              }
             </div>
           </div>
         </div>
@@ -882,17 +971,29 @@
           <div class="example-box">
             <h3>Bitcoin</h3>
             <div class="code-block">
-              // WIF (Wallet Import Format) L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1 // Hex
-              0xE9873D79C6D87DC0FB6A5778633389F4453213CA3EED83A2B2F08EE9873D79C6
+              // WIF (Wallet Import Format)<br>
+              L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1<br><br>
+              
+              // Hex<br>
+              0xE9873D79C6D87DC0FB6A5778633389F4453213CA3EED83A2B2F08EE9873D79C6<br>
             </div>
           </div>
 
           <div class="example-box">
             <h3>Ethereum</h3>
             <div class="code-block">
-              // Hex 0x4c0883a69102937d6231471b5dbb6204fe5129618082792ae468d01a3f362318 // Keystore (Şifreli JSON) {
-              "crypto": { "cipher": "aes-128-ctr", "ciphertext": "şifreli_private_key", "kdf": "scrypt", "mac":
-              "doğrulama_kodu" } }
+              // Hex<br>
+              0x4c0883a69102937d6231471b5dbb6204fe5129618082792ae468d01a3f362318<br><br>
+              
+              // Keystore (Şifreli JSON)<br>
+              {<br>
+                "crypto": {<br>
+                  "cipher": "aes-128-ctr",<br>
+                  "ciphertext": "şifreli_private_key",<br>
+                  "kdf": "scrypt",<br>
+                  "mac": "doğrulama_kodu"<br>
+                }<br>
+              }
             </div>
           </div>
         </div>

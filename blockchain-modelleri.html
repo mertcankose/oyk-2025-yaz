@@ -353,14 +353,14 @@ struct TxOutput {
                 <h3>⚠️ UTXO'da Para Üstü Nereden Geliyor?</h3>
                 <p><strong>YOKTAN GELMİYOR!</strong> Bitcoin'in altın kuralı:</p>
                 <div class="code-block">
-INPUT TOPLAMI = OUTPUT TOPLAMI + FEE
-
-Alice'in örneğinde:
-INPUT:  100,000,000 satoshi (1 BTC)
-OUTPUT: 
-  - Bob'a:    30,000,000 satoshi (0.3 BTC)
-  - Alice'e:  69,990,000 satoshi (0.6999 BTC)  ← Para üstü
-  - Fee:          10,000 satoshi (0.0001 BTC)  ← Madenciye
+INPUT TOPLAMI = OUTPUT TOPLAMI + FEE<br>
+<br>
+Alice'in örneğinde:<br>
+INPUT:  100,000,000 satoshi (1 BTC)<br>
+OUTPUT:<br>
+  - Bob'a:    30,000,000 satoshi (0.3 BTC)<br>
+  - Alice'e:  69,990,000 satoshi (0.6999 BTC)  ← Para üstü<br>
+  - Fee:          10,000 satoshi (0.0001 BTC)  ← Madenciye<br>
 TOPLAM: 100,000,000 satoshi ✅ Eşit!
                 </div>
             </div>
@@ -368,12 +368,12 @@ TOPLAM: 100,000,000 satoshi ✅ Eşit!
             <div class="warning-box">
                 <h3>⚡ ÖNEMLİ: Alice'in ESKİ BTC'si YOK OLDU!</h3>
                 <div class="code-block">
-ÖNCE:
-Alice'in UTXO'su: [txid: abc123, vout: 0] → 1 BTC ✅
-
-İşlem Sonrası:
-Alice'in ESKİ UTXO'su: [txid: abc123, vout: 0] → ❌ HARCANMIŞ (artık yok!)
-Alice'in YENİ UTXO'su: [txid: def456, vout: 1] → 0.6999 BTC ✅
+ÖNCE:<br>
+Alice'in UTXO'su: [txid: abc123, vout: 0] → 1 BTC ✅<br>
+<br>
+İşlem Sonrası:<br>
+Alice'in ESKİ UTXO'su: [txid: abc123, vout: 0] → ❌ HARCANMIŞ (artık yok!)<br>
+Alice'in YENİ UTXO'su: [txid: def456, vout: 1] → 0.6999 BTC ✅<br>
 Bob'un YENİ UTXO'su:   [txid: def456, vout: 0] → 0.3 BTC ✅
                 </div>
                 <p><strong>Alice'in 1 BTC'si "değişmedi" - tamamen SİLİNDİ ve yerine YENİ 0.6999 BTC oluşturuldu!</strong></p>
@@ -386,17 +386,17 @@ Bob'un YENİ UTXO'su:   [txid: def456, vout: 0] → 0.3 BTC ✅
             <div class="warning-box">
                 <p><strong>En yaygın kayıp nedeni:</strong> Cüzdan para üstünü yanlış adrese gönderiyor!</p>
                 <div class="code-block cpp-code">
-// ❌ YANLIŞ - Para üstü kaybolur
-Transaction tx = {
-    inputs: [
-        {previous_txid: "abc123", vout: 0}  // Alice'in 1 BTC'si
-    ],
-    outputs: [
-        {value: 30000000, address: "bob_address"}     // Bob'a 0.3 BTC
-        // ❌ Para üstü için output YOK! 0.7 BTC kaybolur!
-    ]
-}
-
+// ❌ YANLIŞ - Para üstü kaybolur<br>
+Transaction tx = {<br>
+    inputs: [<br>
+        {previous_txid: "abc123", vout: 0}  // Alice'in 1 BTC'si<br>
+    ],<br>
+    outputs: [<br>
+        {value: 30000000, address: "bob_address"}     // Bob'a 0.3 BTC<br>
+        // ❌ Para üstü için output YOK! 0.7 BTC kaybolur!<br>
+    ]<br>
+}<br>
+<br>
 // İşlem geçerli ama 0.7 BTC madencilere FEE olarak gidiyor!
                 </div>
             </div>
@@ -404,33 +404,33 @@ Transaction tx = {
             <h3>2. Manuel Transaction Oluşturma Hataları</h3>
             
             <div class="code-block cpp-code">
-// Acemi geliştiricinin yaptığı hata
-function createTransaction(toAddress, amount) {
-    let tx = {
-        inputs: [],
-        outputs: []
-    };
-    
-    // Tüm UTXO'ları topla
-    let totalInput = 0;
-    for (let utxo of myUTXOs) {
-        tx.inputs.push(utxo);
-        totalInput += utxo.value;
-        if (totalInput >= amount) break;
-    }
-    
-    // Sadece gönderilecek miktarı ekle
-    tx.outputs.push({
-        value: amount,
-        address: toAddress
-    });
-    
-    // ❌ PARA ÜSTÜNÜ UNUTTU! 
-    // Kalan para madencilere fee olarak gidiyor!
-    
-    return tx;
-}
-
+// Acemi geliştiricinin yaptığı hata<br>
+function createTransaction(toAddress, amount) {<br>
+    let tx = {<br>
+        inputs: [],<br>
+        outputs: []<br>
+    };<br>
+    <br>
+    // Tüm UTXO'ları topla<br>
+    let totalInput = 0;<br>
+    for (let utxo of myUTXOs) {<br>
+        tx.inputs.push(utxo);<br>
+        totalInput += utxo.value;<br>
+        if (totalInput >= amount) break;<br>
+    }<br>
+    <br>
+    // Sadece gönderilecek miktarı ekle<br>
+    tx.outputs.push({<br>
+        value: amount,<br>
+        address: toAddress<br>
+    });<br>
+    <br>
+    // ❌ PARA ÜSTÜNÜ UNUTTU!<br>
+    // Kalan para madencilere fee olarak gidiyor!<br>
+    <br>
+    return tx;<br>
+}<br>
+<br>
 // 1 BTC ile 0.1 BTC göndermeye çalışırken 0.9 BTC kaybolur!
             </div>
             
@@ -439,27 +439,27 @@ function createTransaction(toAddress, amount) {
             <div class="success-box">
                 <h3>Her Zaman Change Output Ekleyin</h3>
                 <div class="code-block cpp-code">
-// ✅ DOĞRU yöntem
-function createSafeTransaction(toAddress, amount) {
-    let totalInput = 0;
-    let inputs = [];
-    
-    // Gerekli UTXO'ları topla
-    for (let utxo of myUTXOs) {
-        inputs.push(utxo);
-        totalInput += utxo.value;
-        if (totalInput >= amount + estimatedFee) break;
-    }
-    
-    let fee = calculateFee(inputs.length, 2); // 2 output için fee
-    let changeAmount = totalInput - amount - fee;
-    
-    let outputs = [
-        {value: amount, address: toAddress},                    // Alıcı
-        {value: changeAmount, address: getMyChangeAddress()}    // Para üstü
-    ];
-    
-    return {inputs, outputs};
+// ✅ DOĞRU yöntem<br>
+function createSafeTransaction(toAddress, amount) {<br>
+    let totalInput = 0;<br>
+    let inputs = [];<br>
+    <br>
+    // Gerekli UTXO'ları topla<br>
+    for (let utxo of myUTXOs) {<br>
+        inputs.push(utxo);<br>
+        totalInput += utxo.value;<br>
+        if (totalInput >= amount + estimatedFee) break;<br>
+    }<br>
+    <br>
+    let fee = calculateFee(inputs.length, 2); // 2 output için fee<br>
+    let changeAmount = totalInput - amount - fee;<br>
+    <br>
+    let outputs = [<br>
+        {value: amount, address: toAddress},                    // Alıcı<br>
+        {value: changeAmount, address: getMyChangeAddress()}    // Para üstü<br>
+    ];<br>
+    <br>
+    return {inputs, outputs};<br>
 }
                 </div>
             </div>
@@ -473,12 +473,12 @@ function createSafeTransaction(toAddress, amount) {
             <div class="example-box">
                 <p>Banka hesabınız gibi düşünün:</p>
                 <div class="code-block">
-Alice'in hesabı: 5 ETH
-Bob'un hesabı: 2 ETH
-
-Alice, Bob'a 1 ETH gönderiyor:
-
-Alice'in yeni bakiyesi: 4 ETH (5 - 1)
+Alice'in hesabı: 5 ETH<br>
+Bob'un hesabı: 2 ETH<br>
+<br>
+Alice, Bob'a 1 ETH gönderiyor:<br>
+<br>
+Alice'in yeni bakiyesi: 4 ETH (5 - 1)<br>
 Bob'un yeni bakiyesi: 3 ETH (2 + 1)
                 </div>
             </div>
