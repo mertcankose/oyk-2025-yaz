@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Mining Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .input-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+        font-weight: bold;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        transform: translateY(-2px);
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .mining-info {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .hash-display {
+        font-family: "Courier New", monospace;
+        word-break: break-all;
+        padding: 10px;
+        background: #fff;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        margin: 10px 0;
+      }
+      .valid-hash {
+        color: #28a745;
+        font-weight: bold;
+      }
+      .invalid-hash {
+        color: #dc3545;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .stat-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px solid #e0e0e0;
+      }
+      .stat-label {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+      .stat-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 30px;
+        background: #e0e0e0;
+        border-radius: 15px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        width: 0%;
+        transition: width 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+      .attempts-log {
+        max-height: 200px;
+        overflow-y: auto;
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔨 Blockchain Mining (Madencilik) Demo</h1>
+
+      <div class="input-group">
+        <label for="blockData">Blok Verisi:</label>
+        <input type="text" id="blockData" value="Transfer: Ali -> Veli 10 BTC" />
+      </div>
+
+      <div class="input-group">
+        <label for="difficulty">Zorluk Seviyesi:</label>
+        <select id="difficulty">
+          <option value="1">1 (Çok Kolay - "0" ile başlayan)</option>
+          <option value="2">2 (Kolay - "00" ile başlayan)</option>
+          <option value="3" selected>3 (Orta - "000" ile başlayan)</option>
+          <option value="4">4 (Zor - "0000" ile başlayan)</option>
+          <option value="5">5 (Çok Zor - "00000" ile başlayan)</option>
+        </select>
+      </div>
+
+      <button onclick="startMining()" id="mineBtn">Madenciliği Başlat</button>
+      <button onclick="stopMining()" id="stopBtn" disabled>Durdur</button>
+      <button onclick="reset()">Sıfırla</button>
+
+      <div class="mining-info">
+        <h3>Madencilik Durumu:</h3>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress">0%</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-label">Nonce Değeri</div>
+            <div class="stat-value" id="nonce">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Deneme Sayısı</div>
+            <div class="stat-value" id="attempts">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Geçen Süre</div>
+            <div class="stat-value" id="time">0s</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Hash/Saniye</div>
+            <div class="stat-value" id="hashRate">0</div>
+          </div>
+        </div>
+
+        <h4>Mevcut Hash:</h4>
+        <div class="hash-display" id="currentHash">Hash hesaplanmadı</div>
+
+        <h4>Son Denemeler:</h4>
+        <div class="attempts-log" id="attemptsLog"></div>
+      </div>
+    </div>
+
+    <script>
+      let mining = false;
+      let nonce = 0;
+      let attempts = 0;
+      let startTime;
+      let targetPrefix;
+      let animationFrame;
+
+      function calculateHash(data, nonceValue) {
+        const block = {
+          index: 1,
+          previousHash: "0000000000000000",
+          timestamp: Date.now(),
+          data: data,
+          nonce: nonceValue,
+        };
+
+        const blockString = block.index + block.previousHash + block.timestamp + block.data + block.nonce;
+
+        return CryptoJS.SHA256(blockString).toString();
+      }
+
+      function updateDisplay(hash, nonceValue) {
+        document.getElementById("nonce").textContent = nonceValue;
+        document.getElementById("attempts").textContent = attempts;
+
+        const hashDisplay = document.getElementById("currentHash");
+        const difficulty = parseInt(document.getElementById("difficulty").value);
+
+        if (hash.substring(0, difficulty) === targetPrefix) {
+          hashDisplay.innerHTML = `<span class="valid-hash">✅ ${hash}</span>`;
+        } else {
+          const prefix = hash.substring(0, difficulty);
+          const rest = hash.substring(difficulty);
+          hashDisplay.innerHTML = `<span class="invalid-hash">${prefix}</span>${rest}`;
+        }
+
+        // Zaman hesaplama
+        if (startTime) {
+          const elapsed = (Date.now() - startTime) / 1000;
+          document.getElementById("time").textContent = elapsed.toFixed(1) + "s";
+          const hashRate = Math.round(attempts / elapsed);
+          document.getElementById("hashRate").textContent = hashRate;
+        }
+
+        // Progress bar
+        const progress = document.getElementById("progress");
+        const progressPercent = Math.min((attempts / 10000) * 100, 100);
+        progress.style.width = progressPercent + "%";
+        progress.textContent = progressPercent.toFixed(1) + "%";
+      }
+
+      function addToLog(hash, nonceValue, success) {
+        const log = document.getElementById("attemptsLog");
+        const entry = document.createElement("div");
+        entry.style.color = success ? "#28a745" : "#666";
+        entry.textContent = `Nonce: ${nonceValue.toString().padStart(6, "0")} → ${hash.substring(0, 10)}...`;
+        log.insertBefore(entry, log.firstChild);
+
+        // Maksimum 10 log göster
+        while (log.children.length > 10) {
+          log.removeChild(log.lastChild);
+        }
+      }
+
+      async function mine() {
+        const data = document.getElementById("blockData").value;
+        const difficulty = parseInt(document.getElementById("difficulty").value);
+        targetPrefix = "0".repeat(difficulty);
+
+        const batchSize = 100; // Her batch'te 100 hash hesapla
+
+        for (let i = 0; i < batchSize && mining; i++) {
+          nonce++;
+          attempts++;
+
+          const hash = calculateHash(data, nonce);
+
+          // Her 10 denemede bir log ekle
+          if (attempts % 10 === 0) {
+            addToLog(hash, nonce, false);
+          }
+
+          updateDisplay(hash, nonce);
+
+          if (hash.substring(0, difficulty) === targetPrefix) {
+            mining = false;
+            addToLog(hash, nonce, true);
+            alert(`🎉 Blok başarıyla kazıldı!\n\nNonce: ${nonce}\nDeneme Sayısı: ${attempts}\nHash: ${hash}`);
+            document.getElementById("mineBtn").disabled = false;
+            document.getElementById("stopBtn").disabled = true;
+            return;
+          }
+        }
+
+        if (mining) {
+          // Bir sonraki batch'i planla
+          animationFrame = requestAnimationFrame(() => mine());
+        }
+      }
+
+      function startMining() {
+        mining = true;
+        nonce = 0;
+        attempts = 0;
+        startTime = Date.now();
+        document.getElementById("mineBtn").disabled = true;
+        document.getElementById("stopBtn").disabled = false;
+        document.getElementById("attemptsLog").innerHTML = "";
+        mine();
+      }
+
+      function stopMining() {
+        mining = false;
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+        document.getElementById("mineBtn").disabled = false;
+        document.getElementById("stopBtn").disabled = true;
+      }
+
+      function reset() {
+        stopMining();
+        nonce = 0;
+        attempts = 0;
+        document.getElementById("nonce").textContent = "0";
+        document.getElementById("attempts").textContent = "0";
+        document.getElementById("time").textContent = "0s";
+        document.getElementById("hashRate").textContent = "0";
+        document.getElementById("currentHash").textContent = "Hash hesaplanmadı";
+        document.getElementById("attemptsLog").innerHTML = "";
+        document.getElementById("progress").style.width = "0%";
+        document.getElementById("progress").textContent = "0%";
+      }
+    </script>
+  </body>
+</html>
