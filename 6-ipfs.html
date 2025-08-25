@@ -480,6 +480,178 @@
         </div>
         
         <div class="section">
+            <h2>IPFS'in Teknik Altyapısı ve Algoritmalar</h2>
+            
+            <h3>1. Merkle DAG (Directed Acyclic Graph)</h3>
+            <p>IPFS'in veri yapısının temelinde Merkle DAG bulunur. Git ve Bitcoin'de de kullanılan bu yapı:</p>
+            <ul>
+                <li><strong>DAG Yapısı</strong>: Her node (düğüm) bir veya daha fazla parent'a sahip olabilir</li>
+                <li><strong>Merkle Ağacı</strong>: Her node, child node'larının hash'lerini içerir</li>
+                <li><strong>İçerik Bağlantıları</strong>: CID (Content Identifier) ile birbirine bağlı node'lar</li>
+                <li><strong>Değiştirilemezlik</strong>: Bir node değiştiğinde tüm parent hash'leri değişir</li>
+            </ul>
+            <pre><code># Merkle DAG Örneği
+Root Hash: QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+├── Block 1: QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB
+│   ├── Data: "Hello"
+│   └── Hash: SHA256(Data + Links)
+├── Block 2: QmU5k7ter3RdjZXu3sHghsga1UQtrztnQxmTL22nPnsu3g
+│   ├── Data: "World"
+│   └── Hash: SHA256(Data + Links)
+└── Metadata: Size, Type, Links</code></pre>
+            
+            <h3>2. Content Addressing - CID (Content Identifier)</h3>
+            <p>IPFS'te her içerik benzersiz bir CID ile tanımlanır:</p>
+            <ul>
+                <li><strong>Multihash</strong>: Hash fonksiyonu ve değeri birlikte saklanır</li>
+                <li><strong>CIDv0</strong>: Eski format, sadece SHA-256, Base58 encoding</li>
+                <li><strong>CIDv1</strong>: Yeni format, çoklu codec ve hash desteği</li>
+            </ul>
+            <pre><code># CID Anatomisi
+CIDv1: bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi
+├── Multibase prefix: b (base32)
+├── CID version: 01
+├── Multicodec: dag-pb (0x70)
+├── Multihash:
+│   ├── Hash Function: SHA2-256 (0x12)
+│   ├── Digest Length: 32 bytes
+│   └── Hash Digest: [32 bytes of data]</code></pre>
+            
+            <h3>3. DHT (Distributed Hash Table) - Kademlia</h3>
+            <p>IPFS, peer discovery ve content routing için Kademlia DHT kullanır:</p>
+            <ul>
+                <li><strong>XOR Metriği</strong>: Node'lar arası mesafe XOR işlemi ile hesaplanır</li>
+                <li><strong>k-Bucket</strong>: Her node, diğer node'ları 256 bucket'ta saklar</li>
+                <li><strong>Logaritmik Arama</strong>: O(log n) karmaşıklıkta içerik bulma</li>
+                <li><strong>Replikasyon Faktörü</strong>: k=20 (her değer 20 node'da saklanır)</li>
+            </ul>
+            <pre><code># Kademlia Routing Tablosu
+Node ID: 0x1234567890ABCDEF...
+├── k-bucket[0]: XOR mesafesi 2^0 olan node'lar
+├── k-bucket[1]: XOR mesafesi 2^1 olan node'lar
+├── k-bucket[2]: XOR mesafesi 2^2 olan node'lar
+└── ... (256 bucket'a kadar)</code></pre>
+            
+            <h3>4. BitSwap Protokolü</h3>
+            <p>IPFS'te veri değişimi için kullanılan temel protokol:</p>
+            <ul>
+                <li><strong>Want List</strong>: Her peer istediği block'ların listesini tutar</li>
+                <li><strong>Have List</strong>: Sahip olunan block'ların listesi</li>
+                <li><strong>Credit System</strong>: Peer'lar arası adil paylaşım için kredi sistemi</li>
+                <li><strong>Strategy Pattern</strong>: Farklı değişim stratejileri (tit-for-tat, generous)</li>
+            </ul>
+            <pre><code># BitSwap Mesaj Yapısı
+{
+  "wantlist": {
+    "entries": [
+      {"cid": "QmHash1", "priority": 1},
+      {"cid": "QmHash2", "priority": 5}
+    ]
+  },
+  "blocks": [
+    {"cid": "QmHash3", "data": "..."},
+    {"cid": "QmHash4", "data": "..."}
+  ],
+  "blockPresences": [
+    {"cid": "QmHash5", "type": "Have"},
+    {"cid": "QmHash6", "type": "DontHave"}
+  ]
+}</code></pre>
+            
+            <h3>5. IPLD (InterPlanetary Linked Data)</h3>
+            <p>IPFS'in veri modeli katmanı, farklı veri formatlarını birleştirir:</p>
+            <ul>
+                <li><strong>Codec'ler</strong>: JSON, CBOR, Protobuf, Ethereum Block vb.</li>
+                <li><strong>Traversal</strong>: Farklı veri yapıları arasında gezinme</li>
+                <li><strong>Selectors</strong>: GraphQL benzeri veri sorgulama</li>
+                <li><strong>Schemas</strong>: Veri yapısı tanımlamaları</li>
+            </ul>
+            
+            <h3>6. Chunking Algoritmaları</h3>
+            <p>Büyük dosyaların parçalara bölünmesi için:</p>
+            <ul>
+                <li><strong>Fixed Size Chunking</strong>: Sabit boyutlu parçalar (varsayılan 256KB)</li>
+                <li><strong>Rabin Fingerprinting</strong>: İçerik tabanlı değişken boyutlu parçalama</li>
+                <li><strong>Buzhash</strong>: Rolling hash ile hızlı parçalama</li>
+                <li><strong>Trickle DAG</strong>: Optimized streaming için özel DAG yapısı</li>
+            </ul>
+            <pre><code># Chunking Örneği
+ipfs add --chunker=rabin-min-20000-avg-25000-max-30000 büyük_dosya.mp4
+├── Root CID: QmRoot...
+│   ├── Chunk 1: QmChunk1... (25KB)
+│   ├── Chunk 2: QmChunk2... (23KB)
+│   ├── Chunk 3: QmChunk3... (28KB)
+│   └── ...</code></pre>
+            
+            <h3>7. Kriptografik Altyapı</h3>
+            <ul>
+                <li><strong>Hash Fonksiyonları</strong>: SHA2-256, SHA3, BLAKE2b, BLAKE3</li>
+                <li><strong>Dijital İmzalar</strong>: Ed25519, RSA, Secp256k1</li>
+                <li><strong>Peer ID</strong>: Public key'in hash'i ile oluşturulur</li>
+                <li><strong>TLS 1.3</strong>: Peer'lar arası güvenli iletişim</li>
+                <li><strong>Noise Protocol</strong>: Alternatif güvenli kanal protokolü</li>
+            </ul>
+            
+            <h3>8. Transport Protokolleri</h3>
+            <p>IPFS çoklu transport protokolünü destekler:</p>
+            <ul>
+                <li><strong>TCP</strong>: Güvenilir bağlantı</li>
+                <li><strong>QUIC</strong>: UDP üzerinde multiplexed streams</li>
+                <li><strong>WebSockets</strong>: Browser uyumluluğu</li>
+                <li><strong>WebRTC</strong>: NAT traversal ve P2P browser bağlantıları</li>
+                <li><strong>Bluetooth</strong>: Yakın mesafe iletişim</li>
+            </ul>
+            
+            <h3>9. Multiformat Protokolleri</h3>
+            <div class="highlight-box">
+                <h4>Multiaddr</h4>
+                <p>Ağ adreslerini tanımlamak için:</p>
+                <code>/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ</code>
+                
+                <h4>Multicodec</h4>
+                <p>Veri formatlarını tanımlamak için:</p>
+                <ul>
+                    <li>0x55 - raw binary</li>
+                    <li>0x70 - dag-pb</li>
+                    <li>0x71 - dag-cbor</li>
+                    <li>0x78 - git-raw</li>
+                </ul>
+                
+                <h4>Multihash</h4>
+                <p>Hash fonksiyonlarını tanımlamak için:</p>
+                <ul>
+                    <li>0x11 - SHA1</li>
+                    <li>0x12 - SHA2-256</li>
+                    <li>0x13 - SHA2-512</li>
+                    <li>0x14 - SHA3-512</li>
+                </ul>
+            </div>
+            
+            <h3>10. Garbage Collection</h3>
+            <p>Kullanılmayan verilerin temizlenmesi:</p>
+            <ul>
+                <li><strong>Reference Counting</strong>: Her block'un referans sayısı tutulur</li>
+                <li><strong>Mark and Sweep</strong>: Pinned içerikten başlayarak erişilebilir block'lar işaretlenir</li>
+                <li><strong>Bloom Filters</strong>: Hızlı membership testi için</li>
+                <li><strong>Storage Limits</strong>: Otomatik temizleme tetikleyicileri</li>
+            </ul>
+            <pre><code># Garbage Collection Komutları
+ipfs repo gc  # Manuel GC çalıştırma
+ipfs repo stat  # Repository durumu
+ipfs pin ls  # Pinlenmiş içerikler
+ipfs refs local  # Lokal referanslar</code></pre>
+            
+            <h3>11. Performance Optimizasyonları</h3>
+            <ul>
+                <li><strong>Connection Pooling</strong>: Peer bağlantılarının yeniden kullanımı</li>
+                <li><strong>Block Cache</strong>: Sık erişilen block'ların bellekte tutulması</li>
+                <li><strong>Lazy Loading</strong>: İhtiyaç duyulduğunda veri çekme</li>
+                <li><strong>Parallel Downloads</strong>: Çoklu peer'dan eşzamanlı indirme</li>
+                <li><strong>Adaptive Block Size</strong>: Ağ koşullarına göre block boyutu ayarlama</li>
+            </ul>
+        </div>
+        
+        <div class="section">
             <h2>Teknik Detaylar</h2>
             
             <h3>IPFS Node Kurulumu</h3>

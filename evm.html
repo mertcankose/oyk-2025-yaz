@@ -373,6 +373,321 @@
             </div>
         </div>
         
+        <div class="section">
+            <h2>3. EVM Teknik Protokol Detayları</h2>
+            
+            <div class="info-box">
+                <div class="component-label">⚙️ EVM Execution Model</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// EVM State Transition Function
+σ' = Υ(σ, T)
+
+Burada:
+σ  = Mevcut world state
+σ' = Yeni world state  
+T  = Transaction
+Υ  = State transition function
+
+// Transaction Execution
+Υ(σ, T) ≡ Γ(σ, T) if T is message call
+Υ(σ, T) ≡ Λ(σ, T) if T is contract creation</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">📐 Gas Hesaplama Algoritması</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// Intrinsic Gas Calculation
+g₀ = Gtransaction + Σᵢ gᵢ
+
+Gtransaction = 21000  // Base transaction cost
+
+// Data gas cost per byte
+gᵢ = {
+    4 if byte = 0x00 (Gtxdatazero)
+    16 if byte ≠ 0x00 (Gtxdatanonzero)
+}
+
+// Contract creation additional cost
+if (to == null) {
+    g₀ += 32000  // Gcreate
+    g₀ += 200 * codeSize  // Deployment cost
+}
+
+// Access list costs (EIP-2930)
+g₀ += 2400 * len(accessList.addresses)
+g₀ += 1900 * len(accessList.storageKeys)</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🔐 Contract Address Generation</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// CREATE opcode (0xf0)
+address = keccak256(rlp([sender_address, sender_nonce]))[12:]
+
+// CREATE2 opcode (0xf5) - Deterministic deployment
+address = keccak256(0xff ++ deployer_addr ++ salt ++ keccak256(bytecode))[12:]
+
+// RLP Encoding Example
+rlp([0xabc...123, 15]) = [0xd6, 0x94, 0xab, 0xc1, ..., 0x23, 0x0f]
+
+// Nonce increment
+account.nonce = account.nonce + 1</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">💾 Merkle Patricia Trie Storage</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// State Root Calculation
+stateRoot = merklePatriciaRoot(accounts)
+
+// Account State
+Account = {
+    nonce: uint64,
+    balance: uint256,
+    storageRoot: bytes32,  // Merkle root of storage trie
+    codeHash: bytes32      // keccak256(code)
+}
+
+// Storage Slot Calculation for Mappings
+slot = keccak256(key ++ baseSlot)
+
+// Dynamic Array Storage
+array[i] location = keccak256(slot) + i * elementSize
+
+// Packed Storage Optimization
+// Multiple values < 32 bytes stored in single slot
+struct Packed {
+    uint128 a;  // slot n, bytes 0-15
+    uint128 b;  // slot n, bytes 16-31
+}</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🎯 Opcode Execution</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// EVM Opcode Categories & Gas Costs
+
+// 1. Arithmetic Operations
+ADD         (0x01): 3 gas     // a + b
+MUL         (0x02): 5 gas     // a * b
+SUB         (0x03): 3 gas     // a - b
+DIV         (0x04): 5 gas     // a / b
+EXP         (0x0a): 10 + 50 * byte_len(exponent)
+
+// 2. Stack Operations  
+PUSH1       (0x60): 3 gas     // Push 1 byte
+PUSH32      (0x7f): 3 gas     // Push 32 bytes
+POP         (0x50): 2 gas     // Remove top
+DUP1        (0x80): 3 gas     // Duplicate 1st
+SWAP1       (0x90): 3 gas     // Swap 1st & 2nd
+
+// 3. Memory Operations
+MLOAD       (0x51): 3 + memory_expansion_cost
+MSTORE      (0x52): 3 + memory_expansion_cost
+MSTORE8     (0x53): 3 + memory_expansion_cost
+
+// 4. Storage Operations
+SLOAD       (0x54): {
+    2100 if cold access (first time)
+    100 if warm access (subsequent)
+}
+SSTORE      (0x55): {
+    20000 if value 0 -> non-zero (cold)
+    2900 if value non-zero -> non-zero
+    2900 + 15000 refund if non-zero -> 0
+}
+
+// 5. Environmental Information
+ADDRESS     (0x30): 2 gas     // Current contract address
+CALLER      (0x33): 2 gas     // msg.sender
+CALLVALUE   (0x34): 2 gas     // msg.value
+CALLDATALOAD(0x35): 3 gas     // Input data
+CODESIZE    (0x38): 2 gas     // Current code size
+GASPRICE    (0x3a): 2 gas     // tx.gasprice
+
+// 6. Block Information
+BLOCKHASH   (0x40): 20 gas    // Hash of block
+COINBASE    (0x41): 2 gas     // Block miner
+TIMESTAMP   (0x42): 2 gas     // Block timestamp
+NUMBER      (0x43): 2 gas     // Block number
+DIFFICULTY  (0x44): 2 gas     // Block difficulty
+GASLIMIT    (0x45): 2 gas     // Block gas limit
+CHAINID     (0x46): 2 gas     // Chain ID
+BASEFEE     (0x48): 2 gas     // EIP-1559 base fee
+
+// 7. Control Flow
+JUMP        (0x56): 8 gas     // Jump to position
+JUMPI       (0x57): 10 gas    // Conditional jump
+JUMPDEST    (0x5b): 1 gas     // Jump destination
+REVERT      (0xfd): 0 gas     // Revert execution
+RETURN      (0xf3): 0 gas     // Return data
+STOP        (0x00): 0 gas     // Halt execution
+
+// 8. System Operations
+CREATE      (0xf0): 32000 gas  // Deploy contract
+CREATE2     (0xf5): 32000 gas  // Deterministic deploy
+CALL        (0xf1): 700 + call_value_cost + memory_cost
+STATICCALL  (0xfa): 700 + memory_cost
+DELEGATECALL(0xf4): 700 + memory_cost
+SELFDESTRUCT(0xff): 5000 + 25000 if new beneficiary</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🧮 Memory Expansion Cost</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// Memory Cost Calculation
+memory_cost = (memory_size_word² / 512) + (3 * memory_size_word)
+
+// Example:
+// 32 bytes (1 word) = 3 gas
+// 64 bytes (2 words) = 6 gas  
+// 96 bytes (3 words) = 9 gas
+// ...
+// 724 bytes = 60 gas
+// 1024 bytes = 98 gas (quadratic growth starts)
+
+function memoryGasCost(size) {
+    size_in_words = (size + 31) / 32
+    linear_cost = size_in_words * 3
+    quadratic_cost = size_in_words * size_in_words / 512
+    return linear_cost + quadratic_cost
+}</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🔄 Stack Machine Execution</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// Example: (a + b) * c calculation
+
+// Bytecode sequence:
+PUSH1 0x03  // Push 3 onto stack       [3]
+PUSH1 0x04  // Push 4 onto stack       [4, 3]
+ADD         // Pop 2, add, push result [7]
+PUSH1 0x02  // Push 2 onto stack       [2, 7]
+MUL         // Pop 2, multiply, push   [14]
+
+// Gas consumption:
+// PUSH1: 3 gas × 3 = 9 gas
+// ADD: 3 gas
+// MUL: 5 gas
+// Total: 17 gas
+
+// Stack depth check
+if (stack.length > 1024) {
+    throw StackOverflowError
+}
+
+// Each operation validates stack requirements
+ADD requires: stack.length >= 2
+Result: stack.push(stack.pop() + stack.pop())</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🌐 Message Call Context</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// Message Call Structure
+type Message struct {
+    sender      Address      // Account calling
+    recipient   Address      // Account being called
+    value       uint256      // Wei being transferred
+    gas         uint64       // Gas provided
+    input       []byte       // Call data
+    depth       uint         // Call stack depth (max 1024)
+}
+
+// Context during execution
+type Context struct {
+    Origin      Address      // tx.origin (original sender)
+    GasPrice    uint256      // Gas price of transaction
+    Coinbase    Address      // Block miner address
+    GasLimit    uint64       // Block gas limit
+    BlockNumber uint256      // Current block number
+    Time        uint256      // Block timestamp
+    Difficulty  uint256      // Block difficulty
+    BaseFee     uint256      // EIP-1559 base fee
+}
+
+// Call Stack Depth Limit
+MAX_CALL_DEPTH = 1024
+
+// 63/64 Rule (EIP-150)
+// Only 63/64 of remaining gas passed to sub-calls
+gas_for_call = available_gas * 63 / 64</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">🔒 Precompiled Contracts</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// Precompiled contracts (addresses 0x01 - 0x09)
+0x01: ecRecover         - 3000 gas  // ECDSA recovery
+0x02: SHA256            - 60 + 12 * ceil(len/32) gas
+0x03: RIPEMD160         - 600 + 120 * ceil(len/32) gas
+0x04: identity          - 15 + 3 * ceil(len/32) gas
+0x05: modexp            - Complex pricing
+0x06: ecAdd             - 150 gas  // Elliptic curve addition
+0x07: ecMul             - 6000 gas // Elliptic curve multiplication
+0x08: ecPairing         - 45000 + 34000*k gas
+0x09: blake2f           - Rounds dependent
+
+// Example: ecRecover usage for signature verification
+function ecRecover(hash, v, r, s) returns (address) {
+    // Recovers Ethereum address from signature
+    // Used in meta-transactions and signature verification
+}</pre>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="component-label">⚡ JIT Compilation & Optimization</div>
+                <div class="description">
+                    <pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;">
+// EVM Implementations & Optimizations
+
+// 1. Interpreter Mode (Default)
+for pc < len(code) {
+    opcode = code[pc]
+    execute(opcode)
+    pc++
+}
+
+// 2. JIT Compilation (evmone, evmjit)
+// Bytecode → Native machine code
+compiledCode = jit.compile(bytecode)
+result = compiledCode.execute(context)
+
+// 3. Optimizations
+- Jump destination analysis (JUMPDEST validation)
+- Subroutine detection
+- Common pattern optimization
+- Gas metering injection
+- Stack caching in registers
+
+// 4. Static Analysis
+jumpdests = analyzeJumpDests(code)
+if jump_target not in jumpdests {
+    throw InvalidJumpError
+}</pre>
+                </div>
+            </div>
+        </div>
+        
         <div class="interactive-hint">
             💡 EVM, tüm Ethereum node'larında aynı şekilde çalışan deterministik bir sanal makinedir.
         </div>

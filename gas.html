@@ -292,6 +292,7 @@
       <div class="dot" onclick="scrollToSlide(6)"></div>
       <div class="dot" onclick="scrollToSlide(7)"></div>
       <div class="dot" onclick="scrollToSlide(8)"></div>
+      <div class="dot" onclick="scrollToSlide(9)"></div>
     </div>
 
     <!-- Slide 1: Giriş -->
@@ -498,14 +499,150 @@
       </div>
     </section>
 
-    <!-- Slide 5: Opcode'lar -->
+    <!-- Slide 5: Teknik Protokol Detayları -->
     <section class="slide">
       <div class="container">
-        <h1>🔧 Bilgisayar Nasıl Sayıyor? - Opcode'lar</h1>
+        <h1>⚙️ Gas'ın Teknik Altyapısı</h1>
+
+        <h2>📐 EIP-1559: London Hard Fork</h2>
+        <div class="formula-box">
+          <h3>Base Fee Algoritması</h3>
+          <div class="code-block">
+// Base Fee Hesaplama
+next_base_fee = base_fee × (1 + 0.125 × (gas_used - gas_target) / gas_target)
+
+// Örnek:
+current_base_fee = 100 Gwei
+block_gas_limit = 30,000,000
+gas_target = 15,000,000 (limit / 2)
+gas_used = 20,000,000
+
+delta = (20M - 15M) / 15M = 0.333
+next_base_fee = 100 × (1 + 0.125 × 0.333) = 104.16 Gwei
+          </div>
+        </div>
+
+        <h2>🔐 Transaction Yapısı (EIP-1559)</h2>
+        <div class="code-block">
+type Transaction struct {
+    ChainID          *big.Int
+    Nonce            uint64
+    GasTipCap        *big.Int  // maxPriorityFeePerGas
+    GasFeeCap        *big.Int  // maxFeePerGas
+    Gas              uint64    // gasLimit
+    To               *common.Address
+    Value            *big.Int
+    Data             []byte
+    AccessList       AccessList // EIP-2930
+}
+
+// Effective Gas Price Hesaplama
+effectiveGasPrice = min(maxFeePerGas, baseFee + maxPriorityFeePerGas)
+        </div>
+
+        <h2>🧮 Gas Hesaplama Formülleri</h2>
+        <div class="example-box">
+          <h3>Intrinsic Gas Hesaplama</h3>
+          <div class="code-block">
+function intrinsicGas(data []byte, isContractCreation bool) uint64 {
+    gas := uint64(21000)  // Base transaction cost
+    
+    if isContractCreation {
+        gas = uint64(53000)  // Contract creation base
+    }
+    
+    // Her byte için gas hesapla
+    for _, byte := range data {
+        if byte == 0 {
+            gas += 4     // Zero byte
+        } else {
+            gas += 16    // Non-zero byte
+        }
+    }
+    
+    return gas
+}
+          </div>
+        </div>
+
+        <h2>💾 State Tree ve Gas</h2>
+        <div class="validator-box">
+          <h3>Merkle Patricia Trie Operasyonları</h3>
+          <div class="code-block">
+// Storage Slot Hesaplama (Keccak256)
+slot = keccak256(abi.encode(key, mapping_slot))
+
+// SSTORE Gas Hesaplama (EIP-2200)
+if current_value == new_value {
+    gas_cost = 100  // No change
+} else if current_value == 0 {
+    gas_cost = 20000  // Set from zero (cold)
+} else if new_value == 0 {
+    gas_cost = 2900   // Delete (refund 15000)
+} else {
+    gas_cost = 2900   // Update existing
+}
+          </div>
+        </div>
+
+        <h2>🔥 Burn Mekanizması</h2>
+        <div class="deflationary-box" style="background: linear-gradient(135deg, #2d3436 0%, #000000 100%);">
+          <div class="code-block" style="color: white; background: transparent;">
+// Block Header (Post EIP-1559)
+type Header struct {
+    ParentHash  common.Hash
+    UncleHash   common.Hash
+    Coinbase    common.Address
+    Root        common.Hash
+    TxHash      common.Hash
+    ReceiptHash common.Hash
+    Bloom       Bloom
+    Difficulty  *big.Int
+    Number      *big.Int
+    GasLimit    uint64
+    GasUsed     uint64
+    Time        uint64
+    Extra       []byte
+    MixDigest   common.Hash
+    Nonce       BlockNonce
+    BaseFee     *big.Int  // EIP-1559
+}
+
+// Burn Amount Hesaplama
+burned_eth = Σ(tx.gasUsed × block.baseFee) for all tx in block
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Opcode'lar -->
+    <section class="slide">
+      <div class="container">
+        <h1>🔧 Opcode'lar ve EVM Execution</h1>
+
+        <h2>📊 EVM Stack Machine</h2>
+        <div class="code-block">
+// EVM Context
+type Context struct {
+    CanTransfer CanTransferFunc
+    Transfer    TransferFunc
+    GetHash     GetHashFunc
+    
+    Origin   common.Address  // tx.origin
+    GasPrice *big.Int       // tx.gasPrice
+    
+    Coinbase    common.Address // block.coinbase
+    GasLimit    uint64        // block.gasLimit
+    BlockNumber *big.Int      // block.number
+    Time        *big.Int      // block.timestamp
+    Difficulty  *big.Int      // block.difficulty
+    BaseFee     *big.Int      // block.baseFee
+}
+        </div>
 
         <p style="font-size: 1.2rem">
-          Ethereum bilgisayarı (EVM) basit komutları anlıyor. Bu komutlara
-          <span class="highlight">opcode</span> diyoruz:
+          Ethereum Virtual Machine (EVM) bir stack-based makine. Her
+          <span class="highlight">opcode</span> belirli gas tüketir:
         </p>
 
         <table class="gas-table">
@@ -559,7 +696,7 @@
       </div>
     </section>
 
-    <!-- Slide 6: Gerçek Örnekler -->
+    <!-- Slide 7: Gerçek Örnekler -->
     <section class="slide">
       <div class="container">
         <h1>💸 Gerçek Örnekler ve Maliyetler</h1>
@@ -604,7 +741,7 @@
       </div>
     </section>
 
-    <!-- Slide 7: Uniswap ve Kompleks İşlemler -->
+    <!-- Slide 8: Uniswap ve Kompleks İşlemler -->
     <section class="slide">
       <div class="container">
         <h1>🔄 Uniswap Swap - Karmaşık İşlem</h1>
@@ -651,7 +788,7 @@
       </div>
     </section>
 
-    <!-- Slide 8: Gas Optimizasyon -->
+    <!-- Slide 9: Gas Optimizasyon -->
     <section class="slide">
       <div class="container">
         <h1>📊 Gas Maliyeti Tablosu & Tasarruf</h1>
@@ -730,7 +867,7 @@
       </div>
     </section>
 
-    <!-- Slide 9: Özet -->
+    <!-- Slide 10: Özet -->
     <section class="slide">
       <div class="container">
         <h1>🎓 Gas Özeti</h1>
