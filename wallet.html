@@ -393,100 +393,132 @@
     <!-- Slide 1: Giriş -->
     <section class="slide">
       <div class="container">
-        <h1>🔑 Cüzdan</h1>
+        <h1>🔑 Kripto Cüzdanlar: Dijital Kasanızın Anahtarı</h1>
+        
         <div style="text-align: center; margin: 2rem 0">
           <div class="emoji-box key-animation">🔑</div>
           <div class="emoji-box">🔐</div>
           <div class="emoji-box">💰</div>
         </div>
-        <h3 style="text-align: center">Cüzdan Aslında Ne?</h3>
-        <div class="formula-box" style="text-align: center; font-size: 1.3rem">
-          <p><strong>Cüzdan ≠ Para Kasası</strong></p>
-          <p><strong>Cüzdan = Anahtar Yöneticisi</strong></p>
-        </div>
-        <div class="example-box">
-          <div class="code-block">
-            🏦 Blockchain = Herkesin görebildiği kasalar<br>
-            🔑 Private Key = Kasanın anahtarı (sadece sizde)<br>
-            📬 Public Key/Address = Kasa numarası (paylaşılabilir)<br>
-            💼 Cüzdan = Anahtarları yöneten yazılım
+        
+        <h2 style="text-align: center">🤔 Banka Hesabı vs Kripto Cüzdan</h2>
+        
+        <div class="comparison-grid">
+          <div class="stat-card">
+            <h3>🏦 Banka Hesabı</h3>
+            <ul style="text-align: left; list-style: none">
+              <li>✓ Banka sizin paranızı tutar</li>
+              <li>✓ Şifrenizi unutursanız sıfırlarsınız</li>
+              <li>✓ Banka hesabınıza el koyabilir</li>
+              <li>✓ Çalışma saatleri var</li>
+            </ul>
+          </div>
+          
+          <div class="stat-card">
+            <h3>🔐 Kripto Cüzdan</h3>
+            <ul style="text-align: left; list-style: none">
+              <li>✓ Paranız blockchain'de</li>
+              <li>✓ Anahtarı kaybederseniz = para kayıp</li>
+              <li>✓ Kimse el koyamaz</li>
+              <li>✓ 7/24 erişim</li>
+            </ul>
           </div>
         </div>
+        
+        <div class="formula-box" style="text-align: center; font-size: 1.3rem">
+          <h3>📚 Basit Benzetme</h3>
+          <p>Blockchain'i <strong>devasa bir kasa odası</strong> gibi düşünün...</p>
+          <p>Her kasanın üzerinde <strong>numara var</strong> (adres) - herkes görebilir ✅</p>
+          <p>İçinde ne kadar para var <strong>herkes görebilir</strong> ✅</p>
+          <p>AMA sadece <strong>anahtarı olan</strong> kasayı açabilir! 🔑</p>
+        </div>
+        
         <div class="warning-box">
-          <h3>⚠️ Kritik Bilgi</h3>
-          <p>
-            Cüzdanınız para saklamaz! Paranız blockchain'de durur. Cüzdan sadece
-            <span class="highlight">private key</span> saklar. Private key'i kaybederseniz, paranız blockchain'de
-            sonsuza dek kilitli kalır!
+          <h3>⚠️ En Önemli Kural</h3>
+          <p style="font-size: 1.3rem; text-align: center">
+            <strong>"Not your keys, not your coins!"</strong><br>
+            (Anahtarlar sende değilse, paralar da senin değil!)
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 2: Bitcoin Evrimi -->
+    <!-- Slide 2: Bitcoin Cüzdan Evrimi -->
     <section class="slide">
       <div class="container">
-        <h1>📜 Bitcoin Cüzdan Evrimi</h1>
+        <h1>📖 Cüzdan Teknolojisinin Evrimi: Bir Korku Hikayesi</h1>
 
-        <h2>1️⃣ Eski Sistem (2009-2011) - Kabus!</h2>
+        <h2>😱 2009-2011: Karanlık Çağlar</h2>
+        
         <div class="security-box">
-          <h3>Problem: Her adres için ayrı private key</h3>
-          <div class="code-block">
-            Adres 1: 1A1zP1eP... → Private Key: 5KJvsngHeM...<br>
-            Adres 2: 1BvBMSEY... → Private Key: 5HpHagT65T...<br>
-            Adres 3: 1CjPR7Z5... → Private Key: 5KYZdUEo39...<br>
-            ...<br>
-            Adres 100: 1XyZ9... → Private Key: 5LmNoPq...<br><br>
+          <h3>🎭 Gerçek Hikaye: James'in 7,500 Bitcoin'i</h3>
+          <p style="font-size: 1.1rem">
+            2013'te James Howells, 7,500 Bitcoin'i olan hard diskini çöpe attı. 
+            Bugünkü değeri: <strong>~300 milyon dolar!</strong> 
+            Neden? Çünkü o zamanlar her adres için ayrı backup gerekiyordu...
+          </p>
+        </div>
+
+        <div class="example-box">
+          <h3>🔴 Eski Sistemin Kabusları</h3>
+          <div style="font-size: 1.2rem">
+            <p>💭 <em>"10 farklı adreste param var"</em></p>
+            <p>= 10 farklı private key</p>
+            <p>= 10 farklı kağıda yazman gerek</p>
+            <p>= 1 tanesini kaybettin mi? O para GİTTİ! 💸</p>
             
-            100 adres = 100 farklı private key yedeklemeniz gerek! 😱<br>
-            Birini kaybettiniz = O adresteki Bitcoin sonsuza dek kayıp!
+            <div class="code-block" style="margin-top: 1rem">
+              wallet.dat dosyası:
+              - Adres 1 → Key 1 (3 BTC) ✅
+              - Adres 2 → Key 2 (5 BTC) ✅
+              - Adres 3 → Key 3 (2 BTC) ❌ Kayıp = 2 BTC yok!
+            </div>
           </div>
         </div>
 
-        <h2>2️⃣ HD Wallet Devrimi - BIP32 (2012)</h2>
+        <h2>🎉 2012: HD Wallet Devrimi!</h2>
+        
         <div class="seed-box">
-          <h3>HD = Hierarchical Deterministic</h3>
-          <p><strong>TEK TOHUM → SONSUZ ADRES! 🌱</strong></p>
-
-          <div class="tree-diagram">
-            <div class="tree-node">Master Seed</div>
-            <div>↓</div>
-            <div class="tree-node">Master Private Key</div>
-            <div>↓</div>
-            <div class="tree-branches">
+          <h3>✨ Mucize Gerçekleşti: BIP32</h3>
+          <p style="font-size: 1.3rem; text-align: center">
+            <strong>1 TOHUM = ∞ ADRES</strong>
+          </p>
+          
+          <div style="text-align: center; margin: 2rem 0">
+            <div style="font-size: 3rem">🌱</div>
+            <p style="font-size: 1.2rem">Tek bir tohum (seed)</p>
+            <div style="font-size: 2rem; margin: 1rem">↓</div>
+            <div style="display: flex; justify-content: center; gap: 2rem">
               <div>
-                <div class="tree-node">Account 0</div>
-                <div>↓</div>
-                <div>Adres 1,2,3...</div>
+                <div style="font-size: 2rem">👛</div>
+                <p>Bitcoin adresleri</p>
               </div>
               <div>
-                <div class="tree-node">Account 1</div>
-                <div>↓</div>
-                <div>Adres 1,2,3...</div>
+                <div style="font-size: 2rem">💼</div>
+                <p>Ethereum adresleri</p>
+              </div>
+              <div>
+                <div style="font-size: 2rem">🎒</div>
+                <p>Diğer coinler</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="example-box">
-          <h3>Nasıl Çalışır?</h3>
+        <div class="formula-box">
+          <h3>🎯 Basit Mantık</h3>
+          <p style="font-size: 1.2rem">
+            <strong>Eskiden:</strong> Her çocuğun için ayrı anahtar<br>
+            <strong>Şimdi:</strong> Ana anahtar + çocuk numarası = Çocuğun anahtarı!
+          </p>
           <div class="code-block">
-            # 1. Master seed oluştur (128-256 bit entropi)<br>
-            master_seed = generate_entropy()  # "8b2e5c4a3f1d9e7..."<br><br>
+            Master Seed: "gizli tohum kelimelerim"
             
-            # 2. Master key türet<br>
-            master_key = HMAC-SHA512(master_seed, "Bitcoin seed")<br><br>
+            Çocuk 1 = Master + 1 → Adres: 1ABC...
+            Çocuk 2 = Master + 2 → Adres: 1DEF...
+            Çocuk 1000 = Master + 1000 → Adres: 1XYZ...
             
-            # 3. Child key türet (matematiksel)<br>
-            def derive_child(parent_key, index):<br>
-                data = parent_public_key + index<br>
-                child = HMAC-SHA512(parent_chain_code, data)<br>
-                return child_private_key<br><br>
-            
-            # Sonuç: Sonsuz adres, deterministik!<br>
-            address_0 = derive(master, 0)  # Her zaman aynı<br>
-            address_1 = derive(master, 1)  # Tahmin edilemez<br>
-            address_2 = derive(master, 2)  # Güvenli
+            ✅ Sadece master'ı yedekle, tüm çocuklar güvende!
           </div>
         </div>
       </div>
@@ -495,85 +527,113 @@
     <!-- Slide 3: BIP39 Mnemonic - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🗣️ BIP39 - İnsan Dostu Kelimeler</h1>
+        <h1>🗣️ Kelime Büyüsü: İnsan Beyni vs Bilgisayar</h1>
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>❌ Problem</h3>
-            <div class="code-block" style="background: #2e2e2e">8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c</div>
-            <p>Kim hatırlar bunu?</p>
+        <h2>🧠 Hangisini Hatırlarsın?</h2>
+        <div class="comparison-grid">
+          <div class="security-box">
+            <h3>😵 İmkansız</h3>
+            <div class="code-block" style="font-size: 0.9rem">
+              8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c7d6e5f4a3b2c1d
+            </div>
+            <p>64 rastgele karakter!</p>
+            <p>Bir harf yanlış = Para YOK!</p>
           </div>
 
-          <div class="stat-card">
-            <h3>✅ Çözüm</h3>
-            <div class="code-block" style="background: #2e2e2e">abandon amount liar cage candy</div>
-            <p>12-24 kelime!</p>
+          <div class="seed-box">
+            <h3>😊 Kolay</h3>
+            <div class="code-block" style="font-size: 1.1rem">
+              cat dog apple orange banana
+            </div>
+            <p>5 basit kelime!</p>
+            <p>Hikaye oluşturabilirsin!</p>
           </div>
         </div>
 
-        <h2>BIP39 Nasıl Çalışır?</h2>
+        <h2>🎯 BIP39: Kelime Listesi Standardı</h2>
+        
+        <div class="formula-box">
+          <h3>🎲 Zar Atmak Gibi!</h3>
+          <div style="font-size: 1.2rem">
+            <p>📊 <strong>2048 kelimelik</strong> bir sözlük var</p>
+            <p>🎲 Bilgisayar <strong>rastgele zar atıyor</strong></p>
+            <p>📝 Her zar sonucu = <strong>1 kelime</strong></p>
+            <p>🔐 12 kelime = <strong>340,282,366,920,938,463,463,374,607,431,768,211,456</strong> ihtimal!</p>
+          </div>
+        </div>
+
+        <h2>🔮 Kelime Seçimi Nasıl Oluyor?</h2>
+        
         <div class="step-box">
           <div class="step-item">
             <span class="step-number">1</span>
-            <strong>RASTGELE SAYI (128 bit entropi)</strong>
-            <div class="code-block">10110111001010101111001010101111...</div>
+            <strong>🎲 Rastgele Sayı Üret</strong>
+            <p>Bilgisayar 128 bit rastgele sayı üretir (çok çok büyük bir sayı)</p>
           </div>
 
           <div class="step-item">
             <span class="step-number">2</span>
-            <strong>CHECKSUM EKLE (güvenlik için)</strong>
-            <div class="code-block">10110111001010101111001010101111...0110</div>
+            <strong>🔢 Sayıyı Parçala</strong>
+            <p>Bu büyük sayıyı 11'er bitlik parçalara böl (her parça 0-2047 arası)</p>
           </div>
 
           <div class="step-item">
             <span class="step-number">3</span>
-            <strong>11 BİTLİK GRUPLARA BÖL</strong>
-            <div class="code-block">|10110111001|01010101111|00101010111|... Her grup = 0-2047 arası sayı</div>
+            <strong>📖 Sözlükten Bul</strong>
+            <p>Her sayı = sözlükteki bir kelime (0=abandon, 1=ability, ...)</p>
           </div>
+        </div>
 
-          <div class="step-item">
-            <span class="step-number">4</span>
-            <strong>KELİME LİSTESİNDEN BUL (2048 kelime)</strong>
-            <div class="code-block">1365 → abandon 87 → amount 1029 → liar ...</div>
-          </div>
-
-          <div class="step-item">
-            <span class="step-number">5</span>
-            <strong>SEED OLUŞTUR</strong>
-            <div class="code-block">PBKDF2(kelimeler, "mnemonic" + passphrase, 2048 rounds) = Master Seed!</div>
+        <div class="example-box">
+          <h3>🎬 Gerçek Örnek</h3>
+          <div style="display: flex; gap: 2rem; align-items: center; justify-content: center">
+            <div>
+              <p><strong>Sayı:</strong> 1365</p>
+              <p>↓</p>
+              <p><strong>Kelime:</strong> "orange"</p>
+            </div>
+            <div>
+              <p><strong>Sayı:</strong> 87</p>
+              <p>↓</p>
+              <p><strong>Kelime:</strong> "apple"</p>
+            </div>
+            <div>
+              <p><strong>Sayı:</strong> 1029</p>
+              <p>↓</p>
+              <p><strong>Kelime:</strong> "monkey"</p>
+            </div>
           </div>
         </div>
 
         <div class="stats-grid">
           <div class="stat-card">
-            <h3>📚 Kelime Listesi</h3>
-            <p><strong>2048 kelime</strong></p>
-            <p>2^11 = 2048</p>
-            <p>İlk 4 harf unique</p>
+            <h3>🔢 12 Kelime</h3>
+            <p>Çoğu cüzdan</p>
+            <p>128 bit güvenlik</p>
+            <p>✅ Yeterli güvenlik</p>
           </div>
 
           <div class="stat-card">
-            <h3>🔐 Güvenlik</h3>
-            <p><strong>12 kelime</strong></p>
-            <p>128 bit entropi</p>
-            <p>2^128 kombinasyon</p>
+            <h3>🔐 24 Kelime</h3>
+            <p>Paranoyak mod</p>
+            <p>256 bit güvenlik</p>
+            <p>🚀 Aşırı güvenlik</p>
           </div>
 
           <div class="stat-card">
-            <h3>🌍 Dil Desteği</h3>
-            <p>İngilizce</p>
-            <p>Japonca, Fransızca</p>
-            <p>Çince, İtalyanca...</p>
+            <h3>🌍 Türkçe?</h3>
+            <p>İngilizce önerilen</p>
+            <p>Evrensel destek</p>
+            <p>⚠️ Türkçe riskli</p>
           </div>
         </div>
 
-        <div class="seed-box">
-          <h3>🎲 Örnek Seed Phrase</h3>
-          <div class="code-block" style="background: #2e2e2e; color: #4caf50; font-size: 1.2rem">
-            abandon amount liar amount expire adjust cage candy arch gather drum buyer
-          </div>
-          <p style="text-align: center; margin-top: 1rem">
-            <strong>Bu 12 kelime = Tüm cüzdanınız!</strong>
+        <div class="warning-box">
+          <h3>⚠️ Kritik Uyarı!</h3>
+          <p style="font-size: 1.2rem">
+            <strong>ASLA</strong> kendi kelimelerinizi seçmeyin!<br>
+            İnsan beyni rastgele değildir. "kedi köpek balık" = HACK'lenirsiniz!<br>
+            <strong>HER ZAMAN</strong> cüzdanın ürettiği kelimeleri kullanın!
           </p>
         </div>
       </div>
@@ -582,60 +642,75 @@
     <!-- Slide 4: BIP44 Path - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🗂️ BIP44 - Evrensel Adres Yolu</h1>
+        <h1>🗺️ Adres Yolu: Cüzdanınızın GPS'i</h1>
 
-        <h2>Standart Yol Haritası</h2>
-        <div class="path-diagram">
-          <div style="font-size: 2rem; color: #667eea">
-            m / purpose' / coin_type' / account' / change / address_index
+        <h2>🏠 Ev Adresi Gibi Düşünün!</h2>
+        
+        <div class="formula-box">
+          <h3>🏘️ Gerçek Hayattan Örnek</h3>
+          <div style="font-size: 1.3rem; text-align: center">
+            <p><strong>Türkiye / İstanbul / Kadıköy / Moda / Apartman 5 / Daire 3</strong></p>
+            <p>↓</p>
+            <p><strong>m / 44' / 0' / 0' / 0 / 0</strong></p>
           </div>
         </div>
 
         <div class="example-box">
-          <h3>Örnek: Bitcoin İlk Adres</h3>
-          <div class="code-block" style="font-size: 1.3rem">
-            m/44'/0'/0'/0/0<br><br>
-            
-            m → Master<br>
-            44' → BIP44 standardı (sabit)<br>
-            0' → Bitcoin (ETH=60, LTC=2)<br>
-            0' → İlk hesap<br>
-            0 → External (1=change/internal)<br>
-            0 → İlk adres<br><br>
-            
-            ' = Hardened derivation (ekstra güvenlik)
+          <h3>📍 Her Parçanın Anlamı</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>m</strong> = Ana kapı (master key)</p>
+            <p><strong>44'</strong> = Mahalle tipi (BIP44 standardı)</p>
+            <p><strong>0'</strong> = Para birimi (0=Bitcoin, 60=Ethereum)</p>
+            <p><strong>0'</strong> = Hesap numarası (1. hesap, 2. hesap...)</p>
+            <p><strong>0</strong> = Gelen mi giden mi? (0=gelen, 1=para üstü)</p>
+            <p><strong>0</strong> = Kaçıncı adres? (0, 1, 2, 3...)</p>
           </div>
         </div>
 
-        <h2>🌈 Aynı Seed, Farklı Coinler</h2>
-        <div class="bitcoin-box">
-          <h3>Bitcoin</h3>
-          <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-            Seed: "abandon amount liar..."<br><br>
+        <h2>🎯 Aynı Tohum, Farklı Cüzdanlar!</h2>
+        
+        <div class="seed-box">
+          <h3>✨ Sihirli Tohum: "kedi köpek balık..." (örnek)</h3>
+          
+          <div class="stats-grid" style="margin-top: 2rem">
+            <div class="stat-card">
+              <h3>₿ Bitcoin Adresi</h3>
+              <p style="font-size: 1.1rem">m/44'/<strong>0'</strong>/0'/0/0</p>
+              <p>↓</p>
+              <p style="word-break: break-all">1A1zP1eP5Q...</p>
+            </div>
             
-            m/44'/0'/0'/0/0 → 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa<br>
-            m/44'/0'/0'/0/1 → 1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2<br>
-            m/44'/0'/0'/0/2 → 1CjPR7Z5ZSyWk6WtXvSFgkptmpoi4UM9BC
+            <div class="stat-card">
+              <h3>Ξ Ethereum Adresi</h3>
+              <p style="font-size: 1.1rem">m/44'/<strong>60'</strong>/0'/0/0</p>
+              <p>↓</p>
+              <p style="word-break: break-all">0x71C7656EC...</p>
+            </div>
+            
+            <div class="stat-card">
+              <h3>🐕 Dogecoin Adresi</h3>
+              <p style="font-size: 1.1rem">m/44'/<strong>3'</strong>/0'/0/0</p>
+              <p>↓</p>
+              <p style="word-break: break-all">D7gkLxC3Aq...</p>
+            </div>
           </div>
         </div>
 
-        <div class="ethereum-box">
-          <h3>Ethereum</h3>
-          <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-            Aynı Seed: "abandon amount liar..."<br><br>
-            
-            m/44'/60'/0'/0/0 → 0x71C7656EC7ab88b098defB751B7401B5f6d8976F<br>
-            m/44'/60'/0'/0/1 → 0x92D7656EC7ab88b098defB751B7401B5f6d8976F
-          </div>
+        <div class="warning-box">
+          <h3>💡 Neden Bu Kadar Karmaşık?</h3>
+          <p style="font-size: 1.2rem">
+            <strong>Güvenlik için!</strong> Her coin'e, her hesaba, her adrese farklı yol.<br>
+            Birini bulsan bile diğerlerini bulamazsın! 🔐
+          </p>
         </div>
 
         <div class="formula-box">
-          <h3>💡 Coin Type Kodları</h3>
-          <div class="stats-grid">
-            <div>Bitcoin: 0</div>
-            <div>Ethereum: 60</div>
-            <div>Litecoin: 2</div>
-            <div>Dogecoin: 3</div>
+          <h3>🎮 Popüler Coin Kodları</h3>
+          <div style="display: flex; justify-content: space-around; font-size: 1.2rem">
+            <div>Bitcoin = 0</div>
+            <div>Ethereum = 60</div>
+            <div>BNB = 714</div>
+            <div>Solana = 501</div>
           </div>
         </div>
       </div>
@@ -644,63 +719,82 @@
     <!-- Slide 5: Bitcoin Adres Tipleri - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🏷️ Bitcoin'in 4 Adres Tipi</h1>
+        <h1>🏷️ Bitcoin'in 4 Nesil Adresi: Dede'den Toruna</h1>
+
+        <h2>🎭 Aynı Anahtar, 4 Farklı Kostüm!</h2>
+        
+        <div class="formula-box">
+          <h3>🔑 Tek Anahtar = 4 Farklı Görünüm</h3>
+          <p style="font-size: 1.2rem; text-align: center">
+            Aynı kişi, farklı kıyafetler gibi düşünün!<br>
+            İçerideki para aynı, sadece adres formatı farklı.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="address-type">
+            <h3>👴 1. Nesil: Legacy (2009)</h3>
+            <p style="font-size: 1.5rem">1...</p>
+            <p><strong>Örnek:</strong> 1A1zP1e...</p>
+            <div style="margin-top: 1rem">
+              <p>✅ Her yerde çalışır</p>
+              <p>❌ En pahalı işlem ücreti</p>
+              <p>💰 ~$5-10 transfer ücreti</p>
+            </div>
+          </div>
+
+          <div class="address-type">
+            <h3>👨 2. Nesil: SegWit (2017)</h3>
+            <p style="font-size: 1.5rem">3...</p>
+            <p><strong>Örnek:</strong> 3J98t1W...</p>
+            <div style="margin-top: 1rem">
+              <p>✅ Eski cüzdanlarla uyumlu</p>
+              <p>⚡ %26 daha ucuz</p>
+              <p>💰 ~$3-7 transfer ücreti</p>
+            </div>
+          </div>
+
+          <div class="address-type">
+            <h3>👦 3. Nesil: Native SegWit (2018)</h3>
+            <p style="font-size: 1.5rem">bc1q...</p>
+            <p><strong>Örnek:</strong> bc1qw50...</p>
+            <div style="margin-top: 1rem">
+              <p>✅ En ucuz (%42 tasarruf)</p>
+              <p>✅ Modern standart</p>
+              <p>💰 ~$2-5 transfer ücreti</p>
+            </div>
+          </div>
+
+          <div class="address-type">
+            <h3>👶 4. Nesil: Taproot (2021)</h3>
+            <p style="font-size: 1.5rem">bc1p...</p>
+            <p><strong>Örnek:</strong> bc1p5d7...</p>
+            <div style="margin-top: 1rem">
+              <p>✅ Gizlilik + Akıllı kontrat</p>
+              <p>🚀 Gelecek burada</p>
+              <p>💰 ~$2-5 transfer ücreti</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h3>💸 Gerçek Hayat Örneği</h3>
+          <p style="font-size: 1.2rem">
+            <strong>1 BTC gönderiyorsunuz:</strong><br>
+            • Legacy adres = $10 ücret 😢<br>
+            • Native SegWit = $4 ücret 😊<br>
+            • <strong>Aradaki fark: $6 tasarruf!</strong>
+          </p>
+        </div>
 
         <div class="warning-box">
-          <p><strong>Aynı Private Key → 4 Farklı Adres!</strong></p>
-          <div class="code-block">Private Key: L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1</div>
-        </div>
-
-        <div class="address-type">
-          <h3>1️⃣ Legacy (P2PKH)</h3>
-          <div class="code-block">
-            Path: m/44'/0'/0'/0/0<br>
-            Adres: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa<br>
-            Özellik: "1" ile başlar<br>
-            Format: Base58<br>
-            Ücret: En pahalı ❌<br>
-            Boyut: En büyük
-          </div>
-        </div>
-
-        <div class="address-type">
-          <h3>2️⃣ SegWit Wrapped (P2SH-P2WPKH)</h3>
-          <div class="code-block">
-            Path: m/49'/0'/0'/0/0<br>
-            Adres: 3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy<br>
-            Özellik: "3" ile başlar<br>
-            Ücret: %26 daha ucuz ⚡<br>
-            Uyumluluk: Eski cüzdanlarla ✅
-          </div>
-        </div>
-
-        <div class="address-type">
-          <h3>3️⃣ Native SegWit (Bech32)</h3>
-          <div class="code-block">
-            Path: m/84'/0'/0'/0/0<br>
-            Adres: bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4<br>
-            Özellik: "bc1" ile başlar<br>
-            Ücret: En ucuz (%42 tasarruf) ✅<br>
-            Boyut: En küçük<br>
-            Önerilen: Modern standart 🎯
-          </div>
-        </div>
-
-        <div class="address-type">
-          <h3>4️⃣ Taproot (En Yeni)</h3>
-          <div class="code-block">
-            Path: m/86'/0'/0'/0/0<br>
-            Adres: bc1p5d7rjq8g2c3j3wvxnq5jwz5nvxz7q8g2c3j3wv<br>
-            Özellik: "bc1p" ile başlar<br>
-            Avantaj: Privacy + Smart contracts<br>
-            Gelecek: Bitcoin'in geleceği 🚀
-          </div>
-        </div>
-
-        <div class="formula-box">
-          <h3>💡 Hangi Tip Kullanmalı?</h3>
-          <p><strong>Native SegWit (bc1)</strong>: En ucuz, modern, önerilen ✅</p>
-          <p><strong>Legacy (1)</strong>: Sadece eski servisler için ⚠️</p>
+          <h3>⚠️ Önemli Not</h3>
+          <p style="font-size: 1.2rem">
+            <strong>Hangi adresi kullanmalı?</strong><br>
+            • Yeni başlıyorsanız: <strong>bc1q...</strong> (Native SegWit) ✅<br>
+            • Eski bir borsa kullanıyorsanız: <strong>3...</strong> (SegWit) olabilir<br>
+            • Legacy (1...) kullanmayın, gereksiz pahalı! ❌
+          </p>
         </div>
       </div>
     </section>
@@ -792,432 +886,258 @@
     <!-- Slide 7: Ethereum Detayları - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🔷 Ethereum Adres Oluşturma</h1>
+        <h1>🔷 Ethereum Adresi Nasıl Doğar?</h1>
 
-        <h2>Adım Adım Ethereum Adresi</h2>
+        <h2>🎭 5 Adımda Ethereum Adresiniz</h2>
+        
+        <div class="formula-box">
+          <h3>🎯 Temel Prensip</h3>
+          <p style="font-size: 1.2rem; text-align: center">
+            <strong>Gizli Anahtar → Matematik → Public Adres</strong><br>
+            Tek yönlü yolculuk: Geri dönüş yok! 🚫
+          </p>
+        </div>
+
         <div class="step-box">
           <div class="step-item">
             <span class="step-number">1</span>
-            <strong>Private Key (256 bit rastgele)</strong>
-            <div class="code-block">privateKey = "0x4c0883a69102937d6231471b5dbb6204fe5129..."</div>
+            <strong>🎲 Private Key Oluştur</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Bilgisayar 256 bitlik süper gizli, rastgele bir sayı üretir. 
+              Bu sayı o kadar büyük ki, aynısını bulma ihtimaliniz yıldırım çarpması ihtimalinden 
+              trilyon trilyon kat daha düşük! Bu sizin <strong>gizli anahtarınız</strong>.
+            </p>
+            <div class="example-box" style="margin-top: 10px">
+              <p><strong>Örnek:</strong> 0x4c0883a6910293... (64 karakter hex)</p>
+              <p>💡 Bu anahtarı ASLA kimseyle paylaşmayın!</p>
+            </div>
           </div>
 
           <div class="step-item">
             <span class="step-number">2</span>
-            <strong>Public Key (Elliptic Curve secp256k1)</strong>
-            <div class="code-block">
-              publicKey = secp256k1(privateKey)<br>
-              // "0x04bfcab8722991ae774db48f1ca3b2a4814..."
+            <strong>🔐 Public Key Hesapla</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Private key'inizi <strong>secp256k1</strong> adlı matematiksel eğri üzerinde bir noktayla çarpıyoruz.
+              Sonuç: X ve Y koordinatları olan bir nokta. Bu işlem tek yönlü - public key'den private key'i 
+              bulamazsınız! Tıpkı yumurtadan omlet yapar ama omletten yumurta yapamazsınız gibi! 🍳
+            </p>
+            <div class="example-box" style="margin-top: 10px">
+              <p><strong>Sonuç:</strong> 128 karakterlik public key</p>
+              <p>Başında "04" var = sıkıştırılmamış format</p>
             </div>
           </div>
 
           <div class="step-item">
             <span class="step-number">3</span>
-            <strong>Keccak-256 Hash</strong>
-            <div class="code-block">
-              // "0x04" prefix'ini at (uncompressed marker)<br>
-              hash = keccak256(publicKey.slice(1))
+            <strong>#️⃣ Keccak-256 Hash'le</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Public key'inizden "04" önekini atıyoruz (çünkü gereksiz). 
+              Kalan kısmı <strong>Keccak-256</strong> hash fonksiyonundan geçiriyoruz.
+              Bu bir et kıyma makinesi gibi - ne koyarsanız koyun, hep aynı boyutta kıyma çıkar!
+            </p>
+            <div class="example-box" style="margin-top: 10px">
+              <p><strong>Girdi:</strong> 128 karakter public key</p>
+              <p><strong>Çıktı:</strong> 64 karakter hash</p>
             </div>
           </div>
 
           <div class="step-item">
             <span class="step-number">4</span>
-            <strong>Son 20 byte = Adres</strong>
-            <div class="code-block">
-              address = "0x" + hash.slice(-40)<br>
-              // "0x71c7656ec7ab88b098defb751b7401b5f6d8976f"
+            <strong>✂️ Son 20 Byte'ı Al</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Hash'in son 40 karakterini alıyoruz (20 byte = 40 hex karakter).
+              Neden son 40? Çünkü Ethereum tasarımcıları "Bu kadar yeter, hem kısa hem güvenli" dediler.
+              Başına "0x" ekliyoruz - bu Ethereum'da "hex formatında" demek.
+            </p>
+            <div class="example-box" style="margin-top: 10px">
+              <p><strong>Ham adres:</strong> 0x71c7656ec7ab88b098defb751b7401b5f6d8976f</p>
+              <p>Hepsi küçük harf - henüz checksum yok!</p>
             </div>
           </div>
 
           <div class="step-item">
             <span class="step-number">5</span>
-            <strong>Checksum (EIP-55) - Büyük/küçük harf</strong>
-            <div class="code-block">
-              checksumAddress = toChecksumAddress(address)<br>
-              // "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"<br>
-              //      ↑           ↑          ↑<br>
-              // Büyük harfler checksum için
+            <strong>✅ Checksum Ekle (Hata Kontrolü)</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              EIP-55 standardı ile bazı harfleri büyütüyoruz. Bu sayede yanlış yazdığınızda 
+              %99.9 hata yakalama! Banka IBAN'ındaki kontrol hanesi gibi düşünün.
+              Hangi harfler büyük? Adresin hash'ine göre belirleniyor - matematik belirliyor!
+            </p>
+            <div class="example-box" style="margin-top: 10px">
+              <p><strong>Final:</strong> 0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p>
+              <p>Dikkat: C, E, B büyük - bu rastgele değil, matematiksel!</p>
             </div>
           </div>
         </div>
 
-        <h2>Ethereum Path Varyasyonları</h2>
+        <h2>🏦 Farklı Cüzdanlar, Farklı Yollar</h2>
+        
+        <div class="warning-box">
+          <h3>⚠️ Neden Farklı Path'ler Var?</h3>
+          <p style="font-size: 1.1rem">
+            MetaMask, Ledger, Trezor... Hepsi aynı seed'den farklı yollar kullanabilir!<br>
+            <strong>Sorun:</strong> Ledger'da oluşturduğunuz hesabı MetaMask'ta göremeyebilirsiniz.<br>
+            <strong>Çözüm:</strong> Hangi path kullandığınızı bilin ve not alın!
+          </p>
+        </div>
+
         <div class="stats-grid">
           <div class="stat-card">
-            <h3>MetaMask</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/0'/0/1<br>m/44'/60'/0'/0/2</div>
-            <p>Index artıyor</p>
+            <h3>🦊 MetaMask Stili</h3>
+            <p style="font-size: 1.1rem">m/44'/60'/0'/0/<strong>0</strong></p>
+            <p style="font-size: 1.1rem">m/44'/60'/0'/0/<strong>1</strong></p>
+            <p style="font-size: 1.1rem">m/44'/60'/0'/0/<strong>2</strong></p>
+            <p><strong>Son sayı artıyor</strong></p>
+            <p>Her yeni hesap = index +1</p>
           </div>
 
           <div class="stat-card">
-            <h3>Ledger</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/1'/0/0<br>m/44'/60'/2'/0/0</div>
-            <p>Account artıyor</p>
+            <h3>🔒 Ledger Stili</h3>
+            <p style="font-size: 1.1rem">m/44'/60'/<strong>0'</strong>/0/0</p>
+            <p style="font-size: 1.1rem">m/44'/60'/<strong>1'</strong>/0/0</p>
+            <p style="font-size: 1.1rem">m/44'/60'/<strong>2'</strong>/0/0</p>
+            <p><strong>Account numarası artıyor</strong></p>
+            <p>Her hesap ayrı bir dal</p>
           </div>
 
           <div class="stat-card">
-            <h3>Trezor</h3>
-            <div class="code-block" style="background: #2e2e2e">m/44'/60'/0'/0/0<br>m/44'/60'/0'/0/1</div>
-            <p>MetaMask uyumlu</p>
+            <h3>🔐 Trezor Stili</h3>
+            <p style="font-size: 1.1rem">MetaMask ile aynı!</p>
+            <p>m/44'/60'/0'/0/x</p>
+            <p><strong>Uyumluluk var</strong></p>
+            <p>Import/Export kolay</p>
           </div>
+        </div>
+
+        <div class="formula-box">
+          <h3>💡 Pro İpucu</h3>
+          <p style="font-size: 1.2rem">
+            Seed'inizi yedeklerken, hangi cüzdan ve path kullandığınızı da yazın!<br>
+            <strong>Örnek:</strong> "MetaMask - m/44'/60'/0'/0/0 - İlk 3 hesap kullanımda"
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 8: Teknik Detaylar - Düzeltilmiş -->
+    <!-- Slide 8: İşlem İmzalama - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🔧 Teknik Protokol Detayları</h1>
+        <h1>✍️ Blockchain'de İmza Atmak: Dijital Noter</h1>
 
-        <h2>BIP32 HD Wallet Algoritması</h2>
-        <div class="code-block">
-// Master Key Generation from Seed
-function generateMasterKey(seed) {
-    // HMAC-SHA512 with "Bitcoin seed" as key
-    hmac = HMAC-SHA512(key: "Bitcoin seed", data: seed)
-    
-    // Split 512 bits into two 256-bit parts
-    master_private_key = hmac[0:32]  // İlk 256 bit
-    master_chain_code = hmac[32:64]  // Son 256 bit
-    
-    // Verify private key is valid (< n)
-    if (master_private_key >= secp256k1.n || master_private_key == 0) {
-        throw "Invalid master key"
-    }
-    
-    return {
-        private: master_private_key,
-        chain_code: master_chain_code,
-        depth: 0,
-        index: 0,
-        fingerprint: 0x00000000
-    }
-}
-
-// Child Key Derivation Algorithm
-function CKDpriv(parent_key, parent_chain, index) {
-    // Hardened: index >= 2^31 (0x80000000)
-    // Non-hardened: index < 2^31
-    
-    if (index >= 0x80000000) {  // Hardened derivation
-        // Use parent private key (more secure)
-        data = 0x00 || parent_key || index
-    } else {  // Non-hardened derivation
-        // Use parent public key (allows watch-only wallets)
-        parent_pub = secp256k1.G * parent_key
-        data = serialize_compressed(parent_pub) || index
-    }
-    
-    // Generate child key material
-    I = HMAC-SHA512(key: parent_chain, data: data)
-    IL = I[0:32]  // Child key offset
-    IR = I[32:64] // Child chain code
-    
-    // Calculate child private key
-    child_key = (parse256(IL) + parent_key) mod n
-    
-    // Check validity
-    if (parse256(IL) >= n || child_key == 0) {
-        // Skip this index, try next
-        return CKDpriv(parent_key, parent_chain, index + 1)
-    }
-    
-    return {
-        key: child_key,
-        chain_code: IR
-    }
-}</div>
-
-        <h2>PBKDF2 - Seed Generation from Mnemonic</h2>
+        <h2>🎭 Gerçek Hayattan Blockchain'e</h2>
+        
         <div class="formula-box">
-          <div class="code-block">
-// BIP39: Mnemonic to Seed
-function mnemonicToSeed(mnemonic, passphrase = "") {
-    // Password-Based Key Derivation Function 2
-    // Extremely slow by design (anti-brute force)
-    
-    password = mnemonic.normalize("NFKD")  // Unicode normalization
-    salt = "mnemonic" + passphrase.normalize("NFKD")
-    
-    // 2048 iterations of HMAC-SHA512
-    seed = PBKDF2(
-        password: password,
-        salt: salt,
-        iterations: 2048,
-        keylen: 64,  // 512 bits
-        digest: SHA512
-    )
-    
-    return seed  // 64 bytes (512 bits)
-}
-
-// PBKDF2 Implementation
-function PBKDF2(password, salt, iterations, keylen, digest) {
-    DK = []  // Derived key
-    
-    for (block = 1; DK.length < keylen; block++) {
-        U = PRF(password, salt || int32BE(block))
-        T = U
-        
-        for (i = 1; i < iterations; i++) {
-            U = PRF(password, U)
-            T = T ⊕ U  // XOR accumulation
-        }
-        
-        DK.append(T)
-    }
-    
-    return DK[0:keylen]
-}</div>
-        </div>
-
-        <h2>secp256k1 Elliptic Curve Parameters</h2>
-        <div class="code-block">
-// Bitcoin & Ethereum use the same curve
-secp256k1 = {
-    // Field prime
-    p: 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F,
-    
-    // Curve equation: y² = x³ + ax + b (where a = 0, b = 7)
-    a: 0,
-    b: 7,
-    
-    // Generator point G
-    Gx: 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798,
-    Gy: 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8,
-    
-    // Order of G (number of points)
-    n: 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141,
-    
-    // Cofactor
-    h: 1
-}
-
-// Point Addition (for public key generation)
-function pointAdd(P1, P2) {
-    if (P1 == INFINITY) return P2
-    if (P2 == INFINITY) return P1
-    if (P1.x == P2.x && P1.y == -P2.y) return INFINITY
-    
-    if (P1 == P2) {  // Point doubling
-        s = (3 * P1.x² + a) / (2 * P1.y) mod p
-    } else {  // Point addition
-        s = (P2.y - P1.y) / (P2.x - P1.x) mod p
-    }
-    
-    x3 = (s² - P1.x - P2.x) mod p
-    y3 = (s * (P1.x - x3) - P1.y) mod p
-    
-    return {x: x3, y: y3}
-}
-
-// Scalar Multiplication (private key → public key)
-function scalarMult(k, P) {
-    // Double-and-add algorithm
-    if (k == 0) return INFINITY
-    if (k == 1) return P
-    
-    result = INFINITY
-    addend = P
-    
-    while (k > 0) {
-        if (k & 1) {  // If bit is 1
-            result = pointAdd(result, addend)
-        }
-        addend = pointAdd(addend, addend)  // Double
-        k = k >> 1  // Shift right
-    }
-    
-    return result
-}</div>
-
-        <h2>ECDSA Signature Algorithm</h2>
-        <div class="code-block">
-// Signing Algorithm
-function signECDSA(message, privateKey) {
-    // 1. Hash the message
-    z = hash(message)  // SHA256 for Bitcoin, Keccak256 for Ethereum
-    
-    // 2. Generate random nonce k (CRITICAL: must be random!)
-    do {
-        k = random(1, n-1)
-        
-        // 3. Calculate point R = k×G
-        R = scalarMult(k, G)
-        r = R.x mod n
-    } while (r == 0)
-    
-    // 4. Calculate signature
-    k_inv = modInverse(k, n)
-    s = k_inv * (z + r * privateKey) mod n
-    
-    if (s == 0) {
-        return signECDSA(message, privateKey)  // Retry
-    }
-    
-    // 5. Normalize s (malleability fix)
-    if (s > n/2) {
-        s = n - s
-    }
-    
-    return {r, s}
-}
-
-// Verification Algorithm
-function verifyECDSA(message, signature, publicKey) {
-    z = hash(message)
-    {r, s} = signature
-    
-    // Check signature values
-    if (r < 1 || r >= n || s < 1 || s >= n) {
-        return false
-    }
-    
-    // Calculate verification values
-    s_inv = modInverse(s, n)
-    u1 = (z * s_inv) mod n
-    u2 = (r * s_inv) mod n
-    
-    // Calculate point
-    P = pointAdd(scalarMult(u1, G), scalarMult(u2, publicKey))
-    
-    // Verify
-    return (P.x mod n) == r
-}</div>
-
-        <h2>Address Generation Algorithms</h2>
-        <div class="comparison-grid">
-          <div class="stat-card">
-            <h3>Bitcoin Address</h3>
-            <div class="code-block" style="background: #2e2e2e">
-// P2PKH Address (Legacy)
-function generateBitcoinAddress(privateKey) {
-    // 1. Generate public key
-    publicKey = scalarMult(privateKey, G)
-    
-    // 2. Serialize (compressed)
-    if (publicKey.y % 2 == 0) {
-        pubkey_ser = 0x02 || publicKey.x
-    } else {
-        pubkey_ser = 0x03 || publicKey.x
-    }
-    
-    // 3. Hash160 (SHA256 + RIPEMD160)
-    sha = SHA256(pubkey_ser)
-    hash160 = RIPEMD160(sha)
-    
-    // 4. Add version byte
-    versioned = 0x00 || hash160
-    
-    // 5. Checksum
-    checksum = SHA256(SHA256(versioned))[0:4]
-    
-    // 6. Base58 encode
-    address = Base58(versioned || checksum)
-    
-    return address  // "1A1zP1..."
-}
-
-// Bech32 Address (Native SegWit)
-function generateBech32Address(publicKey) {
-    hash160 = Hash160(publicKey)
-    
-    // Bech32 encoding
-    hrp = "bc"  // Bitcoin mainnet
-    version = 0  // witness v0
-    
-    // Convert to 5-bit groups
-    data = convertbits(hash160, 8, 5)
-    
-    // Calculate checksum
-    checksum = bech32_checksum(hrp, [version] + data)
-    
-    // Encode
-    address = hrp + "1" + encode(data + checksum)
-    
-    return address  // "bc1q..."
-}</div>
-          </div>
-
-          <div class="stat-card">
-            <h3>Ethereum Address</h3>
-            <div class="code-block" style="background: #2e2e2e">
-function generateEthereumAddress(privateKey) {
-    // 1. Generate public key
-    publicKey = scalarMult(privateKey, G)
-    
-    // 2. Serialize (uncompressed)
-    pubkey_ser = publicKey.x || publicKey.y
-    
-    // 3. Keccak256 hash
-    hash = Keccak256(pubkey_ser)
-    
-    // 4. Last 20 bytes
-    address = hash[12:32]
-    
-    // 5. EIP-55 Checksum
-    hex_addr = hex(address)
-    hash = Keccak256(hex_addr)
-    
-    checksummed = "0x"
-    for (i = 0; i < 40; i++) {
-        char = hex_addr[i]
-        if (hash[i] >= 8) {
-            checksummed += char.toUpperCase()
-        } else {
-            checksummed += char.toLowerCase()
-        }
-    }
-    
-    return checksummed  // "0x71C7..."
-}</div>
+          <h3>🏦 Banka vs 🔐 Blockchain İmzası</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p><strong>Banka:</strong> Islak imza → Görevli doğrular → İşlem onaylanır</p>
+            <p><strong>Blockchain:</strong> Dijital imza → Matematik doğrular → İşlem onaylanır</p>
+            <p style="margin-top: 1rem; color: #4CAF50">
+              <em>Fark: Blockchain'de kimse size güvenmek zorunda değil, matematik kanıtlıyor!</em>
+            </p>
           </div>
         </div>
 
-        <h2>Shamir's Secret Sharing (Advanced Backup)</h2>
-        <div class="formula-box">
-          <div class="code-block">
-// Split seed into n shares, require k to reconstruct
-function shamirSplit(secret, k, n) {
-    // Create polynomial of degree k-1
-    // f(x) = a₀ + a₁x + a₂x² + ... + aₖ₋₁xᵏ⁻¹
-    // where a₀ = secret
-    
-    coefficients = [secret]
-    for (i = 1; i < k; i++) {
-        coefficients.push(random())
-    }
-    
-    shares = []
-    for (x = 1; x <= n; x++) {
-        y = evaluate_polynomial(coefficients, x)
-        shares.push({x, y})
-    }
-    
-    return shares
-}
+        <h2>📝 İşlem İmzalama Hikayesi</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>📋 İşlem Hazırla</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Ayşe, Mehmet'e 5 ETH göndermek istiyor. Bir form doldurur gibi:
+              <br><br>
+              <em>"Kimden: Ayşe'nin adresi"</em><br>
+              <em>"Kime: Mehmet'in adresi"</em><br>
+              <em>"Ne kadar: 5 ETH"</em><br>
+              <em>"Benzin parası: 0.001 ETH"</em> (gas fee)
+            </p>
+          </div>
 
-// Reconstruct secret from k shares
-function shamirReconstruct(shares) {
-    // Lagrange interpolation
-    secret = 0
-    
-    for (i = 0; i < shares.length; i++) {
-        numerator = 1
-        denominator = 1
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>🔏 Gizli Anahtarla İmzala</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              Ayşe, sadece kendisinin bildiği <strong>gizli anahtarıyla</strong> bu formu imzalar.
+              Bu imza öyle özel ki, sadece Ayşe'nin anahtarıyla üretilebilir ama herkes 
+              Ayşe'nin imzası olduğunu doğrulayabilir! 
+              <br><br>
+              <em>Gerçek hayatta notere gidersiniz, blockchain'de matematik noter!</em>
+            </p>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>📡 Ağa Yayınla</strong>
+            <p style="font-size: 1.1rem; margin: 10px 0">
+              İmzalı işlem tüm ağa yayınlanır. Binlerce bilgisayar bu işlemi görür ve 
+              <strong>"Bu gerçekten Ayşe'nin imzası mı?"</strong> diye kontrol eder.
+              <br><br>
+              Matematik der ki: <em>"Evet, bu imza sadece Ayşe'nin gizli anahtarıyla atılmış olabilir!"</em>
+            </p>
+          </div>
+        </div>
+
+        <h2>🎯 İmza Nasıl Doğrulanıyor?</h2>
         
-        for (j = 0; j < shares.length; j++) {
-            if (i != j) {
-                numerator *= -shares[j].x
-                denominator *= shares[i].x - shares[j].x
-            }
-        }
+        <div class="example-box">
+          <h3>🔍 Sihirli Matematik Kontrolü</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p>📄 <strong>İşlem verisi:</strong> "Ayşe → Mehmet, 5 ETH"</p>
+            <p>✍️ <strong>İmza:</strong> Ayşe'nin gizli anahtarıyla oluşturulmuş</p>
+            <p>🔑 <strong>Public adres:</strong> Ayşe'nin herkesin bildiği adresi</p>
+            <br>
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 10px">
+              <p style="text-align: center; font-size: 1.3rem">
+                <strong>İmza + İşlem + Public Adres = ✅ Doğrulandı!</strong>
+              </p>
+              <p style="text-align: center; margin-top: 10px">
+                Eğer başkası imzalamaya çalışsaydı: ❌ Reddedildi!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🛡️ Güvenlik Garantisi</h2>
         
-        secret += shares[i].y * numerator / denominator
-    }
-    
-    return secret
-}</div>
+        <div class="seed-box">
+          <h3>🎪 İmza Sirki: 3 Halka</h3>
+          <div style="font-size: 1.2rem; line-height: 2">
+            <p><strong>1️⃣ Kimlik Doğrulama:</strong> "Bu işlemi Ayşe mi yaptı?" ✅</p>
+            <p><strong>2️⃣ Değiştirilemezlik:</strong> "İşlem yolda değiştirilmiş mi?" ❌</p>
+            <p><strong>3️⃣ İnkar Edilemezlik:</strong> "Ayşe 'ben yapmadım' diyebilir mi?" ❌</p>
+          </div>
+        </div>
+
+        <h2>💡 Pratikte Ne Oluyor?</h2>
+        
+        <div class="warning-box">
+          <h3>🦊 MetaMask'ta İmza Atarken</h3>
+          <div style="font-size: 1.1rem; line-height: 1.8">
+            <p><strong>1. "Confirm" butonuna bastınız</strong></p>
+            <p>→ MetaMask gizli anahtarınızı kullanır (siz görmezsiniz)</p>
+            <p>→ İşlem verisini özel algoritmayla imzalar</p>
+            <p>→ İmzalı işlemi Ethereum ağına gönderir</p>
+            <br>
+            <p><strong>2. Madenciler/Validatörler işlemi alır</strong></p>
+            <p>→ İmzayı matematiksel olarak kontrol eder</p>
+            <p>→ Hesabınızda yeterli bakiye var mı bakar</p>
+            <p>→ Her şey tamamsa bloğa ekler</p>
+            <br>
+            <p style="text-align: center; font-size: 1.3rem; color: #ff6b6b">
+              <strong>⚠️ DİKKAT: İmzaladıktan sonra geri dönüş YOK!</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="formula-box" style="margin-top: 2rem">
+          <h3>🎬 Özet: Film Gibi Düşünün</h3>
+          <p style="font-size: 1.2rem; line-height: 1.8">
+            <strong>Senaryo:</strong> Para transferi<br>
+            <strong>Başrol:</strong> Sizin gizli anahtarınız<br>
+            <strong>Yönetmen:</strong> Blockchain protokolü<br>
+            <strong>Seyirci:</strong> Tüm ağdaki bilgisayarlar<br>
+            <strong>Final:</strong> Herkes alkışlıyor, işlem onaylandı! 👏
+          </p>
         </div>
       </div>
     </section>
@@ -1225,174 +1145,342 @@ function shamirReconstruct(shares) {
     <!-- Slide 9: Güvenlik - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>🛡️ Güvenlik İpuçları</h1>
+        <h1>🛡️ Kripto Güvenlik 101: Paranızı Nasıl Korursunuz?</h1>
 
-        <div class="security-box">
-          <h2>🌱 Seed Phrase Güvenliği</h2>
-          <div class="comparison-grid">
-            <div class="stat-card" style="background: #c8e6c9">
-              <h3>✅ YAPIN</h3>
-              <ul style="text-align: left; list-style: none">
-                <li>✓ Metal plakaya kazıyın</li>
-                <li>✓ 2-3 kopya, farklı yerler</li>
-                <li>✓ Passphrase ekleyin (25. kelime)</li>
-                <li>✓ Shamir Secret Sharing</li>
-                <li>✓ Güvenli kasada saklayın</li>
-              </ul>
+        <h2>🎭 İki Gerçek Hikaye</h2>
+        
+        <div class="comparison-grid">
+          <div class="security-box">
+            <h3>😱 Korku Hikayesi</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6">
+              <strong>Stefan Thomas</strong> - 7,002 Bitcoin'i var.<br>
+              Değeri: ~280 milyon dolar 💰<br>
+              Problem: Şifresini unuttu!<br>
+              10 deneme hakkından 8'ini kullandı.<br>
+              2 yanlış daha = Bitcoin'ler sonsuza dek kilitli! 🔒
+            </p>
+          </div>
+
+          <div class="seed-box">
+            <h3>😊 Başarı Hikayesi</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6">
+              <strong>Winklevoss İkizleri</strong> - 70,000+ Bitcoin<br>
+              Nasıl korudular?<br>
+              • Anahtarları parçalara böldüler<br>
+              • Farklı bankaların kasalarında<br>
+              • Farklı şehirlerde sakladılar<br>
+              Sonuç: Milyarder oldular! 🎉
+            </p>
+          </div>
+        </div>
+
+        <h2>🌱 Seed Kelimeleriniz = Tüm Servetiniz</h2>
+        
+        <div class="formula-box">
+          <h3>🏠 Ev Anahtarı Gibi Düşünün</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p>🔑 <strong>Ev anahtarı:</strong> Kaybolursa → Çilingir çağırırsınız ✅</p>
+            <p>🌱 <strong>Seed kelimeler:</strong> Kaybolursa → Para sonsuza dek gitti ❌</p>
+            <p>📸 <strong>Anahtarın fotoğrafı:</strong> Hırsız bulursa → Eve girer 😱</p>
+            <p>📱 <strong>Seed'in ekran görüntüsü:</strong> Hacker bulursa → Tüm paranız gider 💸</p>
+          </div>
+        </div>
+
+        <h2>✅ Altın Kurallar: Yapın & Yapmayın</h2>
+        
+        <div class="comparison-grid">
+          <div class="stat-card" style="background: #c8e6c9">
+            <h3>✅ MUTLAKA YAPIN</h3>
+            <div style="font-size: 1.1rem; line-height: 1.8">
+              <p><strong>📝 Kağıda yazın</strong><br>
+              En basit ve güvenli yöntem</p>
+              
+              <p><strong>🔥 Yangına dayanıklı kasa</strong><br>
+              Evde güvenli bir yer</p>
+              
+              <p><strong>🏦 Banka kasası</strong><br>
+              Büyük meblağlar için ideal</p>
+              
+              <p><strong>⚙️ Metal plaka</strong><br>
+              Su ve ateşe dayanıklı</p>
+              
+              <p><strong>🧩 Parçalara bölün</strong><br>
+              3 parça → 2'si yeterli sistemi</p>
             </div>
+          </div>
 
-            <div class="stat-card" style="background: #ffcdd2">
-              <h3>❌ YAPMAYIN</h3>
-              <ul style="text-align: left; list-style: none">
-                <li>✗ Screenshot/foto çekmeyin</li>
-                <li>✗ Cloud'a yüklemeyin</li>
-                <li>✗ Email/mesaj göndermeyin</li>
-                <li>✗ Bilgisayarda saklamayın</li>
-                <li>✗ Kimseyle paylaşmayın</li>
-              </ul>
+          <div class="stat-card" style="background: #ffcdd2">
+            <h3>❌ ASLA YAPMAYIN</h3>
+            <div style="font-size: 1.1rem; line-height: 1.8">
+              <p><strong>📸 Fotoğraf çekmeyin</strong><br>
+              Telefonunuz hacklenebilir</p>
+              
+              <p><strong>☁️ Cloud'a yüklemeyin</strong><br>
+              Google Drive, iCloud = HAYIR!</p>
+              
+              <p><strong>📧 Email/WhatsApp</strong><br>
+              Mesajlaşmada paylaşmayın</p>
+              
+              <p><strong>💻 Bilgisayara kaydetmeyin</strong><br>
+              .txt dosyası = İntihar!</p>
+              
+              <p><strong>🗣️ Kimseye söylemeyin</strong><br>
+              "En yakın arkadaşım" bile olsa</p>
             </div>
           </div>
         </div>
 
-        <h2>🔑 Private Key Formatları</h2>
-        <div class="comparison-flex">
-          <div class="example-box">
-            <h3>Bitcoin</h3>
-            <div class="code-block">
-              // WIF (Wallet Import Format)<br>
-              L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1<br><br>
-              
-              // Hex<br>
-              0xE9873D79C6D87DC0FB6A5778633389F4453213CA3EED83A2B2F08EE9873D79C6<br>
-            </div>
+        <h2>🎯 Pratik Güvenlik Sistemi</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>🏠 Evde Saklamak İçin</strong>
+            <p style="font-size: 1.1rem">
+              • Suya dayanıklı poşet içinde<br>
+              • Yangına dayanıklı kasada<br>
+              • Kimsenin bilmediği bir yerde<br>
+              <em>Örnek: Eski kitabın arasına koyun</em>
+            </p>
           </div>
 
-          <div class="example-box">
-            <h3>Ethereum</h3>
-            <div class="code-block">
-              // Hex<br>
-              0x4c0883a69102937d6231471b5dbb6204fe5129618082792ae468d01a3f362318<br><br>
-              
-              // Keystore (Şifreli JSON)<br>
-              {<br>
-                "crypto": {<br>
-                  "cipher": "aes-128-ctr",<br>
-                  "ciphertext": "şifreli_private_key",<br>
-                  "kdf": "scrypt",<br>
-                  "mac": "doğrulama_kodu"<br>
-                }<br>
-              }
-            </div>
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>🏦 Profesyonel Saklama</strong>
+            <p style="font-size: 1.1rem">
+              • Banka kiralık kasası<br>
+              • Noter zarfı (mühürlü)<br>
+              • Avukat emaneti<br>
+              <em>Büyük paralar için önerilir</em>
+            </p>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>🧩 Akıllı Bölme Sistemi</strong>
+            <p style="font-size: 1.1rem">
+              12 kelimeyi 3'e bölün:<br>
+              • Anne: 1-8 kelimeler<br>
+              • Baba: 5-12 kelimeler<br>
+              • Kardeş: 1-4 ve 9-12<br>
+              <em>2 kişi bir araya gelse yeter!</em>
+            </p>
           </div>
         </div>
 
-        <h2>💼 Cüzdan Tipleri</h2>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>🔥 Hot Wallet</h3>
-            <p>Online, kolay erişim</p>
-            <p>✅ Pratik</p>
-            <p>❌ Hack riski</p>
-            <p><em>MetaMask, Trust</em></p>
+        <h2>🔐 Ekstra Güvenlik: 25. Kelime</h2>
+        
+        <div class="warning-box">
+          <h3>🎩 Sihirbazın Gizli Numarası</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p><strong>Normal:</strong> 24 kelime = 1 cüzdan</p>
+            <p><strong>25. kelime eklerseniz:</strong> Bambaşka bir cüzdan!</p>
+            <br>
+            <p>🎯 <strong>Nasıl çalışır?</strong></p>
+            <p>• 24 kelime: "Sahte" cüzdan (az para)</p>
+            <p>• 24 kelime + "gizlikelime123": Gerçek cüzdan (çok para)</p>
+            <br>
+            <p style="text-align: center; color: #ff6b6b">
+              <strong>Hırsız 24 kelimeyi bulsa bile, 25. olmadan gerçek cüzdana ulaşamaz!</strong>
+            </p>
           </div>
+        </div>
 
-          <div class="stat-card">
-            <h3>🧊 Cold Wallet</h3>
-            <p>Offline, güvenli</p>
-            <p>✅ Maksimum güvenlik</p>
-            <p>❌ Kullanım zorluğu</p>
-            <p><em>Ledger, Trezor</em></p>
+        <h2>💡 Son Tavsiyeler</h2>
+        
+        <div class="formula-box">
+          <h3>📚 Hafızanıza Kazıyın</h3>
+          <div style="font-size: 1.2rem; line-height: 2">
+            <p>🧪 <strong>Test edin:</strong> Küçük miktarla deneyin önce</p>
+            <p>📅 <strong>Periyodik kontrol:</strong> 6 ayda bir yedeğinizi kontrol edin</p>
+            <p>🎓 <strong>Aileyi eğitin:</strong> Size bir şey olursa nasıl kurtaracaklarını öğretin</p>
+            <p>🚨 <strong>Acil durum planı:</strong> Vefat durumunda nasıl erişecekler?</p>
           </div>
+        </div>
 
-          <div class="stat-card">
-            <h3>📄 Paper Wallet</h3>
-            <p>Kağıt üzerinde</p>
-            <p>✅ Hack edilemez</p>
-            <p>❌ Fiziksel kayıp riski</p>
-            <p><em>QR kod + private key</em></p>
-          </div>
+        <div class="example-box" style="margin-top: 2rem">
+          <h3>🎬 Gerçek Hayat Senaryosu</h3>
+          <p style="font-size: 1.2rem; text-align: center">
+            <strong>"Merhaba, MetaMask destek hattıyım, seed kelimelerinizi doğrulayabilir misiniz?"</strong>
+          </p>
+          <p style="font-size: 1.5rem; text-align: center; color: #ff0000; margin-top: 1rem">
+            <strong>HAYIR! 🚫</strong>
+          </p>
+          <p style="font-size: 1.2rem; text-align: center">
+            HİÇBİR destek ekibi seed kelimelerinizi SORMAZ!<br>
+            Bu %100 dolandırıcılık!
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 10: Özet - Düzeltilmiş -->
+    <!-- Slide 10: Cüzdan Tipleri ve Özet - Düzeltilmiş -->
     <section class="slide">
       <div class="container">
-        <h1>📚 Özet ve Kritik Noktalar</h1>
+        <h1>💼 Hangi Cüzdan Size Göre?</h1>
 
-        <div class="formula-box" style="font-size: 1.3rem">
-          <h2 style="text-align: center">🎯 Master Formül</h2>
-          <div style="text-align: center; margin: 1rem 0">
-            <strong>Seed Phrase → Master Key → Sonsuz Adres</strong>
+        <h2>🎭 3 Farklı Kullanıcı Profili</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>👶 Yeni Başlayan</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6">
+              <strong>İhtiyaç:</strong> Kolay kullanım<br>
+              <strong>Miktar:</strong> Az (< $1000)<br>
+              <strong>Öneri:</strong> MetaMask, Trust<br>
+              <strong>Tip:</strong> Hot Wallet 🔥<br>
+              <em>"Günlük cebinizdeki para gibi"</em>
+            </p>
+          </div>
+
+          <div class="stat-card">
+            <h3>🧑‍💼 Orta Seviye</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6">
+              <strong>İhtiyaç:</strong> Güvenlik + Kullanım<br>
+              <strong>Miktar:</strong> Orta ($1K-$50K)<br>
+              <strong>Öneri:</strong> Ledger Nano S/X<br>
+              <strong>Tip:</strong> Hardware Wallet 🔒<br>
+              <em>"Evdeki kasa gibi"</em>
+            </p>
+          </div>
+
+          <div class="stat-card">
+            <h3>🐋 Balina</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6">
+              <strong>İhtiyaç:</strong> Maksimum güvenlik<br>
+              <strong>Miktar:</strong> Çok (> $50K)<br>
+              <strong>Öneri:</strong> Multi-sig + Cold<br>
+              <strong>Tip:</strong> Çoklu İmza 🏦<br>
+              <em>"Banka kasası gibi"</em>
+            </p>
           </div>
         </div>
 
-        <h2>📋 Hızlı Referans</h2>
-        <table class="wallet-table">
-          <thead>
-            <tr>
-              <th>Standart</th>
-              <th>Ne Yapar?</th>
-              <th>Örnek</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>BIP32</strong></td>
-              <td>HD Wallet temeli</td>
-              <td>Master seed → Child keys</td>
-            </tr>
-            <tr>
-              <td><strong>BIP39</strong></td>
-              <td>Mnemonic kelimeler</td>
-              <td>abandon amount liar...</td>
-            </tr>
-            <tr>
-              <td><strong>BIP44</strong></td>
-              <td>Adres yolu standardı</td>
-              <td>m/44'/0'/0'/0/0</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="comparison-grid" style="margin-top: 2rem">
-          <div class="bitcoin-box">
-            <h3 style="color: white">Bitcoin</h3>
-            <ul style="list-style: none; color: white">
-              <li>✓ 4 adres tipi</li>
-              <li>✓ UTXO model</li>
-              <li>✓ m/44'/0'/account'/change/index</li>
-              <li>✓ Native SegWit kullanın</li>
-            </ul>
+        <h2>🔥 Hot vs 🧊 Cold: Hangisi Ne Zaman?</h2>
+        
+        <div class="comparison-grid">
+          <div class="seed-box">
+            <h3>🔥 Sıcak Cüzdan (Hot)</h3>
+            <div style="font-size: 1.1rem; line-height: 1.8">
+              <p><strong>Ne zaman kullanılır?</strong></p>
+              <p>✅ Günlük alım-satım</p>
+              <p>✅ DeFi işlemleri</p>
+              <p>✅ NFT alım-satımı</p>
+              <p>✅ Küçük miktarlar</p>
+              <br>
+              <p><strong>Örnekler:</strong></p>
+              <p>🦊 MetaMask (Tarayıcı)</p>
+              <p>📱 Trust Wallet (Mobil)</p>
+              <p>🌈 Rainbow (iOS)</p>
+              <br>
+              <p style="color: #ff6b6b">
+                ⚠️ Risk: Bilgisayar virüs kaparsa!
+              </p>
+            </div>
           </div>
 
-          <div class="ethereum-box">
-            <h3 style="color: white">Ethereum</h3>
-            <ul style="list-style: none; color: white">
-              <li>✓ Tek adres tipi</li>
-              <li>✓ Account model</li>
-              <li>✓ m/44'/60'/0'/0/0</li>
-              <li>✓ Tüm tokenlar tek adreste</li>
-            </ul>
+          <div class="security-box">
+            <h3>🧊 Soğuk Cüzdan (Cold)</h3>
+            <div style="font-size: 1.1rem; line-height: 1.8">
+              <p><strong>Ne zaman kullanılır?</strong></p>
+              <p>✅ Uzun süreli saklama</p>
+              <p>✅ Büyük miktarlar</p>
+              <p>✅ Miras bırakma</p>
+              <p>✅ HODL stratejisi</p>
+              <br>
+              <p><strong>Örnekler:</strong></p>
+              <p>🔐 Ledger (Hardware)</p>
+              <p>🛡️ Trezor (Hardware)</p>
+              <p>📄 Paper Wallet (Kağıt)</p>
+              <br>
+              <p style="color: #4CAF50">
+                ✅ Güvenli: İnternete bağlı değil!
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="warning-box" style="margin-top: 2rem">
-          <h2 style="color: #ff6b6b">⚠️ Altın Kurallar</h2>
-          <ol style="font-size: 1.2rem; line-height: 2">
-            <li><strong>Not your keys, not your coins!</strong></li>
-            <li>Seed phrase = Tüm servetiniz</li>
-            <li>Private key kaybı = Para kaybı</li>
-            <li>Hardware wallet kullanın (büyük meblağlar)</li>
-            <li>Test ağında deneyin önce</li>
-          </ol>
+        <h2>📚 Öğrendiklerimizin Özeti</h2>
+        
+        <div class="formula-box">
+          <h3>🎯 Altın Formül</h3>
+          <div style="font-size: 1.3rem; text-align: center; line-height: 2">
+            <p><strong>12-24 Kelime</strong> 🌱</p>
+            <p>↓</p>
+            <p><strong>Ana Anahtar</strong> 🔑</p>
+            <p>↓</p>
+            <p><strong>Sonsuz Adres</strong> 📮</p>
+          </div>
+        </div>
+
+        <h2>✅ Mezuniyet Kontrol Listesi</h2>
+        
+        <div class="step-box">
+          <div class="step-item" style="background: #e8f5e9">
+            <strong>☑️ Temel Kavramlar</strong>
+            <p style="font-size: 1.1rem">
+              ✓ Public vs Private key farkını anladım<br>
+              ✓ Seed phrase'in önemini kavradım<br>
+              ✓ HD Wallet'ın avantajlarını öğrendim<br>
+              ✓ Derivation path'in ne olduğunu biliyorum
+            </p>
+          </div>
+
+          <div class="step-item" style="background: #fff3e0">
+            <strong>☑️ Güvenlik</strong>
+            <p style="font-size: 1.1rem">
+              ✓ Seed'imi nasıl saklayacağımı biliyorum<br>
+              ✓ Phishing saldırılarını tanıyorum<br>
+              ✓ Hot/Cold wallet farkını anladım<br>
+              ✓ 25. kelime konseptini öğrendim
+            </p>
+          </div>
+
+          <div class="step-item" style="background: #e3f2fd">
+            <strong>☑️ Pratik</strong>
+            <p style="font-size: 1.1rem">
+              ✓ MetaMask kurabiliyorum<br>
+              ✓ İşlem imzalamanın mantığını anladım<br>
+              ✓ Farklı network'leri biliyorum<br>
+              ✓ Gas fee'nin ne olduğunu kavradım
+            </p>
+          </div>
+        </div>
+
+        <h2>🚀 Bir Sonraki Adım?</h2>
+        
+        <div class="warning-box">
+          <h3>📖 Önerilen Yol Haritası</h3>
+          <div style="font-size: 1.2rem; line-height: 2">
+            <p><strong>1️⃣ Test ağında pratik yapın</strong> (Sepolia, Goerli)</p>
+            <p><strong>2️⃣ Küçük miktarla başlayın</strong> ($10-50)</p>
+            <p><strong>3️⃣ Hardware wallet alın</strong> (>$500 için)</p>
+            <p><strong>4️⃣ DeFi protokollerini keşfedin</strong> (Uniswap, Aave)</p>
+            <p><strong>5️⃣ Toplulukları takip edin</strong> (Discord, Twitter)</p>
+          </div>
+        </div>
+
+        <div class="example-box" style="margin-top: 2rem">
+          <h3>🎓 Son Söz</h3>
+          <p style="font-size: 1.3rem; text-align: center; line-height: 1.8">
+            <strong>"Kripto dünyasında en büyük risk, risk almamaktır"</strong><br>
+            - Ama önce güvenliği öğrenin! 🛡️<br><br>
+            
+            <em>Unutmayın:</em><br>
+            💎 <strong>Not your keys, not your coins!</strong><br>
+            🔐 <strong>Seed phrase = Tüm varlığınız</strong><br>
+            ⚠️ <strong>Blockchain'de geri al tuşu yok!</strong>
+          </p>
         </div>
 
         <div style="text-align: center; margin-top: 3rem">
-          <p style="font-size: 1.3rem; margin: 1rem 0">
-            <em>Blockchain'de geri alma yok. Bir kez gitti mi, sonsuza dek gitti!</em>
+          <div style="font-size: 3rem">🎉</div>
+          <p style="font-size: 1.5rem; margin: 1rem 0">
+            <strong>Tebrikler! Artık Kripto Cüzdan Uzmanısınız!</strong>
           </p>
-          <div class="emoji-box key-animation">🔐</div>
+          <p style="font-size: 1.2rem">
+            Güvenli yolculuklar... 🚀
+          </p>
         </div>
       </div>
     </section>
