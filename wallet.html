@@ -391,230 +391,247 @@
       <div class="dot" onclick="scrollToSlide(11)"></div>
     </div>
 
-    <!-- Slide 1: Giriş - Ethereum Odaklı -->
+    <!-- Slide 1: Giriş -->
     <section class="slide">
       <div class="container">
-        <h1>🔷 Ethereum Cüzdanları: Web3'ün Kapısı</h1>
+        <h1>🔑 Kripto Cüzdanlar: Anahtarlar ve Hesaplar</h1>
         
         <div style="text-align: center; margin: 2rem 0">
           <div class="emoji-box key-animation">🔑</div>
-          <div class="emoji-box">Ξ</div>
-          <div class="emoji-box">💎</div>
+          <div class="emoji-box">🔐</div>
+          <div class="emoji-box">💰</div>
         </div>
         
-        <h2 style="text-align: center">🌐 Web2 vs Web3: Kimlik Yönetimi</h2>
+        <h2 style="text-align: center">🤔 Cüzdan Nedir?</h2>
+        
+        <div class="formula-box">
+          <h3>📚 Basit Tanım</h3>
+          <p style="font-size: 1.3rem">
+            Kripto cüzdan = <strong>Anahtar çifti yönetim yazılımı</strong><br>
+            <br>
+            Cüzdan paranızı TUTMAZ!<br>
+            Sadece anahtarlarınızı saklar ve yönetir.<br>
+            <br>
+            Paranız blockchain'de, anahtarlar sizde.
+          </p>
+        </div>
         
         <div class="comparison-grid">
           <div class="stat-card">
-            <h3>🌐 Web2 (Geleneksel)</h3>
+            <h3>🔑 Private Key</h3>
             <ul style="text-align: left; list-style: none">
-              <li>✓ Email + Şifre ile giriş</li>
-              <li>✓ Şirketler verilerinizi tutar</li>
-              <li>✓ "Şifremi Unuttum" butonu var</li>
-              <li>✓ Platform hesabınızı kapatabilir</li>
-              <li>✓ Her sitede ayrı hesap</li>
+              <li>✓ Gizli anahtarınız</li>
+              <li>✓ 256 bit rastgele sayı</li>
+              <li>✓ ASLA paylaşmayın</li>
+              <li>✓ Tüm kontrol bunda</li>
+              <li>✓ Kaybederseniz = Para kayıp</li>
             </ul>
           </div>
           
           <div class="stat-card">
-            <h3>🔷 Web3 (Ethereum)</h3>
+            <h3>📮 Public Key/Address</h3>
             <ul style="text-align: left; list-style: none">
-              <li>✓ Cüzdan ile giriş (MetaMask)</li>
-              <li>✓ Veriler blockchain'de</li>
-              <li>✓ Private key kaybı = Erişim yok</li>
-              <li>✓ Kimse hesabınızı kapatamaz</li>
-              <li>✓ Tek cüzdan, tüm dApp'ler</li>
+              <li>✓ Açık adresiniz</li>
+              <li>✓ Private key'den türetilir</li>
+              <li>✓ Paylaşmak güvenli</li>
+              <li>✓ Para almak için</li>
+              <li>✓ Herkes görebilir</li>
             </ul>
           </div>
         </div>
         
-        <div class="formula-box" style="text-align: center; font-size: 1.3rem">
-          <h3>🔷 Ethereum Ekosistemi</h3>
-          <p><strong>1 Ethereum Adresi</strong> ile neler yapabilirsiniz?</p>
-          <p>💱 <strong>DeFi:</strong> Uniswap, Aave, Compound'da işlem</p>
-          <p>🎨 <strong>NFT:</strong> OpenSea, Blur'da alım-satım</p>
-          <p>🎮 <strong>Gaming:</strong> Axie, Gods Unchained'da oynama</p>
-          <p>🏛️ <strong>DAO:</strong> Yönetişime katılım</p>
-        </div>
-        
         <div class="warning-box">
-          <h3>⚠️ En Önemli Kural</h3>
+          <h3>⚠️ Altın Kural</h3>
           <p style="font-size: 1.3rem; text-align: center">
             <strong>"Not your keys, not your coins!"</strong><br>
-            Private key'iniz = Dijital kimliğiniz + Tüm varlıklarınız
+            Anahtarlar sende değilse, paralar da senin değil!
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 2: Public ve Private Key Detaylı Açıklama -->
+    <!-- Slide 2: Private Key Nasıl Üretilir? -->
     <section class="slide">
       <div class="container">
-        <h1>🔐 Public Key vs Private Key: Kripto'nun Temeli</h1>
+        <h1>🎲 Private Key Nasıl Üretilir?</h1>
 
-        <h2>🎭 İkili Anahtar Sistemi</h2>
+        <h2>🔬 Kriptografik Güvenli Rastgele Sayı Üretimi</h2>
         
         <div class="formula-box">
-          <h3>🏠 Ev Benzetmesi</h3>
+          <h3>🎰 Entropi Kaynakları</h3>
           <div style="font-size: 1.2rem; line-height: 1.8">
-            <p>🔑 <strong>Private Key = Evin Anahtarı</strong></p>
-            <p>Sadece sizde var, eve girmenizi sağlar</p>
-            <p>📮 <strong>Public Key/Address = Ev Adresi</strong></p>
-            <p>Herkesle paylaşabilirsiniz, size posta göndermeleri için</p>
+            <p><strong>Donanım:</strong> CPU gürültüsü, RAM durumu</p>
+            <p><strong>Kullanıcı:</strong> Fare hareketleri, klavye zamanlamaları</p>
+            <p><strong>İşletim Sistemi:</strong> /dev/urandom (Linux/Mac), CryptGenRandom (Windows)</p>
+            <p><strong>Amaç:</strong> Tahmin edilemez 256 bit sayı üretmek</p>
           </div>
         </div>
 
-        <h2>🔑 Private Key (Özel Anahtar)</h2>
-        <div class="security-box">
-          <h3>💎 Nedir?</h3>
-          <p style="font-size: 1.1rem">
-            • 256 bit uzunluğunda rastgele bir sayı<br>
-            • Hex formatında 64 karakter<br>
-            • Örnek: <code style="word-break: break-all">0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80</code><br>
-            • Ethereum'daki TÜM yetkinizin kaynağı<br>
-            • Bu anahtarı bilen = Hesabın sahibi
-          </p>
+        <h2>🛠️ Private Key Üretim Adımları</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>🎲 256 Bit Rastgele Sayı</strong>
+            <p style="font-size: 1.1rem">
+              Kriptografik güvenli RNG (Random Number Generator) kullanılır<br>
+              2^256 = 115,792,089,237,316,195,423,570,985,008,687,907,853,269,984,665,640,564,039,457,584,007,913,129,639,936 ihtimal!<br>
+              <em>Evrendeki atom sayısından daha fazla!</em>
+            </p>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>✅ Sayı Aralığı Kontrolü</strong>
+            <p style="font-size: 1.1rem">
+              <strong>secp256k1 eğrisi için:</strong><br>
+              1 ≤ private_key < n<br>
+              n = FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141<br>
+              <em>Sayı bu aralıkta değilse, yeniden üret!</em>
+            </p>
+          </div>
+
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>🔄 Format Dönüşümü</strong>
+            <p style="font-size: 1.1rem">
+              Binary → Hexadecimal<br>
+              256 bit = 32 byte = 64 hex karakter<br>
+              Örnek: <code>c28fca386c7a227600b2fe50b7cae11ec86d3bf1fbe471be89827e19d72aa1d</code>
+            </p>
+          </div>
         </div>
 
-        <h2>📮 Public Key & Address</h2>
-        <div class="seed-box">
-          <h3>🌍 Public Key</h3>
-          <p style="font-size: 1.1rem">
-            • Private key'den matematiksel olarak türetilir<br>
-            • Eliptik eğri kriptografisi (secp256k1) kullanılır<br>
-            • 512 bit (128 hex karakter) uzunluğunda<br>
-            • Doğrudan kullanılmaz, address'e dönüştürülür
-          </p>
-          
-          <h3>📍 Ethereum Address</h3>
-          <p style="font-size: 1.1rem">
-            • Public key'in Keccak-256 hash'inin son 20 byte'ı<br>
-            • 0x ile başlayan 40 hex karakter<br>
-            • Örnek: <code>0x71C7656EC7ab88b098defB751B7401B5f6d8976F</code><br>
-            • Herkes görebilir, paylaşmak güvenlidir
-          </p>
-        </div>
+        <h2>💻 Kod Örneği</h2>
+        <div class="code-block">// JavaScript ile Private Key üretimi
+const crypto = require('crypto');
 
-        <h2>🔄 Matematiksel İlişki</h2>
-        <div class="path-diagram">
-          <strong>Private Key</strong><br>
-          ↓ (Eliptik Eğri Çarpımı)<br>
-          <strong>Public Key</strong><br>
-          ↓ (Keccak-256 Hash)<br>
-          <strong>Ethereum Address</strong>
-        </div>
+function generatePrivateKey() {
+  let privateKey;
+  const secp256k1_n = BigInt('0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141');
+  
+  do {
+    // 32 byte (256 bit) rastgele sayı üret
+    privateKey = crypto.randomBytes(32);
+    // BigInt'e çevir ve aralık kontrolü yap
+  } while (BigInt('0x' + privateKey.toString('hex')) >= secp256k1_n);
+  
+  return '0x' + privateKey.toString('hex');
+}
+
+console.log(generatePrivateKey());
+// Örnek çıktı: 0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318</div>
 
         <div class="warning-box">
-          <h3>⚠️ Tek Yönlü Sokak!</h3>
+          <h3>⚠️ Güvenlik Uyarıları</h3>
           <p style="font-size: 1.2rem">
-            ✅ Private Key → Public Key → Address (Kolay)<br>
-            ❌ Address → Public Key → Private Key (İMKANSIZ!)<br>
-            <br>
-            Bu yüzden adresinizi paylaşmak güvenli,<br>
-            ama private key'inizi ASLA paylaşmayın!
+            ❌ Math.random() KULLANMAYIN - Tahmin edilebilir!<br>
+            ❌ Zar atmak, kitap sayfası seçmek - Yetersiz entropi!<br>
+            ✅ crypto.randomBytes() - Kriptografik güvenli<br>
+            ✅ Hardware wallet - En güvenli yöntem
           </p>
-        </div>
-
-        <div class="example-box">
-          <h3>🎯 Gerçek Örnek</h3>
-          <div class="code-block">// Private Key (GİZLİ - ASLA PAYLAŞMAYIN!)
-0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-
-// Public Key (Nadiren kullanılır)
-0x04a0265...çok uzun...8d9f3a2
-
-// Ethereum Address (Herkesle paylaşabilirsiniz)
-0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266</div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 3: HD Wallet ve Seed Phrases -->
+    <!-- Slide 3: Public Key Türetimi ve Adres Oluşturma -->
     <section class="slide">
       <div class="container">
-        <h1>🌱 HD Wallets: Bir Tohum, Sonsuz Anahtar</h1>
+        <h1>🔄 Public Key ve Adres Türetimi</h1>
 
-        <h2>🎯 HD Wallet Nedir?</h2>
+        <h2>📏 Eliptik Eğri Kriptografisi</h2>
         
         <div class="formula-box">
-          <h3>🌳 Hierarchical Deterministic Wallet</h3>
-          <p style="font-size: 1.2rem">
-            <strong>Hierarchical:</strong> Hiyerarşik (ağaç yapısında)<br>
-            <strong>Deterministic:</strong> Belirleyici (aynı seed = aynı anahtarlar)<br>
+          <h3>🎯 secp256k1 Eğrisi Üzerinde Çarpım</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Private Key (k):</strong> 256 bit rastgele sayı</p>
+            <p><strong>Generator Point (G):</strong> Eğri üzerinde sabit nokta</p>
+            <p><strong>Public Key (K):</strong> K = k × G</p>
             <br>
-            Tek bir tohum (seed) kelimeden sonsuz sayıda<br>
-            private key ve adres üretebilen cüzdan sistemi
-          </p>
+            <p style="text-align: center; background: #e8f5e9; padding: 10px; border-radius: 5px">
+              <strong>Tek Yönlü!</strong> k'yı bilmeden K'dan k'yı bulamazsınız!
+            </p>
+          </div>
+        </div>
+
+        <h2>₿ Bitcoin: Public Key → Address</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>Private Key → Public Key</strong>
+            <p>secp256k1 üzerinde: K = k × G</p>
+            <p>Sonuç: 04 + X (32 byte) + Y (32 byte)</p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>Public Key Hash</strong>
+            <p>SHA-256(public_key)</p>
+            <p>RIPEMD-160(sha256_result)</p>
+            <p>= 20 byte pubkey hash</p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>Base58Check Encoding</strong>
+            <p>Version byte + pubkey hash + checksum</p>
+            <p>Base58 encode → 1xxxxx formatında adres</p>
+          </div>
+        </div>
+
+        <h2>Ξ Ethereum: Public Key → Address</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>Private Key → Public Key</strong>
+            <p>secp256k1 üzerinde: K = k × G</p>
+            <p>Aynı algoritma, aynı sonuç!</p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>Keccak-256 Hash</strong>
+            <p>Public key'den "04" önekini çıkar</p>
+            <p>Keccak-256(public_key_no_prefix)</p>
+            <p>= 32 byte hash</p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>Son 20 Byte + Checksum</strong>
+            <p>Hash'in son 40 karakteri = adres</p>
+            <p>EIP-55: Büyük/küçük harf checksum</p>
+            <p>0x öneki ekle → 0x71C7656EC...</p>
+          </div>
         </div>
 
         <div class="example-box">
-          <h3>🎉 Modern Ethereum Cüzdanı</h3>
-          <div style="font-size: 1.2rem">
-            <p>🌱 <strong>1 Seed Phrase = Her Şey</strong></p>
-            <p>• Ana Ethereum hesabınız</p>
-            <p>• Tüm ERC-20 tokenlarınız (USDT, USDC, UNI...)</p>
-            <p>• Tüm NFT'leriniz</p>
-            <p>• Farklı chain'lerdeki adresleriniz (Polygon, BSC, Arbitrum)</p>
-            
-            <div class="code-block" style="margin-top: 1rem">// Tek seed'den türetilen adresler:
-Ethereum: 0x71C7656EC7ab88b098defB751B7401B5f6d8976F
-Polygon: Aynı adres! (EVM uyumlu)
-BSC: Aynı adres!
-Arbitrum: Aynı adres!</div>
-          </div>
-        </div>
+          <h3>🔍 Karşılaştırma</h3>
+          <div class="code-block">// Aynı Private Key
+private_key = 0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318
 
-        <h2>🌐 BIP32/BIP39/BIP44: Standartlar</h2>
+// Aynı Public Key (her ikisinde de secp256k1)
+public_key = 0x04a02cdc6...aynı...3f8c9d2
+
+// FARKLI Adresler!
+Bitcoin:  1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX
+Ethereum: 0x96216849c49358B10257cb55b28eA603c874b05E
+
+// Neden farklı?
+// - Bitcoin: SHA256 + RIPEMD160 + Base58Check
+// - Ethereum: Keccak256 + Son 20 byte + EIP55</div>
+        </div>
         
-        <div class="seed-box">
-          <h3>📚 Önemli Standartlar</h3>
-          <div style="font-size: 1.2rem">
-            <p><strong>BIP32:</strong> HD Wallet yapısını tanımlar</p>
-            <p><strong>BIP39:</strong> Seed phrase (mnemonic) formatını belirler</p>
-            <p><strong>BIP44:</strong> Derivation path standartını oluşturur</p>
-          </div>
-          
-          <div style="text-align: center; margin: 2rem 0">
-            <div style="font-size: 3rem">🌱</div>
-            <p style="font-size: 1.2rem">12-24 Kelime (Mnemonic)</p>
-            <div style="font-size: 2rem; margin: 1rem">↓</div>
-            <div style="font-size: 2rem">🔐</div>
-            <p style="font-size: 1.2rem">Master Seed (512 bit)</p>
-            <div style="font-size: 2rem; margin: 1rem">↓</div>
-            <div style="display: flex; justify-content: center; gap: 2rem">
-              <div>
-                <div style="font-size: 2rem">Ξ</div>
-                <p>Ethereum</p>
-              </div>
-              <div>
-                <div style="font-size: 2rem">🔷</div>
-                <p>Layer 2'ler</p>
-              </div>
-              <div>
-                <div style="font-size: 2rem">🌐</div>
-                <p>EVM Chains</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="formula-box">
-          <h3>🔄 Ethereum'da Derivation</h3>
+        <div class="warning-box">
+          <h3>⚠️ Kritik Bilgi</h3>
           <p style="font-size: 1.2rem">
-            <strong>Ana Path:</strong> m/44'/60'/0'/0/0<br>
-            <strong>m:</strong> Master key<br>
-            <strong>44':</strong> BIP44 standardı<br>
-            <strong>60':</strong> Ethereum'un coin type'ı<br>
-            <strong>0':</strong> Hesap numarası<br>
-            <strong>0/0:</strong> Change/Index
+            <strong>Aynı private key = Farklı adresler!</strong><br>
+            Bitcoin ve Ethereum aynı eliptik eğriyi kullanır,<br>
+            ama hash fonksiyonları farklı olduğu için<br>
+            aynı private key'den farklı adresler üretilir!
           </p>
-          <div class="code-block">// Aynı seed, farklı hesaplar:
-m/44'/60'/0'/0/0 → 0x71C7656EC7ab88b098defB751B7401B5f6d8976F
-m/44'/60'/0'/0/1 → 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-m/44'/60'/0'/0/2 → 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1
-
-// Farklı hesap (account):
-m/44'/60'/1'/0/0 → Tamamen farklı bir adres grubu!</div>
         </div>
       </div>
     </section>
@@ -730,315 +747,157 @@ m/44'/60'/1'/0/0 → Tamamen farklı bir adres grubu!</div>
       </div>
     </section>
 
-    <!-- Slide 5: Ethereum Ekosistemi -->
+    <!-- Slide 5: Bitcoin vs Ethereum Hesap Türleri -->
     <section class="slide">
       <div class="container">
-        <h1>🌐 Ethereum Ekosistemi: DeFi, NFT ve Ötesi</h1>
+        <h1>⚔️ Bitcoin vs Ethereum: Hesap Türleri</h1>
 
-        <h2>💰 DeFi (Decentralized Finance)</h2>
-        
-        <div class="ethereum-box">
-          <h3>🏦 Geleneksel Finans vs DeFi</h3>
-          <div style="font-size: 1.2rem">
-            <p><strong>Banka:</strong> Kredi için başvuru, bekleme, onay</p>
-            <p><strong>DeFi:</strong> Teminat koy, anında kredi al (Aave, Compound)</p>
-            <br>
-            <p><strong>Borsa:</strong> Kimlik, hesap açma, işlem saatleri</p>
-            <p><strong>DEX:</strong> Cüzdan bağla, 7/24 işlem (Uniswap, SushiSwap)</p>
-          </div>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>🤝 Lending/Borrowing</h3>
-            <p><strong>Aave:</strong> Faiz kazan/kredi al</p>
-            <p><strong>Compound:</strong> Otomatik faiz</p>
-            <p><strong>MakerDAO:</strong> DAI stablecoin</p>
-          </div>
-          
-          <div class="stat-card">
-            <h3>🔄 DEX (Swap)</h3>
-            <p><strong>Uniswap:</strong> En büyük DEX</p>
-            <p><strong>Curve:</strong> Stablecoin odaklı</p>
-            <p><strong>1inch:</strong> DEX aggregator</p>
-          </div>
-          
-          <div class="stat-card">
-            <h3>🌾 Yield Farming</h3>
-            <p><strong>Yearn:</strong> Otomatik strateji</p>
-            <p><strong>Convex:</strong> CRV boost</p>
-            <p><strong>Beefy:</strong> Multi-chain</p>
-          </div>
-        </div>
-
-        <h2>🎨 NFT (Non-Fungible Tokens)</h2>
-        
-        <div class="seed-box">
-          <h3>🖼️ NFT Platformları</h3>
-          
-          <div class="stats-grid" style="margin-top: 2rem">
-            <div class="stat-card">
-              <h3>🎪 Marketplace</h3>
-              <p><strong>OpenSea:</strong> En büyük pazar</p>
-              <p><strong>Blur:</strong> Pro traders</p>
-              <p><strong>Rarible:</strong> Creator odaklı</p>
-            </div>
-            
-            <div class="stat-card">
-              <h3>🎮 Gaming NFTs</h3>
-              <p><strong>Axie Infinity:</strong> Play-to-earn</p>
-              <p><strong>Gods Unchained:</strong> Kart oyunu</p>
-              <p><strong>The Sandbox:</strong> Metaverse</p>
-            </div>
-            
-            <div class="stat-card">
-              <h3>🎨 Art & PFP</h3>
-              <p><strong>CryptoPunks:</strong> OG koleksiyon</p>
-              <p><strong>BAYC:</strong> Bored Apes</p>
-              <p><strong>Art Blocks:</strong> Generative art</p>
-            </div>
-          </div>
-        </div>
-
-        <h2>🌐 Layer 2 Çözümleri</h2>
-        
-        <div class="formula-box">
-          <h3>⚡ Neden Layer 2?</h3>
-          <p style="font-size: 1.2rem">
-            <strong>Ethereum L1:</strong> Güvenli ama pahalı (~$5-50 işlem ücreti)<br>
-            <strong>Layer 2:</strong> Hızlı ve ucuz (~$0.01-1 işlem ücreti)<br>
-            <br>
-            Aynı Ethereum adresi, tüm L2'lerde çalışır!
-          </p>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>🚀 Arbitrum</h3>
-            <p>Optimistic Rollup</p>
-            <p>En büyük TVL</p>
-            <p>DeFi cenneti</p>
-          </div>
-          
-          <div class="stat-card">
-            <h3>🔷 Polygon</h3>
-            <p>Sidechain/L2 hybrid</p>
-            <p>En popüler</p>
-            <p>Gaming & NFT</p>
-          </div>
-          
-          <div class="stat-card">
-            <h3>⚡ Optimism</h3>
-            <p>Optimistic Rollup</p>
-            <p>OP Stack</p>
-            <p>Coinbase Base</p>
-          </div>
-        </div>
-
-        <div class="warning-box">
-          <h3>👀 Smart Contract Risk</h3>
-          <p style="font-size: 1.2rem">
-            <strong>DeFi/NFT kullanırken dikkat:</strong><br>
-            • Sadece güvenilir protokolleri kullanın<br>
-            • İmza attığınızı anlayın<br>
-            • Scam projelerden uzak durun<br>
-            • DYOR (Do Your Own Research)
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 6: Ethereum Gas ve İşlem Ücretleri -->
-    <section class="slide">
-      <div class="container">
-        <h1>⛽ Gas: Ethereum'ın Yakıt Sistemi</h1>
-
-        <h2>🚗 Gas Nedir?</h2>
-        
-        <div class="formula-box">
-          <h3>⛽ Benzin Benzetmesi</h3>
-          <p style="font-size: 1.2rem; text-align: center">
-            Araba = Ethereum Network<br>
-            Benzin = Gas<br>
-            Yolculuk = İşlem (Transaction)<br>
-            <br>
-            <strong>Uzun yol = Daha fazla gas!</strong>
-          </p>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>💸 Gas Price</h3>
-            <p style="font-size: 1.2rem">
-              <strong>Gwei cinsinden ödenir</strong><br>
-              1 Gwei = 0.000000001 ETH<br>
-              <br>
-              <strong>Örnek fiyatlar:</strong><br>
-              • Düşük: 20 Gwei<br>
-              • Orta: 50 Gwei<br>
-              • Yüksek: 100+ Gwei
-            </p>
-          </div>
-
-          <div class="stat-card">
-            <h3>⚡ Gas Limit</h3>
-            <p style="font-size: 1.2rem">
-              <strong>Maksimum gas miktarı</strong><br>
-              <br>
-              <strong>Tipik limitler:</strong><br>
-              • ETH transfer: 21,000<br>
-              • ERC-20 transfer: 65,000<br>
-              • Uniswap swap: 150,000<br>
-              • NFT mint: 100,000+
-            </p>
-          </div>
-
-          <div class="stat-card">
-            <h3>📊 Gas Formülü</h3>
-            <p style="font-size: 1.2rem">
-              <strong>Toplam Ücret =</strong><br>
-              Gas Limit × Gas Price<br>
-              <br>
-              <strong>Örnek:</strong><br>
-              21,000 × 50 Gwei<br>
-              = 0.00105 ETH<br>
-              = ~$3.5 (@$3300/ETH)
-            </p>
-          </div>
-        </div>
-
-        <div class="example-box">
-          <h3>🔥 EIP-1559: Modern Gas Sistemi</h3>
-          <div style="font-size: 1.2rem">
-            <p><strong>Base Fee:</strong> Otomatik belirlenen taban ücret</p>
-            <p><strong>Priority Fee (Tip):</strong> Madenciye verilen bahşiş</p>
-            <p><strong>Max Fee:</strong> Ödemeye razı olduğunuz maksimum</p>
-            <br>
-            <p style="background: #e8f5e9; padding: 10px; border-radius: 5px">
-              <strong>💡 İpucu:</strong> Base fee yanıyor! (Burn)<br>
-              Bu ETH'yi deflasyonist yapıyor.
-            </p>
-          </div>
-        </div>
-
-        <h2>💰 Gas Tasarruf Taktikleri</h2>
-        
-        <div class="warning-box">
-          <h3>💡 Gas'tan Nasıl Tasarruf Edilir?</h3>
-          <div style="font-size: 1.2rem">
-            <p><strong>1. Zamanlama:</strong> Hafta sonu ve gece daha ucuz</p>
-            <p><strong>2. Gas Tracker:</strong> Etherscan Gas Tracker kontrol et</p>
-            <p><strong>3. Layer 2:</strong> Arbitrum, Optimism kullan</p>
-            <p><strong>4. Batch İşlem:</strong> Birden fazla işlemi birleştir</p>
-            <p><strong>5. Limit Belirle:</strong> Yüksek gas'ta beklemeye al</p>
-          </div>
-        </div>
-        
-        <div class="formula-box">
-          <h3>📈 Gas Fiyat Seviyeleri</h3>
-          <div style="font-size: 1.2rem">
-            <p>🐌 <strong>Yavaş (>10 dk):</strong> 20-30 Gwei</p>
-            <p>🐇 <strong>Standart (~3 dk):</strong> 30-50 Gwei</p>
-            <p>🌎 <strong>Hızlı (~30 sn):</strong> 50-100 Gwei</p>
-            <p>🚀 <strong>Anında:</strong> 100+ Gwei</p>
-            <br>
-            <p style="text-align: center">
-              <strong>Acele etmeyin, gas düşünce işlem yapın!</strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 7: Ethereum Account Model ve EVM -->
-    <section class="slide">
-      <div class="container">
-        <h1>🦾 Ethereum Account Model ve EVM</h1>
-
-        <h2>📊 Account Types</h2>
+        <h2>🤔 Temel Fark: Hesap Modelleri</h2>
         
         <div class="comparison-grid">
-          <div class="stat-card">
-            <h3>👤 EOA (Externally Owned Account)</h3>
-            <p style="font-size: 1.1rem">
-              <strong>Normal kullanıcı hesabı</strong><br>
-              • Private key ile kontrol edilir<br>
-              • ETH ve token tutabilir<br>
-              • Transaction başlatabilir<br>
-              • Kod içermez<br>
-              <br>
-              <strong>Örnek:</strong> MetaMask adresiniz
-            </p>
+          <div class="bitcoin-box">
+            <h3>₿ Bitcoin</h3>
+            <div style="font-size: 1.1rem">
+              <p><strong>TEK TÜR HESAP</strong></p>
+              <p>• Sadece EOA (kullanıcı hesabı)</p>
+              <p>• Private key = Kontrol</p>
+              <p>• UTXO modeli</p>
+              <p>• Script dili sınırlı</p>
+              <p>• Sadece değer transferi</p>
+            </div>
           </div>
-
-          <div class="stat-card">
-            <h3>📦 Contract Account</h3>
-            <p style="font-size: 1.1rem">
-              <strong>Smart contract adresi</strong><br>
-              • Kod içerir ve çalıştırır<br>
-              • Private key yok<br>
-              • Kod logic'i kontrol eder<br>
-              • ETH ve token tutabilir<br>
-              <br>
-              <strong>Örnek:</strong> Uniswap, USDT contract
-            </p>
+          
+          <div class="ethereum-box">
+            <h3>Ξ Ethereum</h3>
+            <div style="font-size: 1.1rem">
+              <p><strong>2 TÜR HESAP</strong></p>
+              <p>• EOA (Externally Owned)</p>
+              <p>• Contract Account</p>
+              <p>• Account modeli</p>
+              <p>• Turing-complete EVM</p>
+              <p>• Smart contracts</p>
+            </div>
           </div>
         </div>
 
-        <h2>🏭 EVM (Ethereum Virtual Machine)</h2>
+        <h2>👤 EOA (Externally Owned Account)</h2>
         
-        <div class="ethereum-box">
-          <h3>📦 EVM Nedir?</h3>
-          <p style="font-size: 1.2rem">
-            Ethereum'ın "bilgisayarı" - Smart contract'ları çalıştırır<br>
-            <br>
-            <strong>EVM Uyumlu Chainler:</strong><br>
-            • BSC (Binance Smart Chain)<br>
-            • Polygon (Matic)<br>
-            • Avalanche C-Chain<br>
-            • Fantom Opera<br>
-            <br>
-            <em>Aynı adres, aynı private key tüm EVM chain'lerde çalışır!</em>
-          </p>
+        <div class="formula-box">
+          <h3>Her iki blockchain'de de var!</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Ortak Özellikler:</strong></p>
+            <p>• Private key ile kontrol edilir</p>
+            <p>• Transaction başlatabilir</p>
+            <p>• Dijital imza atar</p>
+            <p>• Balance tutar</p>
+          </div>
         </div>
-        
-        <h2>🎁 Token Standartları</h2>
-        
+
         <div class="stats-grid">
           <div class="stat-card">
-            <h3>🪙 ERC-20</h3>
-            <p><strong>Fungible Token</strong></p>
-            <p>Örnekler:</p>
-            <p>• USDT, USDC (Stablecoin)</p>
-            <p>• UNI, LINK, AAVE</p>
-            <p>• SHIB, PEPE (Memecoin)</p>
+            <h3>₿ Bitcoin EOA</h3>
+            <p>• Sadece BTC tutar</p>
+            <p>• P2PKH/P2SH scriptleri</p>
+            <p>• Multi-sig mümkün</p>
+            <p>• Her işlem yeni adres</p>
           </div>
           
           <div class="stat-card">
-            <h3>🎨 ERC-721</h3>
-            <p><strong>NFT Standard</strong></p>
-            <p>Örnekler:</p>
-            <p>• CryptoPunks</p>
-            <p>• Bored Apes</p>
-            <p>• ENS Domains</p>
+            <h3>Ξ Ethereum EOA</h3>
+            <p>• ETH + ERC tokenlar</p>
+            <p>• Nonce sayacı</p>
+            <p>• Gas ödeme zorunlu</p>
+            <p>• Tek adres kullanımı</p>
+          </div>
+        </div>
+
+        <h2>📦 Contract Account (Sadece Ethereum!)</h2>
+        
+        <div class="seed-box">
+          <h3>🤖 Smart Contract Hesabı</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Bitcoin'de YOK!</strong> ❌</p>
+            <p><strong>Ethereum'da VAR!</strong> ✅</p>
+            <br>
+            <p><strong>Özellikleri:</strong></p>
+            <p>• Private key YOK - Kod kontrol eder</p>
+            <p>• Deploy edilince adres alır</p>
+            <p>• ETH ve token tutabilir</p>
+            <p>• Kendi başına transaction başlatamaz</p>
+            <p>• EOA veya başka contract tetikler</p>
+          </div>
+        </div>
+        
+        <div class="example-box">
+          <h3>📝 Adres Format Farkları</h3>
+          <div class="code-block">// Bitcoin Adresleri
+1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa  // Legacy (P2PKH)
+3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy  // SegWit (P2SH)
+bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4  // Native SegWit
+
+// Ethereum Adresleri (EOA ve Contract aynı format!)
+0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb  // EOA
+0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48  // USDC Contract
+
+// Nasıl ayırt edilir?
+// Ethereum'da sadece blockchain'e bakarak anlaşılır:
+// - Code var mı? Contract
+// - Code yok mu? EOA</div>
+        </div>
+
+        <h2>🔐 Kullanılan Algoritmalar</h2>
+        
+        <div class="formula-box">
+          <h3>📏 secp256k1 Eliptik Eğri</h3>
+          <p style="font-size: 1.2rem">
+            <strong>Hem Bitcoin hem Ethereum aynı eğriyi kullanır!</strong><br>
+            <br>
+            y² = x³ + 7 (mod p)<br>
+            p = 2²⁵⁶ - 2³² - 977<br>
+            <br>
+            Private key × G (generator point) = Public key
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>₿ Bitcoin Algoritması</h3>
+            <p><strong>Hash:</strong> SHA-256 + RIPEMD-160</p>
+            <p><strong>İmza:</strong> ECDSA</p>
+            <p><strong>Checksum:</strong> Base58Check</p>
+            <p><strong>Adres:</strong> 1, 3, bc1 önekleri</p>
           </div>
           
           <div class="stat-card">
-            <h3>🎮 ERC-1155</h3>
-            <p><strong>Multi-Token</strong></p>
-            <p>Kullanım:</p>
-            <p>• Gaming items</p>
-            <p>• Batch transfers</p>
-            <p>• Hem NFT hem token</p>
+            <h3>Ξ Ethereum Algoritması</h3>
+            <p><strong>Hash:</strong> Keccak-256</p>
+            <p><strong>İmza:</strong> ECDSA</p>
+            <p><strong>Checksum:</strong> EIP-55 (büyük/küçük harf)</p>
+            <p><strong>Adres:</strong> 0x öneki</p>
           </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠️ Neden Aynı Eğri?</h3>
+          <p style="font-size: 1.2rem">
+            <strong>secp256k1 avantajları:</strong><br>
+            • Hızlı hesaplama<br>
+            • Kanıtlanmış güvenlik<br>
+            • Patent yok, açık standart<br>
+            • Backdoor riski düşük<br>
+            <br>
+            <em>NOT: secp256r1 (P-256) NSA tarafından önerildiği için tercih edilmedi!</em>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Slide 8: Ethereum Transaction Lifecycle -->
+
+
+    <!-- Slide 6: Wallet Türleri -->
     <section class="slide">
       <div class="container">
-        <h1>🔷 Ethereum Adresi Nasıl Doğar?</h1>
+        <h1>💼 Cüzdan Türleri</h1>
 
         <h2>🎭 5 Adımda Ethereum Adresiniz</h2>
         
