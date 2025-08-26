@@ -467,12 +467,10 @@
             <p>= 10 farklı kağıda yazman gerek</p>
             <p>= 1 tanesini kaybettin mi? O para GİTTİ! 💸</p>
             
-            <div class="code-block" style="margin-top: 1rem">
-              wallet.dat dosyası:
+            <div class="code-block" style="margin-top: 1rem">wallet.dat dosyası:
               - Adres 1 → Key 1 (3 BTC) ✅
               - Adres 2 → Key 2 (5 BTC) ✅
-              - Adres 3 → Key 3 (2 BTC) ❌ Kayıp = 2 BTC yok!
-            </div>
+              - Adres 3 → Key 3 (2 BTC) ❌ Kayıp = 2 BTC yok!</div>
           </div>
         </div>
 
@@ -511,15 +509,13 @@
             <strong>Eskiden:</strong> Her çocuğun için ayrı anahtar<br>
             <strong>Şimdi:</strong> Ana anahtar + çocuk numarası = Çocuğun anahtarı!
           </p>
-          <div class="code-block">
-            Master Seed: "gizli tohum kelimelerim"
+          <div class="code-block">Master Seed: "gizli tohum kelimelerim"
             
             Çocuk 1 = Master + 1 → Adres: 1ABC...
             Çocuk 2 = Master + 2 → Adres: 1DEF...
             Çocuk 1000 = Master + 1000 → Adres: 1XYZ...
             
-            ✅ Sadece master'ı yedekle, tüm çocuklar güvende!
-          </div>
+            ✅ Sadece master'ı yedekle, tüm çocuklar güvende!</div>
         </div>
       </div>
     </section>
@@ -533,18 +529,14 @@
         <div class="comparison-grid">
           <div class="security-box">
             <h3>😵 İmkansız</h3>
-            <div class="code-block" style="font-size: 0.9rem">
-              8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c7d6e5f4a3b2c1d
-            </div>
+            <div class="code-block" style="font-size: 0.9rem">8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c7d6e5f4a3b2c1d</div>
             <p>64 rastgele karakter!</p>
             <p>Bir harf yanlış = Para YOK!</p>
           </div>
 
           <div class="seed-box">
             <h3>😊 Kolay</h3>
-            <div class="code-block" style="font-size: 1.1rem">
-              cat dog apple orange banana
-            </div>
+            <div class="code-block" style="font-size: 1.1rem">cat dog apple orange banana</div>
             <p>5 basit kelime!</p>
             <p>Hikaye oluşturabilirsin!</p>
           </div>
@@ -808,16 +800,21 @@
           <div class="bitcoin-box">
             <h2 style="color: white">₿ Bitcoin</h2>
             <p><strong>UTXO Model</strong></p>
-            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-              // Birden fazla "para"<br>
-              [<br>
-                {address: "1A1z...", amount: 0.5},<br>
-                {address: "1BvB...", amount: 0.3},<br>
-                {address: "1CjP...", amount: 0.2}<br>
-              ]<br>
-              // Her işlem yeni adres<br>
-              // Change adresleri var
-            </div>
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">// Birden fazla "para"
+
+              [
+
+                {address: "1A1z...", amount: 0.5},
+
+                {address: "1BvB...", amount: 0.3},
+
+                {address: "1CjP...", amount: 0.2}
+
+              ]
+
+              // Her işlem yeni adres
+
+              // Change adresleri var</div>
             <p>✓ Privacy daha iyi</p>
             <p>✓ Her işlem yeni adres</p>
             <p>✗ Karmaşık yönetim</p>
@@ -826,17 +823,23 @@
           <div class="ethereum-box">
             <h2 style="color: white">Ξ Ethereum</h2>
             <p><strong>Account Model</strong></p>
-            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">
-              // Tek hesap<br>
-              {<br>
-                address: "0x71C765...",<br>
-                balance: 5.23 ETH,<br>
-                tokens: [USDT, USDC, UNI],<br>
-                nonce: 42  // İşlem sayacı<br>
-              }<br>
-              // Tek adres yeterli<br>
-              // Tüm tokenlar burada
-            </div>
+            <div class="code-block" style="background: rgba(0, 0, 0, 0.3); color: white">// Tek hesap
+
+              {
+
+                address: "0x71C765...",
+
+                balance: 5.23 ETH,
+
+                tokens: [USDT, USDC, UNI],
+
+                nonce: 42  // İşlem sayacı
+
+              }
+
+              // Tek adres yeterli
+
+              // Tüm tokenlar burada</div>
             <p>✓ Basit yönetim</p>
             <p>✓ Tüm tokenlar tek yerde</p>
             <p>✗ Privacy düşük</p>

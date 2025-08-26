@@ -81,6 +81,9 @@
         font-family: "Courier New", monospace;
         font-size: 14px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      
+        white-space: pre-line;
+        line-height: 1.6;
       }
 
       .json-code {
@@ -260,10 +263,14 @@
 
         <p>Bitcoin'de de aynı şekilde çalışır:</p>
 
-        <div class="code-block">
-          Başlangıç: Alice'in 1 BTC'si var (UTXO) İşlem: Alice, Bob'a 0.3 BTC gönderiyor Sonuç: - Alice'in eski 1 BTC'si
-          harcanır (artık UTXO değil) - Bob'a 0.3 BTC gider (yeni UTXO) - Alice'e 0.7 BTC para üstü döner (yeni UTXO)
-        </div>
+        <div class="code-block">Başlangıç: Alice'in 1 BTC'si var (UTXO)
+          
+          İşlem: Alice, Bob'a 0.3 BTC gönderiyor
+          
+          Sonuç:
+          - Alice'in eski 1 BTC'si harcanır (artık UTXO değil)
+          - Bob'a 0.3 BTC gider (yeni UTXO)
+          - Alice'e 0.7 BTC para üstü döner (yeni UTXO)</div>
 
         <h3>📊 UTXO Modelin Özellikleri</h3>
 
@@ -281,41 +288,73 @@
 
         <p>Bitcoin'de her işlem (transaction) şu yapıya sahiptir:</p>
 
-        <div class="code-block json-code">
-          { "txid": "a1b2c3...", "version": 1, "inputs": [ { "previous_output": { "txid": "xyz789...", "vout": 0 },
-          "scriptSig": "304502210...", "sequence": 4294967295 } ], "outputs": [ { "value": 30000000, "scriptPubKey":
-          "OP_DUP OP_HASH160 ab68025513..." }, { "value": 70000000, "scriptPubKey": "OP_DUP OP_HASH160 cd89135624..." }
-          ] }
-        </div>
+        <div class="code-block json-code">{
+          "txid": "a1b2c3...",
+          "version": 1,
+          "inputs": [
+            {
+              "previous_output": {
+                "txid": "xyz789...",
+                "vout": 0
+              },
+              "scriptSig": "304502210...",
+              "sequence": 4294967295
+            }
+          ],
+          "outputs": [
+            {
+              "value": 30000000,
+              "scriptPubKey": "OP_DUP OP_HASH160 ab68025513..."
+            },
+            {
+              "value": 70000000,
+              "scriptPubKey": "OP_DUP OP_HASH160 cd89135624..."
+            }
+          ]
+        }</div>
 
-        <div>
-          TX1: Ahmet 10 BTC alıyor Output: txid_1:0 → 10 BTC (Ahmet) <br />
-          ↓<br />
+        <div class="code-block">TX1: Ahmet 10 BTC alıyor
+          Output: txid_1:0 → 10 BTC (Ahmet)
+          
+          ↓
+          
           TX2: Ahmet → 3 BTC Mehmet, 7 BTC kendine
-          <br />
           Input: txid_1:0 (harcanıyor)
-          <br />
-          Output: txid_2:0 → 3 BTC (Mehmet) ✓ Yeni UTXO txid_2:1 → 7 BTC (Ahmet) ✓ Yeni UTXO <br />
-          ↓ <br />
-          TX3: Mehmet → 1 BTC Ali Input: txid_2:0 (harcanıyor) Output: txid_3:0 → 1 BTC (Ali) ✓ Yeni UTXO txid_3:1 → 2
-          BTC (Mehmet) ✓ Yeni UTXO
-        </div>
+          Output: 
+            txid_2:0 → 3 BTC (Mehmet) ✓ Yeni UTXO
+            txid_2:1 → 7 BTC (Ahmet) ✓ Yeni UTXO
+          
+          ↓
+          
+          TX3: Mehmet → 1 BTC Ali
+          Input: txid_2:0 (harcanıyor)
+          Output:
+            txid_3:0 → 1 BTC (Ali) ✓ Yeni UTXO
+            txid_3:1 → 2 BTC (Mehmet) ✓ Yeni UTXO</div>
 
         <h4>Transaction Input (Giriş):</h4>
 
-        <div class="code-block cpp-code">
-          struct TxInput { // Hangi önceki işlemden geldiği string previous_txid; // "xyz789..." int vout; // 0 (önceki
-          işlemin kaçıncı output'u) // Bu UTXO'yu harcama yetkisi (imza) string scriptSig; // Dijital imza + public key
-          // Sıra numarası (genelde maksimum değer) uint32_t sequence; }
-        </div>
+        <div class="code-block cpp-code">struct TxInput {
+            // Hangi önceki işlemden geldiği
+            string previous_txid; // "xyz789..."
+            int vout; // 0 (önceki işlemin kaçıncı output'u)
+            
+            // Bu UTXO'yu harcama yetkisi (imza)
+            string scriptSig; // Dijital imza + public key
+            
+            // Sıra numarası (genelde maksimum değer)
+            uint32_t sequence;
+          }</div>
 
         <h4>Transaction Output (Çıkış):</h4>
 
-        <div class="code-block cpp-code">
-          struct TxOutput { // Miktar (satoshi cinsinden, 1 BTC = 100,000,000 satoshi) int64_t value; // 30000000 = 0.3
-          BTC // Bu parayı kim harcayabilir (kilit) string scriptPubKey; // "OP_DUP OP_HASH160 adres OP_EQUALVERIFY
-          OP_CHECKSIG" }
-        </div>
+        <div class="code-block cpp-code">struct TxOutput {
+            // Miktar (satoshi cinsinden, 1 BTC = 100,000,000 satoshi)
+            int64_t value; // 30000000 = 0.3 BTC
+            
+            // Bu parayı kim harcayabilir (kilit)
+            string scriptPubKey; // "OP_DUP OP_HASH160 adres OP_EQUALVERIFY OP_CHECKSIG"
+          }</div>
 
         <h3>🔄 Gerçek Hayat Örneği</h3>
 
@@ -336,30 +375,26 @@
         <div class="warning-box">
           <h3>⚠️ UTXO'da Para Üstü Nereden Geliyor?</h3>
           <p><strong>YOKTAN GELMİYOR!</strong> Bitcoin'in altın kuralı:</p>
-          <div class="code-block">
-            INPUT TOPLAMI = OUTPUT TOPLAMI + FEE<br />
-            <br />
-            Alice'in örneğinde:<br />
-            INPUT: 100,000,000 satoshi (1 BTC)<br />
-            OUTPUT:<br />
-            - Bob'a: 30,000,000 satoshi (0.3 BTC)<br />
-            - Alice'e: 69,990,000 satoshi (0.6999 BTC) ← Para üstü<br />
-            - Fee: 10,000 satoshi (0.0001 BTC) ← Madenciye<br />
-            TOPLAM: 100,000,000 satoshi ✅ Eşit!
-          </div>
+          <div class="code-block">INPUT TOPLAMI = OUTPUT TOPLAMI + FEE
+            
+            Alice'in örneğinde:
+            INPUT: 100,000,000 satoshi (1 BTC)
+            OUTPUT:
+            - Bob'a: 30,000,000 satoshi (0.3 BTC)
+            - Alice'e: 69,990,000 satoshi (0.6999 BTC) ← Para üstü
+            - Fee: 10,000 satoshi (0.0001 BTC) ← Madenciye
+            TOPLAM: 100,000,000 satoshi ✅ Eşit!</div>
         </div>
 
         <div class="warning-box">
           <h3>⚡ ÖNEMLİ: Alice'in ESKİ BTC'si YOK OLDU!</h3>
-          <div class="code-block">
-            ÖNCE:<br />
-            Alice'in UTXO'su: [txid: abc123, vout: 0] → 1 BTC ✅<br />
-            <br />
-            İşlem Sonrası:<br />
-            Alice'in ESKİ UTXO'su: [txid: abc123, vout: 0] → ❌ HARCANMIŞ (artık yok!)<br />
-            Alice'in YENİ UTXO'su: [txid: def456, vout: 1] → 0.6999 BTC ✅<br />
-            Bob'un YENİ UTXO'su: [txid: def456, vout: 0] → 0.3 BTC ✅
-          </div>
+          <div class="code-block">ÖNCE:
+            Alice'in UTXO'su: [txid: abc123, vout: 0] → 1 BTC ✅
+            
+            İşlem Sonrası:
+            Alice'in ESKİ UTXO'su: [txid: abc123, vout: 0] → ❌ HARCANMIŞ (artık yok!)
+            Alice'in YENİ UTXO'su: [txid: def456, vout: 1] → 0.6999 BTC ✅
+            Bob'un YENİ UTXO'su: [txid: def456, vout: 0] → 0.3 BTC ✅</div>
           <p><strong>Alice'in 1 BTC'si "değişmedi" - tamamen SİLİNDİ ve yerine YENİ 0.6999 BTC oluşturuldu!</strong></p>
         </div>
 
@@ -369,83 +404,77 @@
 
         <div class="warning-box">
           <p><strong>En yaygın kayıp nedeni:</strong> Cüzdan para üstünü yanlış adrese gönderiyor!</p>
-          <div class="code-block cpp-code">
-            // ❌ YANLIŞ - Para üstü kaybolur<br />
-            Transaction tx = {<br />
-            inputs: [<br />
-            {previous_txid: "abc123", vout: 0} // Alice'in 1 BTC'si<br />
-            ],<br />
-            outputs: [<br />
-            {value: 30000000, address: "bob_address"} // Bob'a 0.3 BTC<br />
-            // ❌ Para üstü için output YOK! 0.7 BTC kaybolur!<br />
-            ]<br />
-            }<br />
-            <br />
-            // İşlem geçerli ama 0.7 BTC madencilere FEE olarak gidiyor!
-          </div>
+          <div class="code-block cpp-code">// ❌ YANLIŞ - Para üstü kaybolur
+            Transaction tx = {
+              inputs: [
+                {previous_txid: "abc123", vout: 0} // Alice'in 1 BTC'si
+              ],
+              outputs: [
+                {value: 30000000, address: "bob_address"} // Bob'a 0.3 BTC
+                // ❌ Para üstü için output YOK! 0.7 BTC kaybolur!
+              ]
+            }
+            
+            // İşlem geçerli ama 0.7 BTC madencilere FEE olarak gidiyor!</div>
         </div>
 
         <h3>2. Manuel Transaction Oluşturma Hataları</h3>
 
-        <div class="code-block cpp-code">
-          // Acemi geliştiricinin yaptığı hata<br />
-          function createTransaction(toAddress, amount) {<br />
-          let tx = {<br />
-          inputs: [],<br />
-          outputs: []<br />
-          };<br />
-          <br />
-          // Tüm UTXO'ları topla<br />
-          let totalInput = 0;<br />
-          for (let utxo of myUTXOs) {<br />
-          tx.inputs.push(utxo);<br />
-          totalInput += utxo.value;<br />
-          if (totalInput >= amount) break;<br />
-          }<br />
-          <br />
-          // Sadece gönderilecek miktarı ekle<br />
-          tx.outputs.push({<br />
-          value: amount,<br />
-          address: toAddress<br />
-          });<br />
-          <br />
-          // ❌ PARA ÜSTÜNÜ UNUTTU!<br />
-          // Kalan para madencilere fee olarak gidiyor!<br />
-          <br />
-          return tx;<br />
-          }<br />
-          <br />
-          // 1 BTC ile 0.1 BTC göndermeye çalışırken 0.9 BTC kaybolur!
-        </div>
+        <div class="code-block cpp-code">// Acemi geliştiricinin yaptığı hata
+          function createTransaction(toAddress, amount) {
+            let tx = {
+              inputs: [],
+              outputs: []
+            };
+            
+            // Tüm UTXO'ları topla
+            let totalInput = 0;
+            for (let utxo of myUTXOs) {
+              tx.inputs.push(utxo);
+              totalInput += utxo.value;
+              if (totalInput >= amount) break;
+            }
+            
+            // Sadece gönderilecek miktarı ekle
+            tx.outputs.push({
+              value: amount,
+              address: toAddress
+            });
+            
+            // ❌ PARA ÜSTÜNÜ UNUTTU!
+            // Kalan para madencilere fee olarak gidiyor!
+            
+            return tx;
+          }
+          
+          // 1 BTC ile 0.1 BTC göndermeye çalışırken 0.9 BTC kaybolur!</div>
 
         <h2>✅ Güvenli Bitcoin Transfer Rehberi</h2>
 
         <div class="success-box">
           <h3>Her Zaman Change Output Ekleyin</h3>
-          <div class="code-block cpp-code">
-            // ✅ DOĞRU yöntem<br />
-            function createSafeTransaction(toAddress, amount) {<br />
-            let totalInput = 0;<br />
-            let inputs = [];<br />
-            <br />
-            // Gerekli UTXO'ları topla<br />
-            for (let utxo of myUTXOs) {<br />
-            inputs.push(utxo);<br />
-            totalInput += utxo.value;<br />
-            if (totalInput >= amount + estimatedFee) break;<br />
-            }<br />
-            <br />
-            let fee = calculateFee(inputs.length, 2); // 2 output için fee<br />
-            let changeAmount = totalInput - amount - fee;<br />
-            <br />
-            let outputs = [<br />
-            {value: amount, address: toAddress}, // Alıcı<br />
-            {value: changeAmount, address: getMyChangeAddress()} // Para üstü<br />
-            ];<br />
-            <br />
-            return {inputs, outputs};<br />
-            }
-          </div>
+          <div class="code-block cpp-code">// ✅ DOĞRU yöntem
+            function createSafeTransaction(toAddress, amount) {
+              let totalInput = 0;
+              let inputs = [];
+              
+              // Gerekli UTXO'ları topla
+              for (let utxo of myUTXOs) {
+                inputs.push(utxo);
+                totalInput += utxo.value;
+                if (totalInput >= amount + estimatedFee) break;
+              }
+              
+              let fee = calculateFee(inputs.length, 2); // 2 output için fee
+              let changeAmount = totalInput - amount - fee;
+              
+              let outputs = [
+                {value: amount, address: toAddress}, // Alıcı
+                {value: changeAmount, address: getMyChangeAddress()} // Para üstü
+              ];
+              
+              return {inputs, outputs};
+            }</div>
         </div>
 
         <h2>Ethereum Hesap Modeli Nedir?</h2>
@@ -459,15 +488,13 @@
 
         <div class="example-box">
           <p>Banka hesabınız gibi düşünün:</p>
-          <div class="code-block">
-            Alice'in hesabı: 5 ETH<br />
-            Bob'un hesabı: 2 ETH<br />
-            <br />
-            Alice, Bob'a 1 ETH gönderiyor:<br />
-            <br />
-            Alice'in yeni bakiyesi: 4 ETH (5 - 1)<br />
-            Bob'un yeni bakiyesi: 3 ETH (2 + 1)
-          </div>
+          <div class="code-block">Alice'in hesabı: 5 ETH
+            Bob'un hesabı: 2 ETH
+            
+            Alice, Bob'a 1 ETH gönderiyor:
+            
+            Alice'in yeni bakiyesi: 4 ETH (5 - 1)
+            Bob'un yeni bakiyesi: 3 ETH (2 + 1)</div>
         </div>
 
         <h3>📊 Hesap Modelinin Özellikleri</h3>
@@ -523,17 +550,39 @@
 
         <p>İşte Ethereum'da basit bir token sözleşmesi örneği:</p>
 
-        <div class="code-block solidity-code">
-          // SPDX-License-Identifier: MIT pragma solidity ^0.8.0; contract SimpleToken { // Hesap modeli: Her adresin
-          bakiyesi mapping'de saklanır mapping(address => uint256) public bakiyeler; string public tokenAdi = "Örnek
-          Token"; string public sembol = "OTK"; uint256 public toplamArz = 1000000; // Constructor: İlk bakiyeleri
-          ayarlar constructor() { bakiyeler[msg.sender] = toplamArz; } // Transfer fonksiyonu - Hesap modelinin
-          basitliği function transfer(address alici, uint256 miktar) public returns (bool) { // Gönderenin yeterli
-          bakiyesi var mı? require(bakiyeler[msg.sender] >= miktar, "Yetersiz bakiye"); // Hesap modelinde basit
-          aritmetik bakiyeler[msg.sender] -= miktar; // Gönderenden düş bakiyeler[alici] += miktar; // Alıcıya ekle
-          return true; } // Bakiye sorgulama function bakiyeGetir(address hesap) public view returns (uint256) { return
-          bakiyeler[hesap]; } }
-        </div>
+        <div class="code-block solidity-code">// SPDX-License-Identifier: MIT
+          pragma solidity ^0.8.0;
+          
+          contract SimpleToken {
+            // Hesap modeli: Her adresin bakiyesi mapping'de saklanır
+            mapping(address => uint256) public bakiyeler;
+            
+            string public tokenAdi = "Örnek Token";
+            string public sembol = "OTK";
+            uint256 public toplamArz = 1000000;
+            
+            // Constructor: İlk bakiyeleri ayarlar
+            constructor() {
+              bakiyeler[msg.sender] = toplamArz;
+            }
+            
+            // Transfer fonksiyonu - Hesap modelinin basitliği
+            function transfer(address alici, uint256 miktar) public returns (bool) {
+              // Gönderenin yeterli bakiyesi var mı?
+              require(bakiyeler[msg.sender] >= miktar, "Yetersiz bakiye");
+              
+              // Hesap modelinde basit aritmetik
+              bakiyeler[msg.sender] -= miktar;  // Gönderenden düş
+              bakiyeler[alici] += miktar;        // Alıcıya ekle
+              
+              return true;
+            }
+            
+            // Bakiye sorgulama
+            function bakiyeGetir(address hesap) public view returns (uint256) {
+              return bakiyeler[hesap];
+            }
+          }</div>
 
         <h2>🤔 Neden Bitcoin Basit Account Model Yerine UTXO'yu Seçti?</h2>
 
@@ -554,8 +603,10 @@
             <h4>Bitcoin UTXO</h4>
             <p>Her işlem farklı adres kullanıyor, takip etmek zor</p>
             <div style="background: rgba(255, 255, 255, 0.2); padding: 10px; border-radius: 5px; margin-top: 10px">
-              İşlem 1: 1A2B3C... → 4D5E6F...<br />
-              İşlem 2: 7G8H9I... → 1J2K3L...<br />
+              İşlem 1: 1A2B3C... → 4D5E6F...
+              <br />
+              İşlem 2: 7G8H9I... → 1J2K3L...
+              <br />
               İşlem 3: 4M5N6O... → 7P8Q9R...
             </div>
           </div>
@@ -564,8 +615,10 @@
             <h4>Ethereum Hesap</h4>
             <p>Aynı adres, tüm geçmiş görünür</p>
             <div style="background: rgba(255, 255, 255, 0.2); padding: 10px; border-radius: 5px; margin-top: 10px">
-              İşlem 1: 0x123ABC... → 0x456DEF...<br />
-              İşlem 2: 0x123ABC... → 0x789GHI...<br />
+              İşlem 1: 0x123ABC... → 0x456DEF...
+              <br />
+              İşlem 2: 0x123ABC... → 0x789GHI...
+              <br />
               İşlem 3: 0x123ABC... → 0x012JKL...
             </div>
           </div>
