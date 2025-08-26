@@ -534,215 +534,320 @@ console.log(generatePrivateKey());
       </div>
     </section>
 
-    <!-- Slide 3: Public Key Türetimi ve Adres Oluşturma -->
+    <!-- Slide 3: secp256k1 Eliptik Eğrisi Detaylı -->
     <section class="slide">
       <div class="container">
-        <h1>🔄 Public Key ve Adres Türetimi</h1>
+        <h1>📏 secp256k1 Eliptik Eğrisi: Detaylı Anlatım</h1>
 
-        <h2>📏 Eliptik Eğri Kriptografisi</h2>
+        <h2>📢 Eğri Denklemi</h2>
         
-        <div class="formula-box">
-          <h3>🎯 secp256k1 Eğrisi Üzerinde Çarpım</h3>
-          <div style="font-size: 1.2rem">
-            <p><strong>Private Key (k):</strong> 256 bit rastgele sayı</p>
-            <p><strong>Generator Point (G):</strong> Eğri üzerinde sabit nokta</p>
-            <p><strong>Public Key (K):</strong> K = k × G</p>
-            <br>
-            <p style="text-align: center; background: #e8f5e9; padding: 10px; border-radius: 5px">
-              <strong>Tek Yönlü!</strong> k'yı bilmeden K'dan k'yı bulamazsınız!
+        <div class="formula-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white">
+          <h3 style="color: white; font-size: 2rem; text-align: center">y² = x³ + 7 (mod p)</h3>
+          <div style="font-size: 1.2rem; margin-top: 1rem">
+            <p><strong>p (prime):</strong> 2²⁵⁶ - 2³² - 2⁹ - 2⁸ - 2⁷ - 2⁶ - 2⁴ - 1</p>
+            <p style="word-break: break-all; font-size: 0.9rem">= FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F</p>
+            <p><strong>n (order):</strong> Eğri üzerindeki nokta sayısı</p>
+            <p style="word-break: break-all; font-size: 0.9rem">= FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141</p>
+          </div>
+        </div>
+
+        <h2>📊 Eğri Üzerindeki Noktalar</h2>
+        
+        <div style="position: relative; height: 400px; background: #f5f5f5; border-radius: 15px; padding: 20px; margin: 20px 0">
+          <!-- Koordinat sistemi -->
+          <svg width="100%" height="100%" viewBox="-50 -200 400 400" style="border: 1px solid #ddd">
+            <!-- Eksenler -->
+            <line x1="0" y1="-200" x2="0" y2="200" stroke="#999" stroke-width="1"/>
+            <line x1="-50" y1="0" x2="350" y2="0" stroke="#999" stroke-width="1"/>
+            
+            <!-- Eğri (stilize) -->
+            <path d="M 20,-150 Q 100,-100 150,0 T 280,150" 
+                  stroke="#667eea" stroke-width="3" fill="none"/>
+            <path d="M 20,150 Q 100,100 150,0 T 280,-150" 
+                  stroke="#667eea" stroke-width="3" fill="none"/>
+            
+            <!-- Generator Point G -->
+            <circle cx="50" cy="-80" r="8" fill="#4CAF50"/>
+            <text x="70" y="-75" font-size="14" fill="#333">G (Generator)</text>
+            
+            <!-- 2G -->
+            <circle cx="120" cy="-40" r="6" fill="#2196F3"/>
+            <text x="130" y="-35" font-size="12" fill="#333">2G</text>
+            
+            <!-- 3G -->
+            <circle cx="180" cy="20" r="6" fill="#2196F3"/>
+            <text x="190" y="25" font-size="12" fill="#333">3G</text>
+            
+            <!-- kG (Public Key) -->
+            <circle cx="250" cy="-60" r="10" fill="#f44336"/>
+            <text x="265" y="-55" font-size="14" fill="#333">kG = Public Key</text>
+            
+            <!-- Nokta toplama çizgisi -->
+            <line x1="50" y1="-80" x2="120" y2="-40" 
+                  stroke="#4CAF50" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+            <line x1="120" y1="-40" x2="180" y2="20" 
+                  stroke="#2196F3" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+            
+            <!-- Etiketler -->
+            <text x="150" y="-180" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">
+              secp256k1 Eğrisi (Örnek Görsel)
+            </text>
+          </svg>
+        </div>
+
+        <h2>🌐 Generator Point (G)</h2>
+        
+        <div class="seed-box">
+          <h3>🎯 Başlangıç Noktası Koordinatları</h3>
+          <div class="code-block">// Generator Point G koordinatları (hex)
+Gx = 79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798
+Gy = 483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8
+
+// Decimal:
+Gx = 55066263022277343669578718895168534326250603453777594175500187360389116729240
+Gy = 32670510020758816978083085130507043184471273380659243275938904335757337482424</div>
+        </div>
+
+        <h2>🔄 Nokta Çarpımı: k × G Nasıl Hesaplanır?</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>➕ Nokta Toplama (Point Addition)</strong>
+            <p style="font-size: 1.1rem">
+              İki farklı nokta P ve Q'yu toplamak:<br>
+              1. P ve Q'dan geçen doğru çiz<br>
+              2. Eğriyi 3. noktada keser<br>
+              3. Bu noktanın y eksenine göre simetriği = P + Q
             </p>
-          </div>
-        </div>
-
-        <h2>₿ Bitcoin: Public Key → Address</h2>
-        
-        <div class="step-box">
-          <div class="step-item">
-            <span class="step-number">1</span>
-            <strong>Private Key → Public Key</strong>
-            <p>secp256k1 üzerinde: K = k × G</p>
-            <p>Sonuç: 04 + X (32 byte) + Y (32 byte)</p>
+            <div class="code-block">// P ≠ Q için:
+s = (Qy - Py) / (Qx - Px) mod p  // Eğim
+Rx = s² - Px - Qx mod p
+Ry = s(Px - Rx) - Py mod p</div>
           </div>
           
           <div class="step-item">
             <span class="step-number">2</span>
-            <strong>Public Key Hash</strong>
-            <p>SHA-256(public_key)</p>
-            <p>RIPEMD-160(sha256_result)</p>
-            <p>= 20 byte pubkey hash</p>
+            <strong>🔁 Nokta İkileme (Point Doubling)</strong>
+            <p style="font-size: 1.1rem">
+              Bir noktanın kendisiyle toplanması (2P):<br>
+              1. P noktasından eğriye teğet çiz<br>
+              2. Eğriyi başka noktada keser<br>
+              3. Y eksenine göre simetriği = 2P
+            </p>
+            <div class="code-block">// P = P için (point doubling):
+s = (3 × Px²) / (2 × Py) mod p  // Teğet eğimi
+Rx = s² - 2 × Px mod p
+Ry = s(Px - Rx) - Py mod p</div>
           </div>
           
           <div class="step-item">
             <span class="step-number">3</span>
-            <strong>Base58Check Encoding</strong>
-            <p>Version byte + pubkey hash + checksum</p>
-            <p>Base58 encode → 1xxxxx formatında adres</p>
-          </div>
-        </div>
+            <strong>🚀 Hızlı Skalar Çarpma (Double-and-Add)</strong>
+            <p style="font-size: 1.1rem">
+              k × G hesaplamak için k kere toplama YAPMAYIZ!<br>
+              Binary gösterimle hızlandırırız:
+            </p>
+            <div class="code-block">// Örnek: k=25 için (binary: 11001)
+25G = 16G + 8G + 1G
 
-        <h2>Ξ Ethereum: Public Key → Address</h2>
-        
-        <div class="step-box">
-          <div class="step-item">
-            <span class="step-number">1</span>
-            <strong>Private Key → Public Key</strong>
-            <p>secp256k1 üzerinde: K = k × G</p>
-            <p>Aynı algoritma, aynı sonuç!</p>
-          </div>
-          
-          <div class="step-item">
-            <span class="step-number">2</span>
-            <strong>Keccak-256 Hash</strong>
-            <p>Public key'den "04" önekini çıkar</p>
-            <p>Keccak-256(public_key_no_prefix)</p>
-            <p>= 32 byte hash</p>
-          </div>
-          
-          <div class="step-item">
-            <span class="step-number">3</span>
-            <strong>Son 20 Byte + Checksum</strong>
-            <p>Hash'in son 40 karakteri = adres</p>
-            <p>EIP-55: Büyük/küçük harf checksum</p>
-            <p>0x öneki ekle → 0x71C7656EC...</p>
+1. G hesapla (var)
+2. 2G hesapla (G + G)
+3. 4G hesapla (2G + 2G)
+4. 8G hesapla (4G + 4G)
+5. 16G hesapla (8G + 8G)
+6. Sonuç = 16G + 8G + G
+
+Sadece 7 işlem! (25 toplama yerine)</div>
           </div>
         </div>
 
         <div class="example-box">
-          <h3>🔍 Karşılaştırma</h3>
-          <div class="code-block">// Aynı Private Key
-private_key = 0x4c0883a69102937d6231471b5dbb6204fe5129617082792ae468d01a3f362318
+          <h3>🎯 Gerçek Örnek: Private Key → Public Key</h3>
+          <div class="code-block">// Private Key (k)
+k = 0x18e14a7b6a307f426a94f8114701e7c8e774e7f9a47e2c2035db29a206321725
 
-// Aynı Public Key (her ikisinde de secp256k1)
-public_key = 0x04a02cdc6...aynı...3f8c9d2
+// k × G hesabı yapılır (eliptik eğri üzerinde)
+// Sonuç Public Key koordinatları:
+Public_X = 0x50863ad64a87ae8a2fe83c1af1a8403cb53f53e486d8511dad8a04887e5b2352
+Public_Y = 0x2cd470243453a299fa9e77237716103abc11a1df38855ed6f2ee187e9c582ba6
 
-// FARKLI Adresler!
-Bitcoin:  1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX
-Ethereum: 0x96216849c49358B10257cb55b28eA603c874b05E
+// Uncompressed Public Key (04 + X + Y)
+0x0450863ad64a87ae8a2fe83c1af1a8403cb53f53e486d8511dad8a04887e5b2352
+  2cd470243453a299fa9e77237716103abc11a1df38855ed6f2ee187e9c582ba6
 
-// Neden farklı?
-// - Bitcoin: SHA256 + RIPEMD160 + Base58Check
-// - Ethereum: Keccak256 + Son 20 byte + EIP55</div>
+// Compressed Public Key (02/03 + X)
+0x0250863ad64a87ae8a2fe83c1af1a8403cb53f53e486d8511dad8a04887e5b2352
+// (02 çünkü Y çift sayı)</div>
         </div>
         
         <div class="warning-box">
-          <h3>⚠️ Kritik Bilgi</h3>
-          <p style="font-size: 1.2rem">
-            <strong>Aynı private key = Farklı adresler!</strong><br>
-            Bitcoin ve Ethereum aynı eliptik eğriyi kullanır,<br>
-            ama hash fonksiyonları farklı olduğu için<br>
-            aynı private key'den farklı adresler üretilir!
-          </p>
+          <h3>🔒 Neden Güvenli?</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Discrete Logarithm Problem (DLP)</strong></p>
+            <p>• Public Key = k × G biliniyor</p>
+            <p>• G biliniyor (sabit)</p>
+            <p>• k'yı bulmak = İMKANSIZ!</p>
+            <br>
+            <p>2²⁵⁶ ihtimal = Evrendeki atom sayısından fazla!</p>
+            <p>En hızlı bilgisayarlarla trilyonlarca yıl sürer.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 4: BIP39 Mnemonic Seeds -->
+    <!-- Slide 4: Public Key'den Adres Türetimi -->
     <section class="slide">
       <div class="container">
-        <h1>🗣️ Kelime Büyüsü: İnsan Beyni vs Bilgisayar</h1>
+        <h1>📍 Public Key'den Adres Türetimi ve Checksum</h1>
 
-        <h2>🧠 Hangisini Hatırlarsın?</h2>
-        <div class="comparison-grid">
-          <div class="security-box">
-            <h3>😵 İmkansız</h3>
-            <div class="code-block" style="font-size: 0.9rem">8b2e5c4a3f1d9e7a6b5c4d3e2f1a9b8c7d6e5f4a3b2c1d</div>
-            <p>64 rastgele karakter!</p>
-            <p>Bir harf yanlış = Para YOK!</p>
-          </div>
-
-          <div class="seed-box">
-            <h3>😊 Kolay</h3>
-            <div class="code-block" style="font-size: 1.1rem">cat dog apple orange banana</div>
-            <p>5 basit kelime!</p>
-            <p>Hikaye oluşturabilirsin!</p>
-          </div>
-        </div>
-
-        <h2>🎯 BIP39: Kelime Listesi Standardı</h2>
-        
-        <div class="formula-box">
-          <h3>🎲 Zar Atmak Gibi!</h3>
-          <div style="font-size: 1.2rem">
-            <p>📊 <strong>2048 kelimelik</strong> bir sözlük var</p>
-            <p>🎲 Bilgisayar <strong>rastgele zar atıyor</strong></p>
-            <p>📝 Her zar sonucu = <strong>1 kelime</strong></p>
-            <p>🔐 12 kelime = <strong>340,282,366,920,938,463,463,374,607,431,768,211,456</strong> ihtimal!</p>
-          </div>
-        </div>
-
-        <h2>🔮 Kelime Seçimi Nasıl Oluyor?</h2>
-        
+        <h2>₿ Bitcoin Adresi Oluşturma</h2>
         <div class="step-box">
           <div class="step-item">
             <span class="step-number">1</span>
-            <strong>🎲 Rastgele Sayı Üret</strong>
-            <p>Bilgisayar 128 bit rastgele sayı üretir (çok çok büyük bir sayı)</p>
+            <strong>Public Key Hash</strong>
+            <div class="code-block">Public Key = 0x0250863ad64a87ae8a2fe83c1af1a8403cb53f53e486d8511dad8a04887e5b2352
+SHA256(public_key) = 0x0b7c28c9b7290c98d7438e70b3d3f7c848fbd7d1dc194ff83f4f7cc9b1378e98
+RIPEMD160(sha_result) = 0x010966776006953D5567439E5E39F86A0D273BEE</div>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>Version Byte + Checksum</strong>
+            <div class="code-block">Version (0x00) + Hash = 0x00010966776006953D5567439E5E39F86A0D273BEE
+SHA256(SHA256(version+hash)) = 0xD61967F6...  (ilk 4 byte checksum)
+Final = 0x00010966776006953D5567439E5E39F86A0D273BEED61967F6</div>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>Base58 Encode</strong>
+            <div class="code-block">Base58(final) = 16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM
+// '0', 'O', 'I', 'l' karakterleri yok (karışıklık önlemek için)</div>
+          </div>
+        </div>
+
+        <h2>Ξ Ethereum Adresi ve EIP-55 Checksum</h2>
+        
+        <div class="formula-box">
+          <h3>🧮 EIP-55: Büyük/Küçük Harf Checksum Matematiği</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Amaç:</strong> Yanlış yazmayı %99.986 oranında yakala!</p>
+            <p><strong>Yöntem:</strong> Adresin hash'ine göre harfleri büyüt</p>
+            <br>
+            <p style="background: #e8f5e9; padding: 10px; border-radius: 5px">
+              Her hex karakterin 4 bit'i var. Hash'teki karşılık gelen<br>
+              4 bitin ilki (veya değeri ≥8) ise harf BÜYÜK yazılır!
+            </p>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>Ethereum Raw Address</strong>
+            <div class="code-block">Public Key = 0x04 + X + Y
+Keccak256(public_key_no_04) = 0x3f17f1962b36f...
+Son 20 byte = 0x71c7656ec7ab88b098defb751b7401b5f6d8976f
+// Tüm harfler küçük!</div>
           </div>
 
           <div class="step-item">
             <span class="step-number">2</span>
-            <strong>🔢 Sayıyı Parçala</strong>
-            <p>Bu büyük sayıyı 11'er bitlik parçalara böl (her parça 0-2047 arası)</p>
-          </div>
+            <strong>Hash Adres (Checksum için)</strong>
+            <div class="code-block">// Küçük harfli adresi hash'le
+Keccak256("71c7656ec7ab88b098defb751b7401b5f6d8976f") = 
+"50726F0C93567B1BCA720E399F7EB35DA7B948C0FD073D94E5F4F02EC8A6C072"
 
+// Her karakter için kontrol:
+Adres[0] = '7', Hash[0] = '5' (0x5 < 0x8) → küçük '7'
+Adres[1] = '1', Hash[1] = '0' (0x0 < 0x8) → küçük '1'
+Adres[2] = 'c', Hash[2] = '7' (0x7 < 0x8) → küçük 'c'
+Adres[3] = '7', Hash[3] = '2' (0x2 < 0x8) → küçük '7'
+Adres[4] = '6', Hash[4] = '6' (sayı, değişmez) '6'
+Adres[5] = '5', Hash[5] = 'F' (sayı, değişmez) '5'
+Adres[6] = '6', Hash[6] = '0' (sayı, değişmez) '6'
+Adres[7] = 'e', Hash[7] = 'C' (0xC ≥ 0x8) → BÜYÜK 'E'
+Adres[8] = 'c', Hash[8] = '9' (0x9 ≥ 0x8) → BÜYÜK 'C'</div>
+          </div>
+          
           <div class="step-item">
             <span class="step-number">3</span>
-            <strong>📖 Sözlükten Bul</strong>
-            <p>Her sayı = sözlükteki bir kelime (0=abandon, 1=ability, ...)</p>
+            <strong>Final Checksum Address</strong>
+            <div class="code-block">// Büyük/küçük harflerle yazılmış hali:
+0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+
+// Hangi harfler büyük?
+// C, E, C, B, B, F (hash'teki karşılıkları ≥ 8)
+
+// Test: Birini yanlış yazarsanız:
+0x71c7656EC7ab88b098defB751B7401B5f6d8976F (ilk C küçük)
+// Checksum doğrulaması BAŞARISIZ! Hata var!</div>
           </div>
         </div>
 
         <div class="example-box">
-          <h3>🎬 Gerçek Örnek</h3>
-          <div style="display: flex; gap: 2rem; align-items: center; justify-content: center">
-            <div>
-              <p><strong>Sayı:</strong> 1365</p>
-              <p>↓</p>
-              <p><strong>Kelime:</strong> "orange"</p>
-            </div>
-            <div>
-              <p><strong>Sayı:</strong> 87</p>
-              <p>↓</p>
-              <p><strong>Kelime:</strong> "apple"</p>
-            </div>
-            <div>
-              <p><strong>Sayı:</strong> 1029</p>
-              <p>↓</p>
-              <p><strong>Kelime:</strong> "monkey"</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>🔢 12 Kelime</h3>
-            <p>Çoğu cüzdan</p>
-            <p>128 bit güvenlik</p>
-            <p>✅ Yeterli güvenlik</p>
-          </div>
-
-          <div class="stat-card">
-            <h3>🔐 24 Kelime</h3>
-            <p>Paranoyak mod</p>
-            <p>256 bit güvenlik</p>
-            <p>🚀 Aşırı güvenlik</p>
-          </div>
-
-          <div class="stat-card">
-            <h3>🌍 Türkçe?</h3>
-            <p>İngilizce önerilen</p>
-            <p>Evrensel destek</p>
-            <p>⚠️ Türkçe riskli</p>
+          <h3>🔍 Neden Checksum Gerekli?</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Bitcoin:</strong> 4 byte checksum = 1/4.3 milyar hata geçer</p>
+            <p><strong>Ethereum:</strong> EIP-55 = 1/65536 hata geçer (ortalama)</p>
+            <br>
+            <p>💡 <strong>Örnek Senaryolar:</strong></p>
+            <p>• Copy-paste hatası: Son karakter eksik</p>
+            <p>• Klavye hatası: 6 yerine b yazmak</p>
+            <p>• OCR hatası: 0 ile O karıştırmak</p>
+            <p>→ Checksum bunları yakalar, yanlış adrese para göndermezsiniz!</p>
           </div>
         </div>
 
         <div class="warning-box">
-          <h3>⚠️ Kritik Uyarı!</h3>
-          <p style="font-size: 1.2rem">
-            <strong>ASLA</strong> kendi kelimelerinizi seçmeyin!<br>
-            İnsan beyni rastgele değildir. "kedi köpek balık" = HACK'lenirsiniz!<br>
-            <strong>HER ZAMAN</strong> cüzdanın ürettiği kelimeleri kullanın!
-          </p>
+          <h3>🧮 Matematiksel Açıklama</h3>
+          <div class="code-block">// EIP-55 Algoritması
+function toChecksumAddress(address) {
+  // 1. Küçük harfe çevir (0x olmadan)
+  address = address.toLowerCase().replace('0x', '');
+  
+  // 2. Keccak256 hash'ini al
+  const hash = keccak256(address);
+  
+  // 3. Her karakter için kontrol
+  let checksumAddress = '0x';
+  for (let i = 0; i < address.length; i++) {
+    const char = address[i];
+    const hashChar = hash[i];
+    
+    if (parseInt(hashChar, 16) >= 8 && isLetter(char)) {
+      checksumAddress += char.toUpperCase();
+    } else {
+      checksumAddress += char;
+    }
+  }
+  return checksumAddress;
+}</div>
+        </div>
+
+        <div class="formula-box">
+          <h3>🎆 Özet: Adres Format Karşılaştırması</h3>
+          <table style="width: 100%; font-size: 1.1rem">
+            <tr>
+              <th>Blockchain</th>
+              <th>Format</th>
+              <th>Checksum</th>
+              <th>Örnek</th>
+            </tr>
+            <tr>
+              <td><strong>Bitcoin</strong></td>
+              <td>Base58</td>
+              <td>4 byte SHA256</td>
+              <td>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</td>
+            </tr>
+            <tr>
+              <td><strong>Ethereum</strong></td>
+              <td>Hex</td>
+              <td>EIP-55 case</td>
+              <td>0x71C7656EC7ab88b098defB751B7401B5f6d8976F</td>
+            </tr>
+          </table>
         </div>
       </div>
     </section>
