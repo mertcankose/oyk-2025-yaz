@@ -389,6 +389,7 @@
       <div class="dot" onclick="scrollToSlide(9)"></div>
       <div class="dot" onclick="scrollToSlide(10)"></div>
       <div class="dot" onclick="scrollToSlide(11)"></div>
+      <div class="dot" onclick="scrollToSlide(12)"></div>
     </div>
 
     <!-- Slide 1: Giriş -->
@@ -999,7 +1000,272 @@ bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4  // Native SegWit
 
 
 
-    <!-- Slide 6: Wallet Türleri -->
+    <!-- Slide 6: HD Wallet Detaylı Anlatım -->
+    <section class="slide">
+      <div class="container">
+        <h1>🌳 HD Wallet: Sihirli Ağaç Sistemi</h1>
+
+        <h2>😰 Eski Sorun: Anahtar Kabusu</h2>
+        
+        <div class="warning-box">
+          <h3>⚠️ HD Wallet'tan Önce Hayat</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p><strong>Her adres için ayrı private key:</strong></p>
+            <p>• Adres 1 → Private Key 1 → Yedekle! 📝</p>
+            <p>• Adres 2 → Private Key 2 → Yedekle! 📝</p>
+            <p>• Adres 3 → Private Key 3 → Yedekle! 📝</p>
+            <p>• 100 adres = 100 ayrı yedek! 😱</p>
+            <br>
+            <p style="color: #ff6b6b"><strong>Sonuç:</strong> Cüzdan yedeklemek işkence!</p>
+          </div>
+        </div>
+
+        <h2>💡 Çözüm: HD (Hierarchical Deterministic) Wallet</h2>
+        
+        <div class="formula-box">
+          <h3>🌱 Tek Tohum, Sonsuz Ağaç</h3>
+          <div style="font-size: 1.3rem; text-align: center; line-height: 2">
+            <p><strong>12-24 Kelime (Seed Phrase)</strong></p>
+            <p>↓</p>
+            <p><strong>Master Seed (512 bit)</strong></p>
+            <p>↓</p>
+            <p><strong>Master Private Key</strong></p>
+            <p>↓</p>
+            <p><strong>Sonsuz Alt Anahtar</strong></p>
+          </div>
+        </div>
+
+        <h2>🎯 HD Wallet'ı Anlamak: Aile Ağacı Metaforu</h2>
+        
+        <div class="example-box">
+          <h3>👨‍👩‍👧‍👦 Aile Ağacı Gibi Düşünün</h3>
+          <div style="font-size: 1.2rem; line-height: 1.8">
+            <p><strong>👴 Büyük Dede (Seed Phrase):</strong> Tüm soyun başlangıcı</p>
+            <p><strong>👨 Dede (Master Key):</strong> Ailenin kökü</p>
+            <p><strong>👨‍👦 Babalar (Account Keys):</strong> Her biri ayrı bir hesap</p>
+            <p><strong>👶 Çocuklar (Address Keys):</strong> Her hesabın adresleri</p>
+            <br>
+            <p style="background: #e8f5e9; padding: 10px; border-radius: 5px">
+              <strong>Mucize:</strong> Büyük dedenin adını (seed) bilirseniz, 
+              tüm soyağacını yeniden oluşturabilirsiniz! 🎩✨
+            </p>
+          </div>
+        </div>
+
+        <h2>🔢 BIP-32/39/44: HD Wallet Standartları</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>📝 BIP-39</h3>
+            <p><strong>Mnemonic (Hatırlatıcı) Kelimeler</strong></p>
+            <p>• 2048 kelimelik sözlük</p>
+            <p>• 12, 15, 18, 21, 24 kelime</p>
+            <p>• Her dilde farklı liste</p>
+            <p>• Checksum ile hata kontrolü</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>🌳 BIP-32</h3>
+            <p><strong>HD Wallet Yapısı</strong></p>
+            <p>• Master seed → Master key</p>
+            <p>• Parent → Child türetme</p>
+            <p>• Public/Private ayrımı</p>
+            <p>• Sonsuz alt anahtar</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>🛤️ BIP-44</h3>
+            <p><strong>Derivation Path Standardı</strong></p>
+            <p>• m/44'/coin'/account'/change/index</p>
+            <p>• Her coin için ayrı dal</p>
+            <p>• Cüzdanlar arası uyum</p>
+            <p>• Kolay yedekleme</p>
+          </div>
+        </div>
+
+        <h2>🎬 HD Wallet Nasıl Çalışır? (Basit Anlatım)</h2>
+        
+        <div class="step-box">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <strong>🎲 Kelimeler Seçilir</strong>
+            <p style="font-size: 1.1rem">
+              Bilgisayar rastgele 128-256 bit entropi üretir.<br>
+              Bu sayı 12-24 kelimeye dönüştürülür.<br>
+              <em>Örnek: "witch collapse practice feed shame open despair creek road again ice least"</em>
+            </p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <strong>🌱 Master Seed Oluşur</strong>
+            <p style="font-size: 1.1rem">
+              Kelimeler + opsiyonel parola → PBKDF2 algoritması<br>
+              2048 kez hash'lenir → 512 bit seed<br>
+              <em>Bu seed tüm cüzdanınızın DNA'sı gibidir!</em>
+            </p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <strong>🔑 Master Key Türetilir</strong>
+            <p style="font-size: 1.1rem">
+              512 bit seed → HMAC-SHA512<br>
+              Sol 256 bit = Master Private Key<br>
+              Sağ 256 bit = Master Chain Code<br>
+              <em>Artık ana anahtarınız var!</em>
+            </p>
+          </div>
+          
+          <div class="step-item">
+            <span class="step-number">4</span>
+            <strong>🌿 Alt Anahtarlar Dallanır</strong>
+            <p style="font-size: 1.1rem">
+              Her alt anahtar = Parent key + index + chain code<br>
+              Matematiksel türetme ile sonsuz anahtar<br>
+              <em>Tıpkı ağaç dalları gibi büyür!</em>
+            </p>
+          </div>
+        </div>
+
+        <h2>🛤️ Derivation Path: Adres Yolu</h2>
+        
+        <div class="path-diagram">
+          <strong>m / 44' / 60' / 0' / 0 / 0</strong><br>
+          <br>
+          m = Master (Ana kök)<br>
+          44' = BIP-44 standardı (hardened)<br>
+          60' = Ethereum (Bitcoin=0', Litecoin=2')<br>
+          0' = İlk hesap (account)<br>
+          0 = External chain (receive adresleri)<br>
+          0 = İlk adres (index)
+        </div>
+
+        <div class="example-box">
+          <h3>📱 Gerçek Hayat Örneği: MetaMask</h3>
+          <div class="code-block">// MetaMask'ta 3 hesabınız var diyelim:
+
+Hesap 1: m/44'/60'/0'/0/0  → 0x7c656...
+Hesap 2: m/44'/60'/0'/0/1  → 0x9f823...
+Hesap 3: m/44'/60'/0'/0/2  → 0xd4a12...
+
+// Ledger'da aynı seed farklı yol:
+Hesap 1: m/44'/60'/0'/0/0  → 0x7c656... (Aynı!)
+Hesap 2: m/44'/60'/1'/0/0  → 0x5b234... (Farklı!)
+
+// Neden? MetaMask son index'i, Ledger account'u artırıyor!</div>
+        </div>
+
+        <h2>🔐 Hardened vs Non-Hardened Türetme</h2>
+        
+        <div class="comparison-grid">
+          <div class="seed-box">
+            <h3>🔒 Hardened (Sertleştirilmiş)</h3>
+            <p><strong>Sembol: ' (apostrof)</strong></p>
+            <p>• Parent private key gerekli</p>
+            <p>• Daha güvenli</p>
+            <p>• Public key'den türetilemez</p>
+            <p>• Account seviyesinde kullanılır</p>
+            <br>
+            <p><em>Örnek: m/44'/60'/0'</em></p>
+          </div>
+          
+          <div class="formula-box">
+            <h3>🔓 Non-Hardened (Normal)</h3>
+            <p><strong>Sembol: Apostrof yok</strong></p>
+            <p>• Parent public key yeterli</p>
+            <p>• xPub paylaşılabilir</p>
+            <p>• Sadece izleme için kullanılabilir</p>
+            <p>• Address seviyesinde kullanılır</p>
+            <br>
+            <p><em>Örnek: m/44'/60'/0'/0/0</em></p>
+          </div>
+        </div>
+
+        <h2>💡 Neden HD Wallet Devrim Niteliğinde?</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card" style="background: #c8e6c9">
+            <h3>✅ Avantajları</h3>
+            <ul style="text-align: left; list-style: none">
+              <li>📝 Tek yedek yeter</li>
+              <li>🔄 Deterministik (tahmin edilebilir)</li>
+              <li>🌳 Hiyerarşik organizasyon</li>
+              <li>👁️ Watch-only cüzdanlar</li>
+              <li>🏢 Kurumsal kullanım</li>
+            </ul>
+          </div>
+          
+          <div class="stat-card" style="background: #ffcdd2">
+            <h3>❌ Dikkat Edilmesi Gerekenler</h3>
+            <ul style="text-align: left; list-style: none">
+              <li>🔑 Seed = Tüm cüzdan</li>
+              <li>📍 Path karmaşası</li>
+              <li>🔄 Farklı standartlar</li>
+              <li>⚠️ Tek hata noktası</li>
+              <li>🧮 Karmaşık matematik</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>🎯 HD Wallet Matematiği (Basitleştirilmiş)</h2>
+        
+        <div class="code-block">// 1. Seed'den Master Key
+SEED = "crazy horse battery staple..." // 12-24 kelime
+Master = HMAC-SHA512(SEED, "Bitcoin seed")
+// Sol 256 bit = Master Private Key (m)
+// Sağ 256 bit = Master Chain Code (c)
+
+// 2. Child Key Türetme (Basit)
+function deriveChild(parent_key, index) {
+  if (index >= 2^31) { // Hardened
+    data = 0x00 + parent_private_key + index
+  } else { // Non-hardened
+    data = parent_public_key + index
+  }
+  
+  hash = HMAC-SHA512(data, parent_chain_code)
+  child_private_key = (hash_left_256_bits + parent_key) mod n
+  child_chain_code = hash_right_256_bits
+  
+  return {child_private_key, child_chain_code}
+}
+
+// 3. Path'ten Adrese
+m → m/44' → m/44'/60' → m/44'/60'/0' → m/44'/60'/0'/0 → m/44'/60'/0'/0/0
+↓
+Private Key → Public Key → Ethereum Address</div>
+
+        <h2>🏦 Kurumsal Kullanım: xPub Anahtarları</h2>
+        
+        <div class="warning-box">
+          <h3>👁️ Extended Public Key (xPub)</h3>
+          <div style="font-size: 1.2rem">
+            <p><strong>Ne işe yarar?</strong></p>
+            <p>• Tüm public adresleri görebilir</p>
+            <p>• Para harcayamaz (private key yok)</p>
+            <p>• Muhasebe için ideal</p>
+            <p>• E-ticaret ödemeleri için</p>
+            <br>
+            <p style="color: #ff6b6b">⚠️ <strong>DİKKAT:</strong> xPub'ı paylaşmak tüm adreslerinizi ve bakiyelerinizi ifşa eder!</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <h3>🎓 HD Wallet'ın Özü</h3>
+          <p style="font-size: 1.3rem; text-align: center">
+            <strong>"Bir tohum at, orman yetiştir!"</strong><br><br>
+            12 kelime = Sonsuz hesap<br>
+            1 yedek = Tüm gelecek<br>
+            Matematik = Güvenlik<br>
+            <br>
+            <em>HD Wallet sayesinde kripto yönetimi çocuk oyuncağı! 🎈</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Wallet Türleri -->
     <section class="slide">
       <div class="container">
         <h1>💼 Cüzdan Türleri</h1>
