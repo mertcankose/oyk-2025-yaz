@@ -16,11 +16,12 @@ contract NumberGuessingGame {
         string name;
         uint256 secretNumber;
         bool isPlaying;
+        uint256 totalRewards; // Toplam kazanılan ödüller
+        uint256 lastGuess; // Son tahmin edilen sayı
     }
 
     // State variables
     IERC20 public gameToken;
-    uint256 private nonce;
 
     // Mappings
     mapping(address => Player) public players;
@@ -30,6 +31,7 @@ contract NumberGuessingGame {
     event GuessResult(address player, uint256 guess, string result);
     event GameWon(address player, uint256 reward);
     event HintGiven(address player, string hint);
+    event RewardWithdrawn(address player, uint256 amount);
 
     constructor(address _token) {
         gameToken = IERC20(_token);
@@ -41,15 +43,9 @@ contract NumberGuessingGame {
         require(bytes(_name).length > 0, "İsim boş olamaz");
 
         // Random sayı üret (1-100)
-        nonce++;
         uint256 randomNum = (uint256(
             keccak256(
-                abi.encodePacked(
-                    block.timestamp,
-                    block.prevrandao,
-                    msg.sender,
-                    nonce
-                )
+                abi.encodePacked(block.timestamp, block.prevrandao, msg.sender)
             )
         ) % 100) + 1;
 
@@ -57,7 +53,9 @@ contract NumberGuessingGame {
             playerAddress: msg.sender,
             name: _name,
             secretNumber: randomNum,
-            isPlaying: true
+            isPlaying: true,
+            totalRewards: players[msg.sender].totalRewards, // Önceki ödülleri koru
+            lastGuess: 0 // Henüz tahmin yok
         });
 
         emit GameStarted(msg.sender);
@@ -76,14 +74,13 @@ contract NumberGuessingGame {
 
         uint256 secret = players[msg.sender].secretNumber;
 
-        if (_guess == secret) {
-            // Kazandı! 100 token ödül
-            players[msg.sender].isPlaying = false;
+        // Son tahmini kaydet
+        players[msg.sender].lastGuess = _guess;
 
-            require(
-                gameToken.transfer(msg.sender, 500),
-                "Ödül transfer başarısız"
-            );
+        if (_guess == secret) {
+            // Kazandı! 500 token ödül
+            players[msg.sender].isPlaying = false;
+            players[msg.sender].totalRewards += 500;
 
             emit GuessResult(msg.sender, _guess, "KAZANDIN!");
             emit GameWon(msg.sender, 500);
@@ -97,6 +94,7 @@ contract NumberGuessingGame {
     // İpucu al
     function getHint() external {
         require(players[msg.sender].isPlaying, "Önce oyun başlat");
+        require(players[msg.sender].lastGuess > 0, "Önce bir tahmin yap");
 
         // 25 token harca
         require(
@@ -105,19 +103,33 @@ contract NumberGuessingGame {
         );
 
         uint256 secret = players[msg.sender].secretNumber;
+        uint256 lastGuess = players[msg.sender].lastGuess;
         string memory hint;
 
-        if (secret <= 25) {
-            hint = "1-25 arası";
-        } else if (secret <= 50) {
-            hint = "26-50 arası";
-        } else if (secret <= 75) {
-            hint = "51-75 arası";
+        if (lastGuess < secret) {
+            hint = "YUKARI";
         } else {
-            hint = "76-100 arası";
+            hint = "ASAGI";
         }
 
         emit HintGiven(msg.sender, hint);
+    }
+
+    // Ödül çek
+    function withdrawReward() external {
+        uint256 reward = players[msg.sender].totalRewards;
+        require(reward > 0, "Çekilecek ödül yok");
+
+        // Ödülü sıfırla (reentrancy koruması)
+        players[msg.sender].totalRewards = 0;
+
+        // Token transfer et
+        require(
+            gameToken.transfer(msg.sender, reward),
+            "Ödül transferi başarısız"
+        );
+
+        emit RewardWithdrawn(msg.sender, reward);
     }
 
     // Oyunu bırak
@@ -132,9 +144,19 @@ contract NumberGuessingGame {
     )
         external
         view
-        returns (address playerAddress, string memory name, bool isPlaying)
+        returns (
+            address playerAddress,
+            string memory name,
+            bool isPlaying,
+            uint256 totalRewards
+        )
     {
         Player memory player = players[_player];
-        return (player.playerAddress, player.name, player.isPlaying);
+        return (
+            player.playerAddress,
+            player.name,
+            player.isPlaying,
+            player.totalRewards
+        );
     }
 }
