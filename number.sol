@@ -8,6 +8,10 @@ interface IERC20 {
         address to,
         uint256 amount
     ) external returns (bool);
+    function allowance(
+        address owner,
+        address spender
+    ) external view returns (uint256);
 }
 
 contract NumberGuessingGame {
@@ -66,10 +70,20 @@ contract NumberGuessingGame {
         require(players[msg.sender].isPlaying, "Önce oyun başlat");
         require(_guess >= 1 && _guess <= 100, "1-100 arası sayı gir");
 
+        // Allowance kontrolü
+        uint256 currentAllowance = gameToken.allowance(
+            msg.sender,
+            address(this)
+        );
+        require(
+            currentAllowance >= 50,
+            "Yetersiz allowance! Token kontratından approve yapın"
+        );
+
         // 50 token harca
         require(
             gameToken.transferFrom(msg.sender, address(this), 50),
-            "50 token gerekli"
+            "Token transferi başarısız"
         );
 
         uint256 secret = players[msg.sender].secretNumber;
@@ -84,10 +98,8 @@ contract NumberGuessingGame {
 
             emit GuessResult(msg.sender, _guess, "KAZANDIN!");
             emit GameWon(msg.sender, 500);
-        } else if (_guess < secret) {
-            emit GuessResult(msg.sender, _guess, "Daha BUYUK");
         } else {
-            emit GuessResult(msg.sender, _guess, "Daha KUCUK");
+            emit GuessResult(msg.sender, _guess, "Yanlis tahmin");
         }
     }
 
@@ -96,10 +108,20 @@ contract NumberGuessingGame {
         require(players[msg.sender].isPlaying, "Önce oyun başlat");
         require(players[msg.sender].lastGuess > 0, "Önce bir tahmin yap");
 
+        // Allowance kontrolü
+        uint256 currentAllowance = gameToken.allowance(
+            msg.sender,
+            address(this)
+        );
+        require(
+            currentAllowance >= 25,
+            "Yetersiz allowance! Token kontratından approve yapın"
+        );
+
         // 25 token harca
         require(
             gameToken.transferFrom(msg.sender, address(this), 25),
-            "25 token gerekli"
+            "Token transferi başarısız"
         );
 
         uint256 secret = players[msg.sender].secretNumber;
@@ -130,12 +152,6 @@ contract NumberGuessingGame {
         );
 
         emit RewardWithdrawn(msg.sender, reward);
-    }
-
-    // Oyunu bırak
-    function quitGame() external {
-        require(players[msg.sender].isPlaying, "Oyun oynmuyorsun");
-        players[msg.sender].isPlaying = false;
     }
 
     // Oyuncu bilgisi
