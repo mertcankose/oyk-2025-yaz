@@ -44,7 +44,6 @@ contract NumberGuessingGame {
     // Yeni oyun başlat
     function startGame(string memory _name) external {
         require(!players[msg.sender].isPlaying, "Zaten oynuyorsun");
-        require(bytes(_name).length > 0, "İsim boş olamaz");
 
         // Random sayı üret (1-100)
         uint256 randomNum = (uint256(
@@ -67,8 +66,8 @@ contract NumberGuessingGame {
 
     // Tahmin yap
     function makeGuess(uint256 _guess) external {
-        require(players[msg.sender].isPlaying, "Önce oyun başlat");
-        require(_guess >= 1 && _guess <= 100, "1-100 arası sayı gir");
+        require(players[msg.sender].isPlaying, "once oyun baslat");
+        require(_guess >= 1 && _guess <= 100, "1-100 arasi sayi gir");
 
         // Allowance kontrolü
         uint256 currentAllowance = gameToken.allowance(
@@ -77,13 +76,13 @@ contract NumberGuessingGame {
         );
         require(
             currentAllowance >= 50,
-            "Yetersiz allowance! Token kontratından approve yapın"
+            "Yetersiz allowance! Token contractindan approve yapin"
         );
 
         // 50 token harca
         require(
             gameToken.transferFrom(msg.sender, address(this), 50),
-            "Token transferi başarısız"
+            "Token transferi basarisiz"
         );
 
         uint256 secret = players[msg.sender].secretNumber;
@@ -105,8 +104,8 @@ contract NumberGuessingGame {
 
     // İpucu al
     function getHint() external {
-        require(players[msg.sender].isPlaying, "Önce oyun başlat");
-        require(players[msg.sender].lastGuess > 0, "Önce bir tahmin yap");
+        require(players[msg.sender].isPlaying, "once oyun baslat");
+        require(players[msg.sender].lastGuess > 0, "once bir tahmin yap");
 
         // Allowance kontrolü
         uint256 currentAllowance = gameToken.allowance(
@@ -115,13 +114,13 @@ contract NumberGuessingGame {
         );
         require(
             currentAllowance >= 25,
-            "Yetersiz allowance! Token kontratından approve yapın"
+            "Yetersiz allowance! Token contractindan approve yapin"
         );
 
         // 25 token harca
         require(
             gameToken.transferFrom(msg.sender, address(this), 25),
-            "Token transferi başarısız"
+            "Token transferi basarisiz"
         );
 
         uint256 secret = players[msg.sender].secretNumber;
@@ -140,7 +139,7 @@ contract NumberGuessingGame {
     // Ödül çek
     function withdrawReward() external {
         uint256 reward = players[msg.sender].totalRewards;
-        require(reward > 0, "Çekilecek ödül yok");
+        require(reward > 0, "cekilecek odul yok");
 
         // Ödülü sıfırla (reentrancy koruması)
         players[msg.sender].totalRewards = 0;
@@ -148,7 +147,7 @@ contract NumberGuessingGame {
         // Token transfer et
         require(
             gameToken.transfer(msg.sender, reward),
-            "Ödül transferi başarısız"
+            "odul transferi basarisiz"
         );
 
         emit RewardWithdrawn(msg.sender, reward);
