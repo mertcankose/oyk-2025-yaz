@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Teknik Rehber - Blockchain Temelleri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border-left: 5px solid #ffc107;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .tech-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+            white-space: pre;
+        }
+        
+        .code-block .comment {
+            color: #75715e;
+        }
+        
+        .code-block .keyword {
+            color: #66d9ef;
+        }
+        
+        .code-block .string {
+            color: #a6e22e;
+        }
+        
+        .code-block .number {
+            color: #ae81ff;
+        }
+        
+        .diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .flow-horizontal {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .flow-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .flow-horizontal .flow-item {
+            flex: 1;
+            min-width: 200px;
+            width: auto;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+        }
+        
+        .arrow-down {
+            font-size: 2em;
+            color: #667eea;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 5px;
+            transition: transform 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .flow {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 NFT (Non-Fungible Token) Teknik Rehber</h1>
+            <p class="subtitle">Blockchain Temelleri ve NFT Teknolojisinin Derinlemesine İncelenmesi</p>
+        </header>
+        
+        
+        <div class="content">
+            <section id="nft-nedir">
+                <h2>NFT Nedir? - Teknik ve Felsefi Tanım</h2>
+                
+                <div class="info-box">
+                    <strong>Non-Fungible Token (NFT):</strong> Blockchain üzerinde benzersiz dijital varlıkları temsil eden, 
+                    birbirleriyle değiştirilemez (non-fungible) kriptografik tokenlerdir.
+                </div>
+                
+                <h3>NFT'nin Felsefi Temelleri</h3>
+                <div class="tech-box">
+                    <p><strong>Dijital Sahiplik Kavramı:</strong> NFT'ler, dijital dünyada ilk kez gerçek anlamda "sahiplik" kavramını mümkün kılmıştır. Bir dijital varlığa sahip olmak artık sadece bir kopyasını indirmek değil, blockchain üzerinde kanıtlanabilir bir mülkiyet hakkına sahip olmak anlamına gelir.</p>
+                    
+                    <p><strong>Kıtlık ve Değer:</strong> Fiziksel dünyada bir tablonun orijinali ile kopyası arasındaki fark açıktır. NFT'ler bu konsepti dijital dünyaya taşıyarak, sonsuz kopyalanabilir dijital varlıklara "orijinallik" ve "kıtlık" kazandırır.</p>
+                    
+                    <p><strong>Yaratıcı Ekonomisi:</strong> Sanatçılar ve içerik üreticileri için doğrudan monetizasyon ve telif hakları yönetimi imkanı sunar. Aracıları ortadan kaldırarak yaratıcı ile tüketici arasında doğrudan bağ kurar.</p>
+                </div>
+                
+                <h3>NFT Neden Var? - Çözdüğü Problemler</h3>
+                <div class="flow">
+                    <div class="flow-item">
+                        <h4>🔐 Dijital Sahiplik Problemi</h4>
+                        <p><strong>Problem:</strong> Dijital varlıklar sonsuz kopyalanabilir, kimin "gerçek sahibi" olduğu belirsiz</p>
+                        <p><strong>Çözüm:</strong> Blockchain üzerinde değiştirilemez sahiplik kaydı</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="flow-item">
+                        <h4>💰 Yaratıcı Telif Hakları</h4>
+                        <p><strong>Problem:</strong> Sanatçılar eserlerinin ikincil satışlarından pay alamıyor</p>
+                        <p><strong>Çözüm:</strong> Akıllı kontratlarla otomatik telif ödemeleri</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="flow-item">
+                        <h4>🌐 Dijital Kimlik ve İtibar</h4>
+                        <p><strong>Problem:</strong> Online kimlik ve başarıların doğrulanması zor</p>
+                        <p><strong>Çözüm:</strong> Transfer edilemez NFT'ler ile dijital kimlik oluşturma</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="flow-item">
+                        <h4>🎮 Oyun İçi Varlık Sahipliği</h4>
+                        <p><strong>Problem:</strong> Oyun kapandığında tüm varlıklar kaybolur</p>
+                        <p><strong>Çözüm:</strong> Oyunlar arası taşınabilir, gerçek sahiplik</p>
+                    </div>
+                </div>
+                
+                <h3>Fungible vs Non-Fungible Farkı</h3>
+                <div class="flow-horizontal">
+                    <div class="flow-item">
+                        <h4>Fungible (Değiştirilebilir)</h4>
+                        <p>1 BTC = 1 BTC</p>
+                        <p>1 ETH = 1 ETH</p>
+                        <p>Birbirleriyle özdeş</p>
+                    </div>
+                    <div class="arrow">↔️</div>
+                    <div class="flow-item">
+                        <h4>Non-Fungible (Benzersiz)</h4>
+                        <p>Her NFT benzersizdir</p>
+                        <p>Unique Token ID</p>
+                        <p>Değiştirilemez</p>
+                    </div>
+                </div>
+                
+                <h3>Temel Özellikler</h3>
+                <ul>
+                    <li><strong>Benzersizlik:</strong> Her NFT'nin blockchain üzerinde unique bir token ID'si vardır</li>
+                    <li><strong>Bölünemezlik:</strong> NFT'ler genellikle bölünemez, tek bir birim olarak işlem görür</li>
+                    <li><strong>Sahiplik Kanıtı:</strong> Blockchain üzerinde değiştirilemez sahiplik kaydı</li>
+                    <li><strong>Programlanabilirlik:</strong> Akıllı kontratlarla özel özellikler eklenebilir</li>
+                    <li><strong>Interoperability:</strong> Farklı platformlar arasında transfer edilebilir</li>
+                </ul>
+                
+                <h3>NFT Kullanım Alanları</h3>
+                <div class="info-box">
+                    <strong>NFT teknolojisi sadece dijital sanat değil, hayatın birçok alanında devrim yaratmaktadır:</strong>
+                </div>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kullanım Alanı</th>
+                                <th>Açıklama</th>
+                                <th>Örnekler</th>
+                                <th>Potansiyel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🎨 Dijital Sanat</strong></td>
+                                <td>Dijital sanat eserlerinin tokenizasyonu</td>
+                                <td>Beeple, CryptoPunks, BAYC</td>
+                                <td>Sanat piyasasının demokratikleşmesi</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🎮 Gaming</strong></td>
+                                <td>Oyun içi varlıkların gerçek sahipliği</td>
+                                <td>Axie Infinity, Gods Unchained</td>
+                                <td>Play-to-earn ekonomisi</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🏠 Gayrimenkul</strong></td>
+                                <td>Mülkiyet tapularının dijitalleşmesi</td>
+                                <td>Propy, RealT</td>
+                                <td>Hızlı ve güvenli mülk transferi</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🎵 Müzik</strong></td>
+                                <td>Müzik hakları ve telif yönetimi</td>
+                                <td>Audius, Royal</td>
+                                <td>Doğrudan sanatçı-dinleyici ilişkisi</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🎫 Biletleme</strong></td>
+                                <td>Sahte bilet önleme, ikincil piyasa kontrolü</td>
+                                <td>GET Protocol, GUTS Tickets</td>
+                                <td>Karaborsanın önlenmesi</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📜 Sertifikasyon</strong></td>
+                                <td>Diploma, sertifika doğrulama</td>
+                                <td>MIT dijital diplomaları</td>
+                                <td>Sahtecilik önleme</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🆔 Dijital Kimlik</strong></td>
+                                <td>Merkezi olmayan kimlik yönetimi</td>
+                                <td>ENS, Unstoppable Domains</td>
+                                <td>Web3 kimlik altyapısı</td>
+                            </tr>
+                            <tr>
+                                <td><strong>👗 Moda</strong></td>
+                                <td>Dijital ve fiziksel ürün doğrulama</td>
+                                <td>Nike CryptoKicks, Dolce & Gabbana</td>
+                                <td>Sahte ürün önleme</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚽ Spor</strong></td>
+                                <td>Koleksiyon kartları, fan tokenları</td>
+                                <td>NBA Top Shot, Sorare</td>
+                                <td>Fan katılımı ve sadakat programları</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🏥 Sağlık</strong></td>
+                                <td>Tıbbi kayıtlar, hasta verileri</td>
+                                <td>MedicalChain</td>
+                                <td>Veri sahipliği ve gizlilik</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌐 Metaverse</strong></td>
+                                <td>Sanal arazi ve varlık sahipliği</td>
+                                <td>Decentraland, The Sandbox</td>
+                                <td>Dijital ekonomi altyapısı</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📚 Yayıncılık</strong></td>
+                                <td>E-kitap sahipliği, telif hakları</td>
+                                <td>Mirror, Paragraph</td>
+                                <td>İçerik monetizasyonu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>NFT'lerin Geleceği</h3>
+                <div class="tech-box">
+                    <p><strong>Utility NFTs:</strong> Sadece koleksiyon değil, gerçek kullanım alanı olan NFT'ler öne çıkacak. Üyelik hakları, erişim tokenları, fonksiyonel araçlar.</p>
+                    
+                    <p><strong>Kurumsal Adaptasyon:</strong> Büyük markalar ve kurumlar NFT teknolojisini sadakat programları, müşteri ilişkileri ve ürün doğrulama için kullanmaya başladı.</p>
+                    
+                    <p><strong>Regülasyon:</strong> Hukuki altyapının gelişmesiyle NFT'ler daha güvenli ve yaygın kullanılacak. Fikri mülkiyet hakları ve vergilendirme netleşecek.</p>
+                    
+                    <p><strong>Teknolojik Gelişmeler:</strong> Layer 2 çözümler, cross-chain köprüler ve daha düşük işlem ücretleri NFT'leri daha erişilebilir kılacak.</p>
+                </div>
+            </section>
+            
+            <section id="teknik-yapi">
+                <h2>NFT'nin Teknik Yapısı</h2>
+                
+                <div class="diagram">
+                    <h3>NFT Katman Mimarisi</h3>
+                    <div class="flow">
+                        <div class="flow-item">
+                            <strong>Blockchain Layer</strong>
+                            <p>Ethereum, Polygon, Solana</p>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flow-item">
+                            <strong>Smart Contract Layer</strong>
+                            <p>ERC-721, ERC-1155</p>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <div class="flow-item">
+                            <strong>Token Layer</strong>
+                            <p>Unique Token ID + Metadata</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>NFT Veri Yapısı</h3>
+                <div class="code-block">
+<span class="comment">// NFT'nin temel veri yapısı</span>
+{
+    <span class="string">"tokenId"</span>: <span class="number">12345</span>,
+    <span class="comment">// Benzersiz token kimliği</span>
+    
+    <span class="string">"owner"</span>: <span class="string">"0x742d35Cc6634C053..."</span>,
+    <span class="comment">// Sahip adresi</span>
+    
+    <span class="string">"tokenURI"</span>: <span class="string">"ipfs://QmXy..."</span>,
+    <span class="comment">// Metadata konumu</span>
+    
+    <span class="string">"contractAddress"</span>: <span class="string">"0x8a90..."</span>,
+    <span class="comment">// Kontrat adresi</span>
+    
+    <span class="string">"blockNumber"</span>: <span class="number">15678900</span>,
+    <span class="comment">// Oluşturulduğu blok</span>
+    
+    <span class="string">"transactionHash"</span>: <span class="string">"0x3f4e..."</span>
+    <span class="comment">// İşlem hash'i</span>
+}
+                </div>
+                
+                <h3>Blockchain Üzerindeki Yaşam Döngüsü</h3>
+                <ol>
+                    <li><strong>Deployment:</strong> Akıllı kontrat blockchain'e yüklenir</li>
+                    <li><strong>Minting:</strong> Yeni NFT oluşturulur ve ilk sahibine atanır</li>
+                    <li><strong>Transfer:</strong> NFT farklı adresler arasında transfer edilir</li>
+                    <li><strong>Burning (Opsiyonel):</strong> NFT kalıcı olarak yok edilir</li>
+                </ol>
+            </section>
+            
+            <section id="token-standartlari">
+                <h2>NFT Token Standartları</h2>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Standart</th>
+                                <th>Blockchain</th>
+                                <th>Özellikler</th>
+                                <th>Kullanım Alanı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ERC-721</strong></td>
+                                <td>Ethereum</td>
+                                <td>Her token benzersiz, tek tek transfer</td>
+                                <td>Sanat, Koleksiyon, Domain</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ERC-1155</strong></td>
+                                <td>Ethereum</td>
+                                <td>Hem fungible hem non-fungible, batch transfer</td>
+                                <td>Gaming, Multi-token sistemler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>ERC-721 Standart Interface</h3>
+                <div class="code-block">
+<span class="keyword">interface</span> <span class="string">IERC721</span> {
+    <span class="comment">// Events</span>
+    <span class="keyword">event</span> Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    <span class="keyword">event</span> Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+    <span class="keyword">event</span> ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+    
+    <span class="comment">// Functions</span>
+    <span class="keyword">function</span> balanceOf(address owner) <span class="keyword">external view returns</span> (uint256);
+    <span class="keyword">function</span> ownerOf(uint256 tokenId) <span class="keyword">external view returns</span> (address);
+    <span class="keyword">function</span> transferFrom(address from, address to, uint256 tokenId) <span class="keyword">external</span>;
+    <span class="keyword">function</span> approve(address to, uint256 tokenId) <span class="keyword">external</span>;
+    <span class="keyword">function</span> getApproved(uint256 tokenId) <span class="keyword">external view returns</span> (address);
+    <span class="keyword">function</span> setApprovalForAll(address operator, bool approved) <span class="keyword">external</span>;
+    <span class="keyword">function</span> isApprovedForAll(address owner, address operator) <span class="keyword">external view returns</span> (bool);
+}
+                </div>
+            </section>
+            
+            <section id="smart-contracts">
+                <h2>NFT Akıllı Kontratları</h2>
+                
+                <div class="tech-box">
+                    <h3>Akıllı Kontrat Nedir?</h3>
+                    <p>Blockchain üzerinde çalışan, kendi kendini yürüten programlardır. NFT'lerin tüm mantığı ve kuralları bu kontratlarda tanımlanır.</p>
+                </div>
+                
+                <h3>Basit NFT Kontrat Örneği (Solidity)</h3>
+                <div class="code-block">
+<span class="keyword">pragma solidity</span> ^0.8.0;
+
+<span class="keyword">import</span> <span class="string">"@openzeppelin/contracts/token/ERC721/ERC721.sol"</span>;
+<span class="keyword">import</span> <span class="string">"@openzeppelin/contracts/utils/Counters.sol"</span>;
+
+<span class="keyword">contract</span> <span class="string">MyNFT</span> <span class="keyword">is</span> ERC721 {
+    <span class="keyword">using</span> Counters <span class="keyword">for</span> Counters.Counter;
+    Counters.Counter <span class="keyword">private</span> _tokenIds;
+    
+    <span class="comment">// Metadata base URI</span>
+    <span class="keyword">string</span> <span class="keyword">public</span> baseURI;
+    
+    <span class="comment">// Minting fiyatı</span>
+    <span class="keyword">uint256</span> <span class="keyword">public</span> mintPrice = <span class="number">0.05</span> ether;
+    
+    <span class="comment">// Maximum supply</span>
+    <span class="keyword">uint256</span> <span class="keyword">public</span> maxSupply = <span class="number">10000</span>;
+    
+    <span class="keyword">constructor</span>() ERC721(<span class="string">"MyNFTCollection"</span>, <span class="string">"MNFT"</span>) {
+        baseURI = <span class="string">"ipfs://QmXyz123/"</span>;
+    }
+    
+    <span class="keyword">function</span> mintNFT(<span class="keyword">address</span> recipient) 
+        <span class="keyword">public payable returns</span> (<span class="keyword">uint256</span>) 
+    {
+        <span class="keyword">require</span>(msg.value >= mintPrice, <span class="string">"Insufficient payment"</span>);
+        <span class="keyword">require</span>(_tokenIds.current() < maxSupply, <span class="string">"Max supply reached"</span>);
+        
+        _tokenIds.increment();
+        <span class="keyword">uint256</span> newItemId = _tokenIds.current();
+        _mint(recipient, newItemId);
+        
+        <span class="keyword">return</span> newItemId;
+    }
+}
+                </div>
+                
+                <h3>Kontrat Fonksiyonları</h3>
+                <ul>
+                    <li><strong>mint():</strong> Yeni NFT oluşturur</li>
+                    <li><strong>transfer():</strong> NFT'yi başka adrese gönderir</li>
+                    <li><strong>burn():</strong> NFT'yi yok eder</li>
+                    <li><strong>approve():</strong> Başka bir adrese transfer yetkisi verir</li>
+                    <li><strong>tokenURI():</strong> NFT'nin metadata URI'sini döndürür</li>
+                    <li><strong>ownerOf():</strong> Token sahibini sorgular</li>
+                </ul>
+            </section>
+            
+            <section id="metadata">
+                <h2>NFT Metadata Yapısı</h2>
+                
+                <div class="info-box">
+                    <strong>Metadata:</strong> NFT'nin görsel, özellik ve diğer bilgilerini içeren JSON formatındaki veridir. 
+                    Genellikle IPFS veya Arweave gibi dağıtık depolama sistemlerinde saklanır.
+                </div>
+                
+                <h3>Standart Metadata Formatı (OpenSea Standardı)</h3>
+                <div class="code-block">
+{
+    <span class="string">"name"</span>: <span class="string">"Awesome NFT #1234"</span>,
+    <span class="string">"description"</span>: <span class="string">"This is an amazing NFT from our collection"</span>,
+    <span class="string">"image"</span>: <span class="string">"ipfs://QmXyz123/1234.png"</span>,
+    <span class="string">"external_url"</span>: <span class="string">"https://mynft.io/token/1234"</span>,
+    <span class="string">"attributes"</span>: [
+        {
+            <span class="string">"trait_type"</span>: <span class="string">"Background"</span>,
+            <span class="string">"value"</span>: <span class="string">"Purple"</span>
+        },
+        {
+            <span class="string">"trait_type"</span>: <span class="string">"Eyes"</span>,
+            <span class="string">"value"</span>: <span class="string">"Laser"</span>
+        },
+        {
+            <span class="string">"trait_type"</span>: <span class="string">"Rarity"</span>,
+            <span class="string">"value"</span>: <span class="string">"Legendary"</span>
+        },
+        {
+            <span class="string">"display_type"</span>: <span class="string">"number"</span>,
+            <span class="string">"trait_type"</span>: <span class="string">"Generation"</span>,
+            <span class="string">"value"</span>: <span class="number">1</span>
+        }
+    ],
+    <span class="string">"properties"</span>: {
+        <span class="string">"category"</span>: <span class="string">"Art"</span>,
+        <span class="string">"creators"</span>: [{
+            <span class="string">"address"</span>: <span class="string">"0x123..."</span>,
+            <span class="string">"share"</span>: <span class="number">100</span>
+        }]
+    }
+}
+                </div>
+                
+                <h3>Metadata Depolama Seçenekleri</h3>
+                <div class="flow-horizontal">
+                    <div class="flow-item">
+                        <h4>On-Chain</h4>
+                        <p>✅ Tamamen merkeziyetsiz</p>
+                        <p>❌ Pahalı</p>
+                        <p>Küçük veri için uygun</p>
+                    </div>
+                    <div class="flow-item">
+                        <h4>IPFS</h4>
+                        <p>✅ Dağıtık depolama</p>
+                        <p>✅ İçerik adresleme</p>
+                        <p>En popüler yöntem</p>
+                    </div>
+                    <div class="flow-item">
+                        <h4>Centralized</h4>
+                        <p>❌ Merkezi kontrol</p>
+                        <p>✅ Hızlı ve ucuz</p>
+                        <p>Tavsiye edilmez</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="minting">
+                <h2>NFT Minting Süreci</h2>
+                
+                <div class="tech-box">
+                    <h3>Minting Nedir?</h3>
+                    <p>Yeni bir NFT'nin blockchain üzerinde oluşturulması ve ilk sahibine atanması işlemidir.</p>
+                </div>
+                
+                <h3>Minting Adımları</h3>
+                <div class="diagram">
+                    <ol style="text-align: left; display: inline-block;">
+                        <li><strong>Hazırlık:</strong> Dijital içerik ve metadata hazırlanır</li>
+                        <li><strong>Upload:</strong> İçerik IPFS'e yüklenir, CID alınır</li>
+                        <li><strong>Metadata Oluşturma:</strong> JSON metadata dosyası hazırlanır</li>
+                        <li><strong>Kontrat Etkileşimi:</strong> Mint fonksiyonu çağrılır</li>
+                        <li><strong>Transaction:</strong> İşlem blockchain'e gönderilir</li>
+                        <li><strong>Confirmation:</strong> İşlem onaylanır, NFT oluşur</li>
+                        <li><strong>Indexing:</strong> NFT marketplace'lerde görünür</li>
+                    </ol>
+                </div>
+                
+                <h3>Gas Fee Hesaplaması</h3>
+                <div class="code-block">
+<span class="comment">// Ethereum Gas Fee Formülü</span>
+Total Fee = Gas Units × Gas Price
+
+<span class="comment">// Örnek Minting Gas Hesabı</span>
+Gas Units: <span class="number">150,000</span> <span class="comment">(ortalama NFT mint)</span>
+Gas Price: <span class="number">30</span> Gwei
+Total Fee = <span class="number">150,000</span> × <span class="number">30</span> = <span class="number">4,500,000</span> Gwei
+         = <span class="number">0.0045</span> ETH
+         ≈ $<span class="number">7-15</span> <span class="comment">(ETH fiyatına göre)</span>
+                </div>
+                
+                <h3>Minting Türleri</h3>
+                <ul>
+                    <li><strong>Regular Minting:</strong> Kullanıcı gas fee öder</li>
+                    <li><strong>Lazy Minting:</strong> NFT satılana kadar blockchain'e yazılmaz</li>
+                    <li><strong>Batch Minting:</strong> Birden fazla NFT tek işlemde</li>
+                    <li><strong>Free Minting:</strong> Proje gas fee'yi karşılar</li>
+                </ul>
+            </section>
+            
+            <section id="storage">
+                <h2>NFT Depolama Sistemleri</h2>
+                
+                <h3>IPFS (InterPlanetary File System)</h3>
+                <div class="tech-box">
+                    <p><strong>IPFS:</strong> İçerik adresleme kullanan dağıtık P2P dosya depolama protokolü</p>
+                    <ul>
+                        <li>Her dosya unique bir CID (Content Identifier) alır</li>
+                        <li>İçerik değişirse CID de değişir (immutable)</li>
+                        <li>Pinning servisleri ile kalıcılık sağlanır</li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+<span class="comment">// IPFS CID Örneği</span>
+ipfs://QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+
+<span class="comment">// IPFS Gateway URL</span>
+https://ipfs.io/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+https://gateway.pinata.cloud/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+                </div>
+                
+                <h3>Depolama Karşılaştırması</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Merkeziyetsizlik</th>
+                                <th>Maliyet</th>
+                                <th>Kalıcılık</th>
+                                <th>Hız</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>On-Chain</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>💰💰💰💰💰</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                                <td>⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>IPFS</td>
+                                <td>⭐⭐⭐⭐</td>
+                                <td>💰💰</td>
+                                <td>⭐⭐⭐</td>
+                                <td>⭐⭐⭐⭐</td>
+                            </tr>
+                            <tr>
+                                <td>AWS/Cloud</td>
+                                <td>⭐</td>
+                                <td>💰</td>
+                                <td>⭐⭐</td>
+                                <td>⭐⭐⭐⭐⭐</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>IPFS Pinning Servisleri</h3>
+                <ul>
+                    <li><strong>Pinata:</strong> Popüler NFT pinning servisi</li>
+                    <li><strong>Infura:</strong> Ethereum altyapı sağlayıcısı</li>
+                    <li><strong>NFT.Storage:</strong> Ücretsiz NFT depolama</li>
+                </ul>
+            </section>
+            
+            
+            
+            
+            <section>
+                <h2>Özet ve Öneriler</h2>
+                
+                <div class="info-box">
+                    <h3>NFT Teknolojisinin Geleceği</h3>
+                    <p>NFT teknolojisi sadece dijital sanat değil, kimlik doğrulama, gayrimenkul, 
+                    fikri mülkiyet hakları ve daha birçok alanda devrim yaratma potansiyeline sahiptir.</p>
+                </div>
+                
+            </section>
+        </div>
+        
+        <footer>
+            <p>© 2024 NFT Teknik Rehber | Blockchain teknolojisi sürekli gelişmektedir, güncel bilgiler için resmi dokümantasyonu takip edin.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Highlight code on hover
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.3)';
+            });
+            block.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
