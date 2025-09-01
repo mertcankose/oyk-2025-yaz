@@ -1,9 +1,8 @@
-
 {
   "name": "Mertcan NFT",
   "description": "This is my first NFT created on Ethereum blockchain",
   "image": "ipfs://bafkreigbqynytkjsgdoluamuzebvnwnenukmuzwvxxkodk2fau6ld2v5pm",
-  "external_url": "https://mertcankose.com",
+  "external_url": "https://github.com/mertcankose",
   "attributes": [
     {
       "trait_type": "Collection",

@@ -1,0 +1,28 @@
+{
+  "name": "Mustafa Akgül Özgür Yazılım Yaz Kampı | Blockchain & Ethereum ile akıllı sözleşmeler",
+  "description": "Mustafa Akgül Özgür Yazılım Kampı tarafından düzenlenen 2025 Yaz Kampı NFT'leri",
+  "image": "ipfs://bafybeid6jkwhtjlumtzio6b472fsqm3rupl6lfzdghk236y3d2c2kmqjsq",
+  "external_url": "https://kamp.linux.org.tr/2025-yaz/",
+  "attributes": [
+    {
+      "trait_type": "Year",
+      "value": "2025"
+    },
+    {
+      "trait_type": "Mevsim",
+      "value": "Yaz"
+    },
+    {
+      "trait_type": "Name",
+      "value": "Blokzincire Giriş ve Ethereum ile Akıllı Sözleşmeler"
+    },
+    {
+      "trait_type": "Teacher",
+      "value": "Mertcan Köse"
+    },
+    {
+      "trait_type": "Teacher2 ",
+      "value": "Büşra Keskin"
+    }
+  ]
+}
